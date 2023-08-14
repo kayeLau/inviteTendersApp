@@ -1,7 +1,7 @@
 from lxml import etree
 from selenium import webdriver
 import time
-import mysql.connector
+
 
 
 broswer= webdriver.Chrome()#使用chrome内核
@@ -47,6 +47,7 @@ def href_get(href):#获取今天新发布的页面链接，返回列表
 
 def p_get(p):
  text=''
+
  for i in p.xpath('.//span/text()|.//strong/text()'):
     text+=i
  return text
@@ -75,5 +76,7 @@ while True:
          text_get(href)
          i+=1  
         print(dic_all)
-        into_sql(dic_all)
-        break # 停止执行61秒，防止反复运行程序。
+ #      into_sql(dic_all)
+        time.sleep(61) # 停止执行61秒，防止反复运行程序。
+        
+
