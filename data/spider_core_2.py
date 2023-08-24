@@ -50,6 +50,9 @@ def text_get(href):
    p_all+='\n'+p_text
   dic_all[i]={title:p_all}
 
+  
+
+
 
  
 while True:
