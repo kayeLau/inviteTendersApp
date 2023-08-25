@@ -6,4 +6,5 @@ def return_passage(date=None,number=0):#返回指定日期指定序号的内容
 def request_title(word):#返回搜索指定关键词标题
   pass
 
+
   

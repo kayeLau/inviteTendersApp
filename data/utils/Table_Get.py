@@ -99,17 +99,21 @@ test_table='''<table style="width: 100%; border-collapse: collapse; mso-yfti-tbl
 html=etree.HTML(test_table)
 
 def table_get(table_xpath):
-
     table_vector=[]
     for tr in table_xpath.xpath('.//tr'):
-      td_list=[]
-      for item in tr.xpath('.//*/text()'):
-       if item!='':
-        td_list.append(item)
-      table_vector.append(td_list)
-    print(td_list)
-    return td_list
+     tr_list=[]
+     for p in tr.xpath('.//p'):
+      text=''
+      for i in p.xpath('.//span/text()|.//strong/text()'):
+       text+=i
+      tr_list.append(text) 
 
+     table_vector.append(tr_list)
+    
+    return table_vector
 
-table_get(html.xpath('.//table')[0])
+#test
+li=table_get(html.xpath('.//table')[0])
+for row in li:
+  print(row)
 
