@@ -26,6 +26,7 @@ def insert(mycursor,dic_all):
             mycursor.execute("INSERT INTO data (data_title, data_text, submission_date) VALUES ('%s', '%s', NOW());"%(title,text))
     mydb.commit()    # 数据表内容有更新，必须使用到该语句
     print(mycursor.rowcount, "记录插入成功。")
+    
 def request():
     mycursor = mydb.cursor()
     mycursor.execute()
