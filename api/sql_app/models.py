@@ -8,17 +8,17 @@ from .db import Base
 class Bud(Base):
     __tablename__ = "bud"
 
-    bid_id = Column(String(50), primary_key=True)
-    bid_title = Column(String(50))
-    bid_body = Column(String(255))
-    bid_table = Column(JSON)
+    bud_id = Column(String(50), primary_key=True)
+    bud_title = Column(String(50))
+    bud_body = Column(String(255))
+    bud_table = Column(JSON)
     release_time = Column(DateTime)
-    bid_unit = Column(Integer)
-    bid_type = Column(Integer)
+    bud_unit = Column(Integer)
+    bud_type = Column(Integer)
     pj_type = Column(Integer)
-    bid_city = Column(Integer)
-    bid_contact = Column(String(50))
-    bid_amount = Column(Integer)
+    bud_city = Column(Integer)
+    bud_contact = Column(String(50))
+    bud_amount = Column(Integer)
     data_source = Column(Integer)
     update_time = Column(DateTime)
 

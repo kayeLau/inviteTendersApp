@@ -5,13 +5,17 @@ from pydantic import BaseModel
 
 
 class BaseToDo(BaseModel):
-    content: str
-    done: bool
-    owner_id: int
+    bud_id : str
+    bud_title : str
+    bud_body : str
+    bud_unit : int
+    bud_type : int
+    pj_type : int
+    bud_city : int
+    bud_contact : str
+    bud_amount : int
+    data_source : int
 
 
 class ToDo(BaseToDo):
     id: int
-
-    class Config:
-        orm_mode = True
