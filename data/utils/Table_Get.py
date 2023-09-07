@@ -99,7 +99,7 @@ test_table='''<table style="width: 100%; border-collapse: collapse; mso-yfti-tbl
 
 html=etree.HTML(test_table)
 
-def table_get(table_xpath):
+def table_get(table_xpath): 
     
     dic_table={}
     table_vector=[]
@@ -119,11 +119,10 @@ def table_get(table_xpath):
              dic_table_row[key]=value
              
       dic_table[n]=dic_table_row
-      
-    return dic_table
+      json_table=json.dumps(dic_table)
+
+    return json_table
 
 #test
 li=table_get(html.xpath('.//table')[0])
-for k,v in li.items():
- print(k,v)
 
