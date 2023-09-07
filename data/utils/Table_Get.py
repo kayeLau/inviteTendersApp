@@ -1,5 +1,6 @@
 #本工具用于处理表格，最终返回的数据结构设计为二维向量->[['title_a','title_b'],['item_a','item_b']]
 from lxml import etree
+import json
 test_table='''<table style="width: 100%; border-collapse: collapse; mso-yfti-tbllook: 1184; mso-padding-alt: 0cm 0cm 0cm 0cm;" border="1" width="100%" cellspacing="0" cellpadding="0"> 
 <thead> 
 <tr style="height: 36.4pt; mso-yfti-irow: 0; mso-yfti-firstrow: yes;"> 
@@ -99,6 +100,8 @@ test_table='''<table style="width: 100%; border-collapse: collapse; mso-yfti-tbl
 html=etree.HTML(test_table)
 
 def table_get(table_xpath):
+    
+    dic_table={}
     table_vector=[]
     for tr in table_xpath.xpath('.//tr'):
      tr_list=[]
@@ -107,13 +110,20 @@ def table_get(table_xpath):
       for i in p.xpath('.//span/text()|.//strong/text()'):
        text+=i
       tr_list.append(text) 
-
      table_vector.append(tr_list)
-    
-    return table_vector
+
+    for n in range(1,len(table_vector)-1):
+      dic_table_row={}
+      dic_zip=dict(zip(table_vector[0],table_vector[n]))
+      for key,value in dic_zip.items():
+             dic_table_row[key]=value
+             
+      dic_table[n]=dic_table_row
+      
+    return dic_table
 
 #test
 li=table_get(html.xpath('.//table')[0])
-for row in li:
-  print(row)
+for k,v in li.items():
+ print(k,v)
 
