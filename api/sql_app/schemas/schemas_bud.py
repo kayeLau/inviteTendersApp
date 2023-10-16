@@ -8,6 +8,7 @@ class BaseToDo(BaseModel):
     bud_id : str
     bud_title : str
     bud_body : str
+    bud_table: str
     bud_unit : int
     bud_type : int
     pj_type : int

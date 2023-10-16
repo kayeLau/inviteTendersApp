@@ -20,7 +20,7 @@ def create_bud(db: Session, bud_data: schemas_bud.BaseToDo):
         bud_id = uuid.uuid4(),
         bud_title = bud_data.bud_title,
         bud_body = bud_data.bud_body,
-        # bud_table = bud_data.bud_table,
+        bud_table = bud_data.bud_table,
         bud_unit = bud_data.bud_unit,
         bud_type = bud_data.bud_type,
         pj_type = bud_data.pj_type,

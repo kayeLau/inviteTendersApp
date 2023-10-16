@@ -1,10 +1,10 @@
 # 接口路由
 from typing import Union
 from fastapi import APIRouter, Depends, HTTPException
-from sql_app import cruds
+from ..sql_app import cruds
 from sqlalchemy.orm import Session
 from sql_app.db import get_db
-from sql_app.schemas import schemas_bud
+from ..sql_app.schemas import schemas_bud
 
 router = APIRouter()
 
