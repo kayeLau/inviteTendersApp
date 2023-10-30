@@ -89,11 +89,11 @@ module.exports = class bud {
 
     postDeleteBud(req, res, next){
         const token = req.headers['token'];
-        const budCode = req.body.budCode
+        const id = req.body.bud_id
 
         verifyToken(token).then(tokenResult => {
             if (tokenResult.success === true) {
-                deleteBudItem(budCode).then(result => {
+                deleteBudItem(id).then(result => {
                     console.log(result)
                     res.json(result)
                 }).catch(err => {
