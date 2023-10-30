@@ -1,7 +1,9 @@
 const puppeteer = require('puppeteer');
 
 (async () => {
-  let ResultList = []
+  let resultList = []
+  const Bud_controller = require('../controllers/bud_controller')
+  const bud_controller = new Bud_controller()
   const browser = await puppeteer.launch({
     headless: false,
   });
@@ -12,15 +14,16 @@ const puppeteer = require('puppeteer');
 
   await getHref()
   await getContent()
+  await insertBud()
 
-  console.log(ResultList)
+  console.log(resultList)
 
   browser.close();
 
   // methods
   async function getContent() {
-    for (let i = 0; i < ResultList.length ; i++) {
-      await page.goto(ResultList[i].href);
+    for (let i = 0; i < resultList.length ; i++) {
+      await page.goto(resultList[i].data_href);
       await page.waitForSelector('.edit-container > p')
       const result = await page.$$eval('.edit-container > p', rows => {
         let text = ''
@@ -32,8 +35,7 @@ const puppeteer = require('puppeteer');
         })
         return text + '\n'
       })
-      console.log(result)
-      ResultList[i].content = result
+      resultList[i].bud_body = result
     }
   }
 
@@ -42,14 +44,38 @@ const puppeteer = require('puppeteer');
     const result = await page.$$eval('#noticeListTBody tr', rows => {
       return Array.from(rows, row => {
         const columns = row.querySelectorAll('td');
-        const href = row.querySelector('td > a').href
-        const title = columns[0].innerText
-        const company = columns[1].innerText
-        const time = columns[2].innerText
-        const content = ''
-        return { href, title, company, time, content }
+        const data_href = row.querySelector('td > a').href
+        const bud_title = columns[0].innerText
+        const bud_unit = columns[1].innerText
+        const release_time = columns[2].innerText
+        const bud_body = ''
+        return { data_href, bud_title, bud_unit, release_time, bud_body }
       });
     });
-    ResultList = result
+    resultList = result
+  }
+
+  async function insertBud(){
+    const data = resultList.map(item => {
+      return {
+        bud_title:item.bud_title,
+        bud_body:item.bud_body,
+        bud_table:item.bud_table,
+        release_time:item.release_time,
+        bud_unit:item.bud_unit || null,
+        bud_type:0, // 政府项目
+        pj_type:item.pj_type || 0,
+        bud_city:item.bud_city || null,
+        bud_contact:item.bud_contact || null,
+        bud_amount:item.bud_amount || null,
+        data_source:0, // 机器获取
+        data_href:item.data_href
+      }
+    })
+    await bud_controller.postInsertBudItems(data).then(res => {
+      console.log(res)
+    }).catch(err => {
+      console.log(err)
+    })
   }
 })();

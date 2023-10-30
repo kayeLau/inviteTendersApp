@@ -6,20 +6,22 @@ const sql_tabel = [
         name: 'bud_info',
         sql: `CREATE TABLE bud_info (
             bud_id VARCHAR(50) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
-            bud_title VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
-            bud_body VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
-            bud_table JSON NULL DEFAULT NULL,
-            release_time DATETIME NULL DEFAULT NULL,
-            bud_unit INT(10) NULL DEFAULT NULL,
-            bud_type INT(10) NULL DEFAULT NULL,
-            pj_type INT(10) NULL DEFAULT NULL,
-            bud_city INT(10) NULL DEFAULT NULL,
-            bud_contact VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
-            bud_amount INT(10) NULL DEFAULT NULL,
-            data_source INT(10) NULL DEFAULT NULL,
-            update_time DATETIME NULL DEFAULT NULL,
-            PRIMARY KEY (bud_id) USING BTREE
-            )`
+            bud_title VARCHAR(50) NULL DEFAULT NULL COMMENT '标题' COLLATE 'utf8mb4_0900_ai_ci',
+            bud_body VARCHAR(255) NULL DEFAULT NULL COMMENT '正文' COLLATE 'utf8mb4_0900_ai_ci',
+            bud_table JSON NULL DEFAULT NULL COMMENT '表格',
+            release_time DATETIME NULL DEFAULT NULL COMMENT '发布时间',
+            bud_unit VARCHAR(50) NULL DEFAULT NULL COMMENT '招采单位',
+            bud_type INT(10) NULL DEFAULT NULL COMMENT '招标类型；0：政府项目 1：企业项目',
+            pj_type INT(10) NULL DEFAULT NULL COMMENT '项目类型',
+            bud_city INT(10) NULL DEFAULT NULL COMMENT '招标城市',
+            bud_contact VARCHAR(50) NULL DEFAULT NULL COMMENT '招标联系方式' COLLATE 'utf8mb4_0900_ai_ci',
+            bud_amount INT(10) NULL DEFAULT NULL COMMENT '项目金额',
+            data_source INT(10) NULL DEFAULT NULL COMMENT '数据来源',
+            data_href VARCHAR(50) NULL DEFAULT NULL COMMENT '原文連接' COLLATE 'utf8mb4_0900_ai_ci',
+            update_time DATETIME NULL DEFAULT NULL COMMENT '更新时间',
+            PRIMARY KEY (bud_id) USING BTREE,
+            UNIQUE INDEX bud_title (bud_title) USING BTREE
+        )`
     }
 ]
 
