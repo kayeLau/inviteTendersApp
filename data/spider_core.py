@@ -34,7 +34,7 @@ def into_sql(dic_all):
 def href_get(href):#获取今天新发布的页面链接，返回列表
   li_href=[]
   broswer.get(href)
-  today='2023-07-15'
+  today='2023-10-30'
   content = broswer.page_source
   html=etree.HTML(content)
   date = html.xpath('/html/body//ul/li[@class="clearfix"]/span')
