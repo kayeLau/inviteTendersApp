@@ -27,75 +27,51 @@ module.exports = class Member {
         })
     }
 
+    getUserInfo(req, res, next){
+        if (req.user) {
+            return res.send({
+              code: 0,
+              data: req.user
+            })
+          }
+          throw new Error('用户未登录')
+    }
+
     // 登入
     postLogin(req, res, next) {
-        const memberData = {
-            name: req.body.name,
-            password: hashPassword(req.body.password),
-            updateDate:getCurrentTime(),
-        }
-        loginCheck(memberData).then(rows => {
-            if (checkNull(rows) === true) {
-                res.json({
-                        success: false,
-                        msg: "請輸入正確的帳號或密碼。"
-                })
-            } else if (checkNull(rows) === false) {
-                const token = jwt.sign({ data: rows[0].id }, config.secret, { expiresIn: '2h' });
-                // res.setHeader('token', token);
-                res.json({
-                        success: true,
-                        token,
-                        msg: "歡迎 " + rows[0].name + " 的登入！",
-                })
+        var params = req.body
+        var {code, type} = params
+        if (type === 'wxapp') {
+          // code 换取 openId 和 sessionKey 的主要逻辑
+          axios.get('https://api.weixin.qq.com/sns/jscode2session', {
+            params: {
+              appid: config.appId,
+              secret: config.appSecret,
+              js_code: code,
+              grant_type: 'authorization_code'
             }
-        }).catch(err => {
-            console.log(err)
-        })
-    }
-
-    // 更改個人資料
-    postUpdateUser(req, res, next) {
-        const token = req.headers['token'];
-        const memberData = {
-            // password: hashPassword(req.body.password),
-            createDate: getCurrentTime(),
-            auth:req.body.auth,
-            shopId:req.body.shopId,
-            shopName:req.body.shopName
-        }
-        
-        verifyToken(token).then(tokenResult => {
-            if (tokenResult.success === true) {
-                const id = tokenResult.data
-                // todo:check user auth by sql
-                updateUserInformation(id, memberData).then(result => {
-                    res.json(result)
-                }).catch(err => {
-                    res.json(err)
-                })
+          }).then(({data}) => {
+            var openId = data.openid
+            var user = users[openId]
+            if (!user) {
+              user = {
+                openId,
+                sessionKey: data.session_key
+              }
+              users[openId] = user
+              console.log('新用户', user)
             } else {
-                res.json(tokenResult)
+              console.log('老用户', user)
             }
-        })
-    }
-
-    getUsersList(req, res, next){
-        const token = req.headers['token'];
-        const options = req.body.shopType ? { shopType: req.body.shopType } : {}
-        const size = parseInt(req.body.size)
-        const page = parseInt(req.body.page)
-
-        verifyToken(token).then(tokenResult => {
-            if (tokenResult.success === true) {
-                getUsersItems(options,size,page).then(result => {
-                    res.json(result)
-                }).catch(err => {
-                    res.json(err)
-                })
-            } else {
-                res.json(tokenResult)
-            }
-        })
+            req.session.openId = user.openId
+            req.user = user
+          }).then(() => {
+            res.send({
+              code: 0
+            })
+          })
+        } else {
+          throw new Error('未知的授权类型')
+        }
     }
 }
