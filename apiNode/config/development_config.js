@@ -7,5 +7,7 @@ module.exports = {
         password:process.env.DATABASE_PASSWORD,
         database:process.env.DATABASE
     },
-    secret: process.env.MY_SECRET
+    secret: process.env.MY_SECRET,
+    wxAppId: process.env.WX_APP_ID,
+    wxAppSecret: process.env.WX_APP_SECRET
 }

@@ -1,0 +1,1 @@
+<button open-type="getPhoneNumber" bindgetphonenumber="handleConfirm"></button>

@@ -127,7 +127,7 @@ function getItems(table, options, size, page , orderby = 'updateDate' , sort = '
     })
 }
 
-function getAllItem(table, options) {
+function getItem(table, options) {
     let result = {}
     return new Promise((resolve, reject) => {
         db.query(`SELECT * FROM ${table} where ?`, [options], (err, rows) => {
@@ -145,4 +145,4 @@ function getAllItem(table, options) {
     })
 }
 
-module.exports = { checkRepeated, createNew, updateItem, deleteItem, getItems, getAllItem }
+module.exports = { checkRepeated, createNew, updateItem, deleteItem, getItems, getItem }

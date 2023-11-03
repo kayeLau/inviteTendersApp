@@ -1,6 +1,7 @@
 // index.js
 // 获取应用实例
 const app = getApp()
+import { promisify } from '../../server/api.js';
 
 Page({
   data: {
@@ -18,6 +19,12 @@ Page({
     })
   },
   onLoad() {
+    promisify(wx.getStorage)({key: 'key'}).then(value => {
+      console.log(value)
+      // success
+    }).catch(reason => {
+      // fail
+    })
     if (wx.getUserProfile) {
       this.setData({
         canIUseGetUserProfile: true
@@ -44,5 +51,5 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  }
+  },
 })

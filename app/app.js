@@ -9,7 +9,7 @@ App({
 
     // 登录
     login()
-    getUserInfo()
+    // getUserInfo()
   },
 
   globalData: {

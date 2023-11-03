@@ -1,18 +1,22 @@
 const db = require('./connection_db')
-const { checkRepeated, createNew , updateItem , getItems} = require('./base_model')
+const { checkRepeated, createNew , updateItem , getItems , getItem} = require('./base_model')
 
 function toRegister(memberData) {
-    return checkRepeated("member_info","name",memberData.name)
-        .then(() => createNew("member_info",memberData))
+    return checkRepeated("user_info","open_Id",memberData.open_Id)
+        .then(() => createNew("user_info",memberData))
         .catch(err => err)
 }
 
 function updateUserInformation(id,data){
-    return updateItem("member_info",data,'id',id)
+    return updateItem("user_info",data,'id',id)
 }
 
 function getUsersItems(options, size, page) {
-    return getItems("member_info", options, size, page)
+    return getItems("user_info", options, size, page)
+}
+
+function getUsersItemById(options) {
+    return getItem("user_info", options )
 }
 
 // function updateUserInformation(id, memberData) {
@@ -32,4 +36,4 @@ function getUsersItems(options, size, page) {
 //     })
 // }
 
-module.exports = { toRegister , updateUserInformation , getUsersItems}
+module.exports = { toRegister , updateUserInformation , getUsersItems , getUsersItemById}
