@@ -27,7 +27,7 @@ const sql_tabel = [
         name: 'user_info',
         sql: `CREATE TABLE user_info (
             open_Id VARCHAR(50) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
-            session_Key VARCHAR(50) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+            session_key VARCHAR(50) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
             PRIMARY KEY (open_Id) USING BTREE
         )`
     }

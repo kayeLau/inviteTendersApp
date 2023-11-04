@@ -1,5 +1,5 @@
 // app.js
-import { login , getUserInfo} from './server/api.js';
+import { checkSession , login} from './server/auth.js';
 App({
   onLaunch() {
     // 展示本地存储能力
@@ -8,8 +8,8 @@ App({
     wx.setStorageSync('logs', logs)
 
     // 登录
-    login()
-    // getUserInfo()
+    checkSession()
+    // login()
   },
 
   globalData: {
