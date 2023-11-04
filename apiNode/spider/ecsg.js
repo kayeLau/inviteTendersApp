@@ -16,8 +16,6 @@ module.exports = async () => {
   await getContent()
   await insertBud()
 
-  console.log(resultList)
-
   browser.close();
 
   // methods
@@ -25,16 +23,16 @@ module.exports = async () => {
     for (let i = 0; i < resultList.length ; i++) {
       await page.goto(resultList[i].data_href);
       await page.waitForSelector('.edit-container > p')
-      const result = await page.$$eval('.edit-container > p', rows => {
+      const result = await page.$eval('.edit-container', row => {
         let text = ''
-        rows.forEach((row) => {
-          const columns = row.querySelectorAll('span');
-          columns.forEach(item => {
-            text += item.innerText
-          })
+        const columns = row.querySelectorAll('p');
+        columns.forEach(item => {
+          text += String(item.innerHTML).replace(/\s*<[^>]*>\s*/g,'')
+          text += '|'
         })
-        return text + '\n'
+        return text
       })
+      console.log(result)
       resultList[i].bud_body = result
     }
   }

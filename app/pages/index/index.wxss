@@ -1,19 +1,19 @@
 /**index.wxss**/
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #aaa;
-}
+.bid-header{
 
-.userinfo-avatar {
-  overflow: hidden;
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
 }
-
-.usermotto {
-  margin-top: 200px;
+.buds-cell{
+  padding: 5px 0;
+  font-size: 30rpx;
+  border-bottom: 1px #ccc solid;
+}
+.release-time{
+  text-align: right;
+  color: #ccc;
+}
+.buds-body{
+  height: calc(100% - 80px);
+}
+.buds-body-scroll{
+  height: 100%;
 }

@@ -1,0 +1,7 @@
+<!--index.wxml-->
+<view class="container detail">
+  <text class="detail-body" wx:for="{{budDetail.bud_body}}" decode="true">
+    {{ item }}
+  </text>
+  <view>招标单位：{{ budDetail.bud_unit }}</view>
+</view>

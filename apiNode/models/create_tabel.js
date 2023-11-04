@@ -17,7 +17,7 @@ const sql_tabel = [
             bud_contact VARCHAR(50) NULL DEFAULT NULL COMMENT '招标联系方式' COLLATE 'utf8mb4_0900_ai_ci',
             bud_amount INT(10) NULL DEFAULT NULL COMMENT '项目金额',
             data_source INT(10) NULL DEFAULT NULL COMMENT '数据来源',
-            data_href VARCHAR(50) NULL DEFAULT NULL COMMENT '原文連接' COLLATE 'utf8mb4_0900_ai_ci',
+            data_href VARCHAR(100) NULL DEFAULT NULL COMMENT '原文連接' COLLATE 'utf8mb4_0900_ai_ci',
             update_time DATETIME NULL DEFAULT NULL COMMENT '更新时间',
             PRIMARY KEY (bud_id) USING BTREE,
             UNIQUE INDEX bud_title (bud_title) USING BTREE

@@ -83,7 +83,7 @@ function optionsSQLFromatter(options) {
     let whereClause = ''
     for (const key in options) {
         if (options.hasOwnProperty(key)) {
-            let query = key === 'updateDate' ? 
+            let query = key === 'release_Time' ? 
             `${key} BETWEEN DATE('${options[key][0]}') AND DATE('${options[key][1]}')` 
             : `${key} = '${options[key]}'`
 
@@ -98,7 +98,7 @@ function optionsSQLFromatter(options) {
     return whereClause
 }
 
-function getItems(table, options, size, page , orderby = 'updateDate' , sort = 'DESC') {
+function getItems(table, options, size, page , orderby = 'release_time' , sort = 'DESC') {
     let result = {}
     return new Promise((resolve, reject) => {
         let optionsSQL = optionsSQLFromatter(options)
@@ -111,7 +111,7 @@ function getItems(table, options, size, page , orderby = 'updateDate' , sort = '
             }
             result.total = rows[0].total || 0;
         })
-        db.query(`SELECT * , DATE_FORMAT(updateDate,'%Y-%m-%d %H:%i:%S') AS updateDate FROM ${table} ${optionsSQL} ORDER BY ${ orderby } ${sort} LIMIT ${size} OFFSET ${(page - 1) * size }`, (err, rows) => {
+        db.query(`SELECT * , DATE_FORMAT(release_time,'%Y-%m-%d') AS release_time FROM ${table} ${optionsSQL} ORDER BY ${ orderby } ${sort} LIMIT ${size} OFFSET ${(page - 1) * size }`, (err, rows) => {
             if (err) {
                 result.msg = "server error,please try again"
                 result.success = false
