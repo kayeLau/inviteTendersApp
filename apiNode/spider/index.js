@@ -4,7 +4,7 @@
     const intervalTime = 1000 * 60 * 60
     const scriptAbleHour = '08'
     const ecsg = require('./ecsg')
-    // ecsg()
+    ecsg()
     
     function isScriptAble(){
         let time = new Date

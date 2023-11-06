@@ -20,19 +20,31 @@ module.exports = async () => {
 
   // methods
   async function getContent() {
-    for (let i = 0; i < resultList.length ; i++) {
+    for (let i = 0; i < resultList.length; i++) {
       await page.goto(resultList[i].data_href);
       await page.waitForSelector('.edit-container > p')
       const result = await page.$eval('.edit-container', row => {
         let text = ''
-        const columns = row.querySelectorAll('p');
+        const columns = row.querySelectorAll('.edit-container>p,.edit-container>table');
         columns.forEach(item => {
-          text += String(item.innerHTML).replace(/\s*<[^>]*>\s*/g,'')
+          if (item.tagName === 'TABLE') {
+            text += '<table>' + item.innerHTML + '</table>'
+            // item.querySelectorAll('tr').forEach(tr => {
+            //   text += '<tr>'
+            //   tr.querySelectorAll('td').forEach(td => {
+            //     let content = String(td.innerHTML).replace(/\s*<[^>]*>\s*/g, '')
+            //     text += '<td>' + content + '</td>'
+            //   })
+            //   text += '</tr>'
+            // })
+            // text += '</table>'
+          } else if(item.tagName === 'P'){
+            text += String(item.innerHTML).replace(/\s*<[^>]*>\s*/g, '')
+          }
           text += '|'
         })
         return text
       })
-      console.log(result)
       resultList[i].bud_body = result
     }
   }
@@ -53,21 +65,21 @@ module.exports = async () => {
     resultList = result
   }
 
-  async function insertBud(){
+  async function insertBud() {
     const data = resultList.map(item => {
       return {
-        bud_title:item.bud_title,
-        bud_body:item.bud_body,
-        bud_table:item.bud_table,
-        release_time:item.release_time,
-        bud_unit:item.bud_unit || null,
-        bud_type:0, // 政府项目
-        pj_type:item.pj_type || 0,
-        bud_city:item.bud_city || null,
-        bud_contact:item.bud_contact || null,
-        bud_amount:item.bud_amount || null,
-        data_source:0, // 机器获取
-        data_href:item.data_href
+        bud_title: item.bud_title,
+        bud_body: item.bud_body,
+        bud_table: item.bud_table,
+        release_time: item.release_time,
+        bud_unit: item.bud_unit || null,
+        bud_type: 0, // 政府项目
+        pj_type: item.pj_type || 0,
+        bud_city: item.bud_city || null,
+        bud_contact: item.bud_contact || null,
+        bud_amount: item.bud_amount || null,
+        data_source: 0, // 机器获取
+        data_href: item.data_href
       }
     })
     await bud_controller.postInsertBudItems(data).then(res => {

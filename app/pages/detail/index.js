@@ -11,9 +11,9 @@ Page({
 
   detailFormatter(){
     let currentBudDetail = app.globalData.currentBudDetail
+    currentBudDetail.bud_body = currentBudDetail.bud_body.replace('windowtext','#000')
     currentBudDetail.bud_body = currentBudDetail.bud_body.split('|')
     .filter(item => item !== '')
     this.setData({budDetail:currentBudDetail})
-  }
-
+  },
 })

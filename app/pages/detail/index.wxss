@@ -1,6 +1,8 @@
 /**index.wxss**/
 .detail{
   font-size: 33rpx;
+  padding: 0 10rpx
+;
 }
 .detail-body{
   display: inline-block;
@@ -11,4 +13,10 @@
   font-size: 35rpx;
   text-align: center;
   font-weight: bold;
+}
+.table{
+  display: block;
+  min-width: 200vw;
+  border-top: 1px rgb(78, 78, 78) solid;
+  border-bottom: 1px rgb(78, 78, 78) solid;
 }

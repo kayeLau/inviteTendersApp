@@ -7,7 +7,7 @@ const sql_tabel = [
         sql: `CREATE TABLE bud_info (
             bud_id VARCHAR(50) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
             bud_title VARCHAR(50) NULL DEFAULT NULL COMMENT '标题' COLLATE 'utf8mb4_0900_ai_ci',
-            bud_body VARCHAR(255) NULL DEFAULT NULL COMMENT '正文' COLLATE 'utf8mb4_0900_ai_ci',
+            bud_body LONGTEXT NULL DEFAULT NULL COMMENT '正文' COLLATE 'utf8mb4_0900_ai_ci',
             bud_table JSON NULL DEFAULT NULL COMMENT '表格',
             release_time DATETIME NULL DEFAULT NULL COMMENT '发布时间',
             bud_unit VARCHAR(50) NULL DEFAULT NULL COMMENT '招采单位',

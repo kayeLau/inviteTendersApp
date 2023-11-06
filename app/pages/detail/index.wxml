@@ -1,7 +1,17 @@
 <!--index.wxml-->
+<wxs module="utils">
+  function isTable(string){
+      if(string.substring(0,7) === '<table>')return true;
+      return false
+  }
+   module.exports.isTable = isTable;
+</wxs>
 <view class="container detail">
-  <text class="detail-body" wx:for="{{budDetail.bud_body}}" decode="true">
-    {{ item }}
-  </text>
-  <view>招标单位：{{ budDetail.bud_unit }}</view>
+  <block wx:for="{{budDetail.bud_body}}" wx:key="unquie">
+    <scroll-view scroll-x wx:if="{{utils.isTable(item)}}">
+      <rich-text class='table' nodes="{{item}}" />
+    </scroll-view>
+    <text wx:if="{{!utils.isTable(item)}}" class="detail-body" decode="true">{{ item }}</text>
+
+  </block>
 </view>

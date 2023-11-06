@@ -19,13 +19,13 @@ module.exports = class Member {
         getUsersItemById({ open_Id: open_Id }).then(result => {
           if (result.success) {
             let user = result.resource[0]
-            res.json(user)
+            res.json({...user,success:true})
           }
         })
       }else{
-        res.json({ code: 500 })
+        res.json({ success:false })
       }
-    }).catch(() => res.json({ code: 500 }))
+    }).catch(() => res.json({ success:false }))
   }
 
   // 登入
@@ -72,10 +72,10 @@ module.exports = class Member {
         }).then(token => {
           res.set('set-token', token);
           res.set('Access-Control-Expose-Headers', 'set-token')
-          res.json({ code: 0 , token })
+          res.json({ success:true , token })
         }).catch(err => {
           console.log(err)
-          res.json({ code: 500 })
+          res.json({ success:false })
         })
     } else {
       throw new Error('未知的授权类型')

@@ -10,7 +10,18 @@ Page({
       page:1,
       size:10
     },
-    search:""
+    panelHidden:true,
+    search:"",
+    searchColumn:[
+    {
+      name:'招标类型',
+      list:['全部','招标','变更','中标','废标','比选','资审','其他']
+    },
+    {
+      name:'采购方式',
+      list:['全部','公开招标','邀请招标']
+    }
+  ],
   },
 
   onLoad() {
@@ -36,5 +47,9 @@ Page({
   jumpTo(event){
     app.globalData.currentBudDetail = event.currentTarget.dataset.bud
     wx.navigateTo({url: '/pages/detail/index'})
+  },
+  switchPanel(event){
+    let panelHidden = !this.data.panelHidden
+    this.setData({panelHidden})
   }
 })

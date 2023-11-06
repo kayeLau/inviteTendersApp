@@ -30,6 +30,9 @@ export function checkSession() {
     console.log('session 生效')
     return getUserInfo()
   }).then(userInfo => {
+    if(!userInfo.success){
+      return login()
+    }
     console.log('登录成功', userInfo)
   }).catch(err => {
     console.log('自动登录失败, 重新登录', err)
