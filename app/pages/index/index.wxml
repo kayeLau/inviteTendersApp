@@ -1,18 +1,24 @@
 <!--index.wxml-->
 <view class="container">
   <view class="bid-header">
-    <view class="bid-header-search"></view>
+    <view class="bid-header-search">
+      <input type="text" placeholder="请输入招标内容" bindconfirm='getbudInfobyInput' />
+    </view>
     <mp-icon icon="more2" color="#fff" size="{{20}}" bind:tap="switchPanel"></mp-icon>
   </view>
   <view class="buds-body">
-    <h2>最新招标</h2>
     <scroll-view class='buds-body-scroll' type="list" scroll-y refresher-enabled="{{true}}" bindscrolltolower='getbudInfo' lower-threshold='100' bindrefresherpulling='getbudInfo'>
+      <view class="buds-body-header">
+        <h2>最新招标</h2>
+        <text>共有{{params.total}}項結果</text>
+      </view>
       <view wx:for="{{list}}" wx:key="unique" class="buds-cell">
         <view data-bud="{{item}}" bind:tap="jumpTo">
           <view>{{item.bud_title}}</view>
           <view class="release-time">{{item.release_time}}</view>
         </view>
       </view>
+      <view>到底了</view>
     </scroll-view>
 
     <view class="search-panel-bg" hidden="{{panelHidden}}">

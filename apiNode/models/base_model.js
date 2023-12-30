@@ -79,13 +79,31 @@ function deleteItem(table, key, value) {
     })
 }
 
+// @params
 function optionsSQLFromatter(options) {
     let whereClause = ''
     for (const key in options) {
         if (options.hasOwnProperty(key)) {
-            let query = key === 'release_Time' ? 
-            `${key} BETWEEN DATE('${options[key][0]}') AND DATE('${options[key][1]}')` 
-            : `${key} = '${options[key]}'`
+            if (options[key] === null || options[key] === undefined || options[key] === '') continue;
+            let query
+            switch (key) {
+                case 'update_time':
+                    query = `${key} BETWEEN '${options[key][0]}' AND '${options[key][1]}'`
+                    break
+                case 'release_time':
+                    query = `${key} BETWEEN '${options[key][0]}' AND '${options[key][1]}'`
+                    break
+                case 'bud_title':
+                    query = `${key} LIKE '%${options[key]}%'`
+                    break
+                case 'orderShopId':
+                    query = Array.isArray(options[key]) ? 
+                        options[key].reduce((accumulator, currentValue, index) => index === 0 ? `orderShopId = '${currentValue}'` : `${accumulator} OR orderShopId = '${currentValue}'`, '')
+                        : `${key} = '${options[key]}'`;
+                    break
+                default:
+                    query = `${key} = '${options[key]}'`
+            }
 
             if (whereClause === '') {
                 whereClause += ` WHERE ${query}`;
@@ -94,24 +112,25 @@ function optionsSQLFromatter(options) {
             }
         }
     }
-    console.log(whereClause)
     return whereClause
 }
 
-function getItems(table, options, size, page , orderby = 'release_time' , sort = 'DESC') {
+function getItems({ table, options, size, page, orderby = 'update_time', sort = 'DESC', join }) {
     let result = {}
     return new Promise((resolve, reject) => {
         let optionsSQL = optionsSQLFromatter(options)
         db.query(`SELECT COUNT(*) AS total FROM ${table} ${optionsSQL}`, (err, rows) => {
             if (err) {
-              result.msg = "server error, please try again";
-              result.success = false;
-              reject(result);
-              return;
+                result.msg = "server error, please try again";
+                result.success = false;
+                reject(result);
+                return;
             }
             result.total = rows[0].total || 0;
         })
-        db.query(`SELECT * , DATE_FORMAT(release_time,'%Y-%m-%d') AS release_time FROM ${table} ${optionsSQL} ORDER BY ${ orderby } ${sort} LIMIT ${size} OFFSET ${(page - 1) * size }`, (err, rows) => {
+        db.query(`SELECT * , DATE_FORMAT(${table}.update_time,'%Y-%m-%d %H:%i:%S') AS update_time 
+        FROM ${join ? join : table} ${optionsSQL} ORDER BY ${table}.${orderby} ${sort} 
+        LIMIT ${size} OFFSET ${(page - 1) * size}`, (err, rows) => {
             if (err) {
                 result.msg = "server error,please try again"
                 result.success = false
@@ -145,4 +164,4 @@ function getItem(table, options) {
     })
 }
 
-module.exports = { checkRepeated, createNew, updateItem, deleteItem, getItems, getItem }
+module.exports = { checkRepeated, createNew, updateItem, deleteItem, getItems, getItem, optionsSQLFromatter }

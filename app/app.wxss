@@ -4,6 +4,7 @@ page{
   --secondary-color:#FFE9CE;
   --warning-color:#FFDD83;
   --danger-color:#FF92A4;
+  --font-size-smal:30rpx;
 }
 .container {
   height: 100vh;

@@ -1,30 +1,22 @@
 const { getCurrentTime } = require('../utils')
 const { generateUUID } = require('../models/encryption');
-const { getBudItems, createNewBud, updateBudInformation, deleteBudItem, insertBudItems } = require('../models/budManage_model')
-const { verifyToken } = require('../models/verification')
+const { getBudItems, createNewBud, updateBudInformation, deleteBudItem, insertBudItems, checkRepeated } = require('../models/budManage_model')
 
 module.exports = class bud {
     getBudList(req, res, next) {
-        const token = req.headers['token'];
-        const options = req.body.freezersNum ? { freezersNum: req.body.freezersNum } : {}
+        const options = { bud_title: req.body.bud_title }
         const size = req.body.size
         const page = req.body.page
 
-        verifyToken(token).then(tokenResult => {
-            if (tokenResult.success === true) {
-                getBudItems(options, size, page).then(result => {
-                    res.json(result)
-                }).catch(err => {
-                    res.json(err)
-                })
-            } else {
-                res.json(tokenResult)
-            }
+
+        getBudItems(options, size, page).then(result => {
+            res.json(result)
+        }).catch(err => {
+            res.json(err)
         })
     }
 
     postCreateBud(req, res, next) {
-        const token = req.headers['token'];
         const budData = {
             bud_id: generateUUID(),
             bud_title: req.body.bud_title,
@@ -41,21 +33,15 @@ module.exports = class bud {
             updateDate: getCurrentTime()
         }
 
-        verifyToken(token).then(tokenResult => {
-            if (tokenResult.success === true) {
-                createNewBud(budData).then(result => {
-                    res.json(result)
-                }).catch(err => {
-                    res.json(err)
-                })
-            } else {
-                res.json(tokenResult)
-            }
+        createNewBud(budData).then(result => {
+            res.json(result)
+        }).catch(err => {
+            res.json(err)
         })
+
     }
 
     postUpdateBud(req, res, next) {
-        const token = req.headers['token'];
         const budCode = req.body.budCode
         const budData = {
             bud_id: generateUUID(),
@@ -73,40 +59,30 @@ module.exports = class bud {
             updateDate: getCurrentTime()
         }
 
-        verifyToken(token).then(tokenResult => {
-            if (tokenResult.success === true) {
-                updateBudInformation(budCode, budData).then(result => {
-                    console.log(result)
-                    res.json(result)
-                }).catch(err => {
-                    res.json(err)
-                })
-            } else {
-                res.json(tokenResult)
-            }
+
+        updateBudInformation(budCode, budData).then(result => {
+            console.log(result)
+            res.json(result)
+        }).catch(err => {
+            res.json(err)
         })
+
     }
 
+
     postDeleteBud(req, res, next) {
-        const token = req.headers['token'];
         const id = req.body.bud_id
 
-        verifyToken(token).then(tokenResult => {
-            if (tokenResult.success === true) {
-                deleteBudItem(id).then(result => {
-                    console.log(result)
-                    res.json(result)
-                }).catch(err => {
-                    res.json(err)
-                })
-            } else {
-                res.json(tokenResult)
-            }
+        deleteBudItem(id).then(result => {
+            console.log(result)
+            res.json(result)
+        }).catch(err => {
+            res.json(err)
         })
+
     }
 
     postInsertBudItems(list) {
-        // const token = req.headers['token'];
         let budList = list.map(item => {
             return [
                 generateUUID(),
@@ -125,6 +101,7 @@ module.exports = class bud {
                 getCurrentTime()
             ]
         })
+        // insert ignore
         return insertBudItems(budList)
     }
 }

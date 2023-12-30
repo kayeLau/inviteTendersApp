@@ -16,7 +16,7 @@ function deleteBudItem(id){
 }
 
 function getBudItems(options,size,page){
-    return getItems("bud_info",options,size,page)
+    return getItems({table:"bud_info",options,size,page})
 }
 
 function insertBudItems(list) {
@@ -50,10 +50,10 @@ function insertBudItems(list) {
                 resolve(result)
             })
         }else{
-            result.msg = "unexp"
+            result.msg = "unexpected insert"
             reject(result)
         }
     })
 }
 
-module.exports = { getBudItems , createNewBud , updateBudInformation , deleteBudItem , insertBudItems}
+module.exports = { getBudItems , createNewBud , updateBudInformation , deleteBudItem , insertBudItems , checkRepeated }

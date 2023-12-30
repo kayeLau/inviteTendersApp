@@ -10,6 +10,7 @@
   background-color: var(--primary-color);
 }
 .bid-header-search{
+  padding: 2rpx 15rpx;
   width: 100%;
   height: 50rpx;
   border-radius: 10px;
@@ -19,7 +20,7 @@
 }
 .buds-cell{
   padding: 5px 0;
-  font-size: 30rpx;
+  font-size: var(--font-size-smal);
   border-bottom: 1px #ccc solid;
 }
 .release-time{
@@ -66,4 +67,15 @@
   background-color: #ccc;
   padding: 1px 5px;
   border-radius: 5px;
-} 
+}
+.buds-body-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.buds-body-header > h2{
+  font-weight: 600;
+}
+.buds-body-header > text{
+  font-size: var(--font-size-smal);
+}

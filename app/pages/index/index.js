@@ -8,7 +8,8 @@ Page({
     pagesize:10,
     params:{
       page:1,
-      size:10
+      size:10,
+      total:0
     },
     panelHidden:true,
     search:"",
@@ -28,15 +29,22 @@ Page({
     this.getbudInfo()
   },
 
-  getbudInfo(type) {
-    let params = this.data.params
+  getbudInfobyInput(event){
+    let bud_title = event.detail.value
+    if(bud_title){
+      this.getbudInfo('refresh',{bud_title})
+    }
+  },
+
+  getbudInfo(type,options) {
+    let params = Object.assign(this.data.params,options)
     http.post('/buds/getBudList',params).then(res => {
       if(res.data.success){
         if(type !== 'refresh'){
           params.size += this.data.pagesize
-          this.setData({params:params})
         }
-        this.setData({list:res.data.resource})
+        params.total = res.data.total
+        this.setData({list:res.data.resource,params:params})
       }else{
         this.setData({list:[]})
       }
