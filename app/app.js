@@ -1,5 +1,5 @@
 // app.js
-import { checkSession , login} from './server/auth.js';
+import { checkSession , login } from './server/auth.js';
 App({
   onLaunch() {
     // 展示本地存储能力

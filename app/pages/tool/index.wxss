@@ -1,19 +1,12 @@
-/**index.wxss**/
-.userinfo {
+/* pages/accounting/index.wxss */
+.tool-gird{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 200rpx;
+}
+.tool-box{
+  border: 0 solid #e5e7eb;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  color: #aaa;
-}
-
-.userinfo-avatar {
-  overflow: hidden;
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.usermotto {
-  margin-top: 200px;
 }

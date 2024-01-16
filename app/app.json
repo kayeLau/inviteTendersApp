@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/tool/index",
     "pages/logs/logs",
-    "pages/detail/index"
+    "pages/detail/index",
+    "pages/accounting/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -18,7 +19,7 @@
         "text": "招标"
       },
       {
-        "pagePath": "pages/tool/index",
+        "pagePath": "pages/accounting/index",
         "text": "记帐"
       },
       {

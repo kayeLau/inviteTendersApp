@@ -1,0 +1,21 @@
+Page({
+  data:{
+    role:[
+      {
+        name:'工人记账',
+        icon:'../../assert/construction-worker.png'
+      },
+      {
+        name:'带班记账',
+        icon:'../../assert/engineer.png'
+      },
+      {
+        name:'老板记账',
+        icon:'../../assert/boss.png'
+      }
+    ]
+  },
+  jumpTo(event){
+    wx.navigateTo({url: '/pages/tool/index'})
+  }
+});
