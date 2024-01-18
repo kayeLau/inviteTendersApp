@@ -33,5 +33,7 @@
     "kbone": true,
     "weui": true
   },
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents",
   "sitemapLocation": "sitemap.json"
 }

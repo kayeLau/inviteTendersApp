@@ -1,41 +1,25 @@
+import { config } from './config.js';
+
 Page({
   data: {
-    role: [{
-        name: '设置工地'
-      },
-      {
-        name: '记录考勤'
-      },
-      {
-        name: '记录'
-      }
-    ],
-    column: [{
-      type: 'picker',
-      label: '当前工地',
-      value: 0,
-      options: [{
-          id: 0,
-          name: '美国',
-        },
-        {
-          id: 1,
-          name: '中国',
-        },
-      ]
-    }, ]
+    active:1,
+    path:'',
+    component:'',
+    column: []
   },
 
-  jumpTo(event) {
-    wx.navigateTo({
-      url: '/pages/tool/index'
-    })
+  onChange(event) {
+    wx.showToast({
+      title: `切换到标签 ${event.detail.index + 1}`,
+      icon: 'none'
+    });
   },
 
   onLoad: function(option){
-    const eventChannel = this.getOpenerEventChannel()
-    eventChannel.on('acceptDataFromOpenerPage', function(data) {
-      console.log(data)
+    this.setData({
+      'path':option.path,
+      'component':option.component,
+      'column':config[option.path]
     })
   }
 });
