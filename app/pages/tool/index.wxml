@@ -1,7 +1,5 @@
 <view class="container">
-  <view class="tool-gird">
-    <view class="tool-box" wx:for="{{role}}" wx:key="unique">
-      <view bind:tap="jumpTo" >{{ item.name }}</view>
-    </view>
+  <view style="padding: 30rpx;">
+    <xl-form column="{{column}}" title='设置当前工地'></xl-form>
   </view>
 </view>

@@ -1,0 +1,8 @@
+<view class="container">
+  <view class="tool-gird">
+    <view class="tool-box" wx:for="{{role}}" wx:key="unique" bind:tap="jumpTo"
+    data-id='{{ item.name }}'>
+      <view>{{ item.name }}</view>
+    </view>
+  </view>
+</view>

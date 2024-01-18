@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/toolbox/index",
     "pages/tool/index",
     "pages/logs/logs",
     "pages/detail/index",
@@ -32,6 +33,5 @@
     "kbone": true,
     "weui": true
   },
-  "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

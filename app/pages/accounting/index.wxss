@@ -1,11 +1,11 @@
 .role-gird{
   box-sizing: border-box;
-  padding: 30rpx;
+  padding: 50rpx 30rpx;
   height: 100%;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-  gap: 10px;
+  gap: 15px;
 }
 .role-box{
   border-radius: 0.375rem;

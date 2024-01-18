@@ -115,7 +115,7 @@ function optionsSQLFromatter(options) {
     return whereClause
 }
 
-function getItems({ table, options, size, page, orderby = 'update_time', sort = 'DESC', join }) {
+function getItems({ table, options, size, page, orderby = 'update_time', sort = 'DESC', join , columns }) {
     let result = {}
     return new Promise((resolve, reject) => {
         let optionsSQL = optionsSQLFromatter(options)
@@ -128,8 +128,8 @@ function getItems({ table, options, size, page, orderby = 'update_time', sort = 
             }
             result.total = rows[0].total || 0;
         })
-        db.query(`SELECT * , DATE_FORMAT(${table}.update_time,'%Y-%m-%d %H:%i:%S') AS update_time 
-        FROM ${join ? join : table} ${optionsSQL} ORDER BY ${table}.${orderby} ${sort} 
+        let defaultColumns = `* , DATE_FORMAT(${table}.update_time,'%Y-%m-%d %H:%i:%S') AS update_time`
+        db.query(`SELECT ${ columns ? columns : defaultColumns } FROM ${join ? join : table} ${optionsSQL} ORDER BY ${table}.${orderby} ${sort} 
         LIMIT ${size} OFFSET ${(page - 1) * size}`, (err, rows) => {
             if (err) {
                 result.msg = "server error,please try again"
@@ -153,6 +153,26 @@ function getItem(table, options) {
             if (err) {
                 result.msg = "server error,please try again"
                 result.success = false
+                reject(result);
+                return
+            }
+            result.msg = "get success"
+            result.resource = rows
+            result.success = true
+            resolve(result);
+        })
+    })
+}
+
+function customQuery(query, options = []) {
+    let result = {}
+    return new Promise((resolve, reject) => {
+        db.query(query, options, (err, rows) => {
+            if (err) {
+                console.log(err)
+                result.msg = "server error,please try again"
+                result.success = false
+                logger.info(err);
                 reject(result);
                 return
             }

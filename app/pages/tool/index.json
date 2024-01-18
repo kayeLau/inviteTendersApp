@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "xl-form": "../../components/xl-form/index"
+  }
+}

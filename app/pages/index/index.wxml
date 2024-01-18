@@ -4,7 +4,7 @@
     <view class="bid-header-search">
       <input type="text" placeholder="请输入招标内容" bindconfirm='getbudInfobyInput' />
     </view>
-    <mp-icon icon="more2" color="#fff" size="{{20}}" bind:tap="switchPanel"></mp-icon>
+    <mp-icon icon="more2" color="#fff" size="{{30}}" bind:tap="switchPanel"></mp-icon>
   </view>
   <view class="buds-body">
     <scroll-view class='buds-body-scroll' type="list" scroll-y refresher-enabled="{{true}}" bindscrolltolower='getbudInfo' lower-threshold='100' bindrefresherpulling='getbudInfo'>

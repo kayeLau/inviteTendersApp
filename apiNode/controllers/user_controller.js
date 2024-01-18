@@ -1,8 +1,5 @@
-// const loginCheck = require('../models/login')
-// var { getCurrentTime } = require('../utils')
-// const { generateUUID, hashPassword } = require('../models/encryption');
 const { verifyToken } = require('../models/verification')
-const { toRegister, getUsersItemById } = require('../models/register_model')
+const { toRegister, getUsersItemById } = require('../models/user_model')
 const config = require('../config/development_config')
 const axios = require('axios');
 const jwt = require('jsonwebtoken');
@@ -10,22 +7,16 @@ const jwt = require('jsonwebtoken');
 
 module.exports = class Member {
   // 获取用戶
-  getUserInfo(req, res, next){
-    const token = req.headers['token']
-    console.log(token)
-    verifyToken(token).then(result => {
-      const open_Id = result.data.split('|')[0]
-      if(result.success){
-        getUsersItemById({ open_Id: open_Id }).then(result => {
-          if (result.success) {
-            let user = result.resource[0]
-            res.json({...user,success:true})
-          }
-        })
-      }else{
-        res.json({ success:false })
+  getUserInfo(req, res, next) {
+    const open_Id = req.open_Id
+
+    getUsersItemById({ open_Id }).then(result => {
+      if (result.success) {
+        let user = result.resource[0]
+        res.json({ ...user, success: true })
       }
-    }).catch(() => res.json({ success:false }))
+    })
+
   }
 
   // 登入
@@ -72,10 +63,10 @@ module.exports = class Member {
         }).then(token => {
           res.set('set-token', token);
           res.set('Access-Control-Expose-Headers', 'set-token')
-          res.json({ success:true , token })
+          res.json({ success: true, token })
         }).catch(err => {
           console.log(err)
-          res.json({ success:false })
+          res.json({ success: false })
         })
     } else {
       throw new Error('未知的授权类型')
