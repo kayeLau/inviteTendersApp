@@ -1,8 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/toolbox/index",
-    "pages/tool/index",
+    "pages/toolBox/index",
+    "pages/toolSite/index",
+    "pages/toolTab/index",
     "pages/logs/logs",
     "pages/detail/index",
     "pages/accounting/index"

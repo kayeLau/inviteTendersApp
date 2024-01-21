@@ -184,4 +184,4 @@ function customQuery(query, options = []) {
     })
 }
 
-module.exports = { checkRepeated, createNew, updateItem, deleteItem, getItems, getItem, optionsSQLFromatter }
+module.exports = { checkRepeated, createNew, updateItem, deleteItem, getItems, getItem, optionsSQLFromatter , customQuery }

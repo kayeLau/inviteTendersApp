@@ -1,0 +1,11 @@
+.mp-tabs{
+  width: 100%;
+}
+.mp-swiper{
+  height: 100vh;
+}
+.weui-tabs-bar__content{
+  display: flex;
+  justify-content: center;
+  gap: 50rpx;
+}

@@ -16,6 +16,6 @@ Page({
     ]
   },
   jumpTo(event){
-    wx.navigateTo({url: '/pages/toolbox/index'})
+    wx.navigateTo({url: '/pages/toolBox/index'})
   }
 });

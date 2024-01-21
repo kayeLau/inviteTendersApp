@@ -1,7 +1,7 @@
 <view class="container">
   <view class="tool-gird">
     <view class="tool-box" wx:for="{{role}}" wx:key="unique" bind:tap="jumpTo"
-    data-id='{{ item.id }}' data-component='{{ item.component }}'>
+    data-id='{{ item.id }}' data-path='{{ item.path }}'>
       <image src="{{item.icon}}" class="tool-box-icon"/>
       <view>{{ item.name }}</view>
     </view>

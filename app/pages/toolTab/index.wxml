@@ -1,0 +1,13 @@
+<view class="container">
+  <view style="padding: 30rpx;">
+    <view>
+      <mp-tabs tabs="{{config}}" activeTab="{{activeTab}}" tab-class="mp-tabs">
+        <view wx:for="{{config}}" wx:key="unique" slot="tab-content-{{index}}">
+          <ul>
+            <li>5</li>
+          </ul>
+        </view>
+      </mp-tabs>
+    </view>
+  </view>
+</view>

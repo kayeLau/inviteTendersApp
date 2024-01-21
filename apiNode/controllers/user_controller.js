@@ -15,6 +15,8 @@ module.exports = class Member {
         let user = result.resource[0]
         res.json({ ...user, success: true })
       }
+    }).catch(err => {
+      next(err)
     })
 
   }

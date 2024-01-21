@@ -91,13 +91,15 @@ module.exports = async () => {
         data_href: item.data_href
       }
     })
-    await bud_controller.postInsertBudItems(data).then(res => {
-      if(res.success){
-        console.log('已成功存入')
-      }
-    }).catch(err => {
-      console.log(err)
-    })
+    if(data.length){
+      await bud_controller.postInsertBudItems(data).then(res => {
+        if(res.success){
+          console.log('已成功存入')
+        }
+      }).catch(err => {
+        console.log(err)
+      })
+    }
   }
 
   async function toNextPage() {

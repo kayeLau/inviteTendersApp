@@ -5,25 +5,25 @@ Page({
         name:'设置工地',
         icon:'../../assert/hook.png',
         id:'site-boss',
-        component:'xl-form'
+        path:'toolSite'
       },
       {
-        name:'记录考勤',
+        name:'人员管理',
         icon:'../../assert/hook.png',
-        id:'construction-site-boss',
-        component:'xl-tab'
+        id:'stuff-manager-boss',
+        path:'toolTab'
       },
       {
         name:'记录',
         icon:'../../assert/hook.png',
         id:'records-boss',
-        component:'xl-form'
+        path:'toolSite'
       }
     ]
   },
   jumpTo(event){
     const id = event.currentTarget.dataset.id
-    const component = event.currentTarget.dataset.component
-    wx.navigateTo({url: `/pages/tool/index?path=${id}&component=${component}`})
+    const path = event.currentTarget.dataset.path
+    wx.navigateTo({url: `/pages/${path}/index?id=${id}&path=${path}`})
   }
 });

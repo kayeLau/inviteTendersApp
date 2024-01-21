@@ -12,7 +12,7 @@
   background-color: rgba(48,118,231,0.8);
   /* border:5px solid rgba(48,118,231,0.5); */
   color: #ffffff;
-  font-weight: 700;
+  font-weight: bold;
   font-size: 50rpx;
   display: flex;
   justify-content: space-around;

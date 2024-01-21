@@ -1,34 +1,43 @@
+.form{
+  border-radius: 10px;
+  padding: 30rpx 10rpx;
+  background-color: #ffffff;
+}
 .form-section{
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding-bottom: 25rpx;
+  padding: 25rpx 0 ;
+  border-bottom: 1px solid var(--gary-color);
 }
 .form-title{
   padding:10px 0;
-  text-align: center;
+  text-align: left;
+  font-weight: bold;
+  font-size: 40rpx;
 }
 .form-label{
-  text-align: center;
-  width: 30%;
-  font-weight: 600;
+  text-align: left;
+  width: 25%;
+  font-size: 35rpx;
 }
 .form-content{
   width: 70%;
 }
 .input{
-  padding: 10px;
+  padding: 5px 10px;
   border-radius: 0.375rem;
-  border: 2px solid var(--gary-color);
+  /* border: 1px solid var(--gary-color); */
 }
 .picker{
-  padding: 1px 5px;
+  padding: 0 10px;
   height: 100%;
   border-radius: 0.375rem;
-  border: 2px solid var(--gary-color);
+  /* border: 1px solid var(--gary-color); */
 }
-.form-section-btns > button{
-  background-color: var(--primary-color);
+.form-section-btns {
   margin-top: 20rpx;
+  display: flex;
+  justify-content: center;
   width: 100%;
 }

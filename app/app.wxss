@@ -2,15 +2,23 @@
 page{
   --primary-color:#3b82f6;
   --secondary-color:#FFE9CE;
-  --warning-color:#FFDD83;
+  --warning-color:#e6a23c;
+  --warning-color-light:#f3d19e;
   --danger-color:#FF92A4;
   --gary-color:#ccc;
-  --font-size-smal:32rpx;
+  --font-size-smal:30rpx;
 }
 .container {
   height: 100vh;
   box-sizing: border-box;
-  font-size: 45rpx;
+  font-size: 35rpx;
+  background-color: #f6f6f6;
+}
+.btn-warning{
+  font-size: large;
+  font-weight: bold;
+  color:var(--warning-color) !important;
+  background-color:var(--warning-color-light) !important;
 }
 
 

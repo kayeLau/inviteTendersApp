@@ -1,6 +1,6 @@
 const { getCurrentTime } = require('../utils')
 const { generateUUID } = require('../models/encryption');
-const { getBudItems, createNewBud, updateBudInformation, deleteBudItem, insertBudItems, checkRepeated } = require('../models/budManage_model')
+const { getBudItems, createNewBud, updateBudInformation, deleteBudItem, insertBudItems, checkRepeated } = require('../models/bud_manage_model')
 
 module.exports = class bud {
     getBudList(req, res, next) {
@@ -12,7 +12,7 @@ module.exports = class bud {
         getBudItems(options, size, page).then(result => {
             res.json(result)
         }).catch(err => {
-            res.json(err)
+            next(err)
         })
     }
 
@@ -36,7 +36,7 @@ module.exports = class bud {
         createNewBud(budData).then(result => {
             res.json(result)
         }).catch(err => {
-            res.json(err)
+            next(err)
         })
 
     }
@@ -64,7 +64,7 @@ module.exports = class bud {
             console.log(result)
             res.json(result)
         }).catch(err => {
-            res.json(err)
+            next(err)
         })
 
     }
@@ -77,7 +77,7 @@ module.exports = class bud {
             console.log(result)
             res.json(result)
         }).catch(err => {
-            res.json(err)
+            next(err)
         })
 
     }
@@ -101,7 +101,6 @@ module.exports = class bud {
                 getCurrentTime()
             ]
         })
-        // insert ignore
         return insertBudItems(budList)
     }
 }

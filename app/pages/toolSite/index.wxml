@@ -1,0 +1,8 @@
+<view class="container">
+  <view style="padding: 30rpx;">
+    <xl-form column="{{config}}" title='添加工地'>
+      <button type="primary" formType="submit" class="btn-warning">查获</button>
+      <button type="primary" formType="submit">提交</button>
+    </xl-form>
+  </view>
+</view>

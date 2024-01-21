@@ -1,22 +1,24 @@
 <view class="container">
-  <view class="form-title">{{ title }}</view>
-  <form onSubmit="onSubmit" onReset="onReset">
-    <view class="form-section" wx:for="{{column}}" wx:key="unique">
-      <view class="form-label">{{item.label}}</view>
-      <view class="form-content">
-        <!-- slider -->
-        <slider wx:if="{{item.type === 'slider'}}" value="{{item.value}}" />
-        <!-- input -->
-        <input wx:if="{{item.type === 'input'}}" model:value="{{item.value}}" class="input" />
-        <!-- picker -->
-        <picker wx:if="{{item.type === 'picker'}}" bindchange="bindPickerChange" value="{{item.value}}" range="{{item.options}}" range-key="name" class="picker">
+  <view class="form">
+    <view class="form-title">{{ title }}</view>
+    <form onSubmit="onSubmit" onReset="onReset">
+      <view class="form-section" wx:for="{{column}}" wx:key="unique">
+        <view class="form-label">{{item.label}}</view>
+        <view class="form-content">
+          <!-- slider -->
+          <slider wx:if="{{item.type === 'slider'}}" value="{{item.value}}" />
+          <!-- input -->
+          <input wx:if="{{item.type === 'input'}}" model:value="{{item.value}}" class="input" />
+          <!-- picker -->
+          <picker wx:if="{{item.type === 'picker'}}" bindchange="bindPickerChange" value="{{item.value}}" range="{{item.options}}" range-key="name" class="picker">
             {{item.options[item.value].name}}
-        </picker>
+          </picker>
+        </view>
       </view>
-    </view>
 
-    <view class="form-section-btns">
-      <button type="primary" formType="submit">提交</button>
-    </view>
-  </form>
+      <view class="form-section-btns">
+        <slot></slot>
+      </view>
+    </form>
+  </view>
 </view>
