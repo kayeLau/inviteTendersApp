@@ -21,13 +21,14 @@ app.use(helmet())
 app.use(rateLimiter)
 
 // router
-const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const budsRouter = require('./routes/bud')
+const accountingPlaceRouter = require('./routes/accounting_place')
 
-app.use('/', indexRouter);
+
 app.use('/users', usersRouter);
 app.use('/buds',budsRouter)
+app.use('/accountingPlace',accountingPlaceRouter)
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {

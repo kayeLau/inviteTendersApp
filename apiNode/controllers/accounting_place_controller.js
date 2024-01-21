@@ -18,10 +18,10 @@ module.exports = class bud {
     postCreateAccountingPlace(req, res, next) {
         const data = {
             create_user_id: req.body.create_user_id,
-            place: req.body.place,
+            place_name: req.body.place_name,
             attendance_time: req.body.attendance_time,
             attendance_unit: req.body.attendance_unit,
-            updateDate: getCurrentTime()
+            update_time: getCurrentTime()
         }
 
         createNewPlace(data).then(result => {
@@ -38,7 +38,7 @@ module.exports = class bud {
             place: req.body.place,
             attendance_time: req.body.attendance_time,
             attendance_unit: req.body.attendance_unit,
-            updateDate: getCurrentTime()
+            update_time: getCurrentTime()
         }
 
 

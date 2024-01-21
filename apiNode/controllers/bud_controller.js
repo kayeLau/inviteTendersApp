@@ -30,7 +30,7 @@ module.exports = class bud {
             bud_contact: req.body.bud_contact,
             bud_amount: req.body.bud_amount,
             data_source: req.body.data_source,
-            updateDate: getCurrentTime()
+            update_time: getCurrentTime()
         }
 
         createNewBud(budData).then(result => {
@@ -56,7 +56,7 @@ module.exports = class bud {
             bud_contact: req.body.bud_contact,
             bud_amount: req.body.bud_amount,
             data_source: req.body.data_source,
-            updateDate: getCurrentTime()
+            update_time: getCurrentTime()
         }
 
 

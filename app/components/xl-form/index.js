@@ -1,22 +1,53 @@
 Component({
-  options:{
-    styleIsolation:'shared'
+  options: {
+    styleIsolation: 'shared'
   },
   properties: {
-    title:{
+    title: {
       type: String,
       value: ''
     },
     column: {
       type: Array,
       value: []
-    }
+    },
   },
 
-  bindPickerChange(e) {
-    console.log('picker发送选择改变，携带值为', e);
-    this.setData({
-      arrIndex: e.detail.value,
-    });
+  data: {
+    params: {}
   },
+
+  methods: {
+    getDefaultValue() {
+      let defaultValue = {}
+      this.properties.column.forEach(item => {
+        defaultValue[item.key] = item.value
+      })
+      return defaultValue
+    },
+
+    getData() {
+      let defaultValue = this.getDefaultValue()
+      let value = this.data.params
+      return Object.assign(
+        defaultValue,
+        value
+      )
+    },
+
+    bindChange(e) {
+      console.log('发送选择改变，携带值为', e);
+      let params = this.data.params
+      let key = e.currentTarget.dataset.key
+      params[key] = e.detail.value
+      this.setData({
+        params
+      });
+    },
+  },
+
+  onLoad() {
+    this.init()
+  },
+
 });

@@ -1,15 +1,18 @@
 export const config = {
   'site-boss': [{
+      key:'place_name',
       type: 'input',
       label: '工地名称',
       value: '',
     },
     {
+      key:'attendance_time',
       type: 'input',
       label: '考勤时长',
       value: 0,
     },
     {
+      key:'attendance_unit',
       type: 'picker',
       label: '考勤单位',
       value: 0,
