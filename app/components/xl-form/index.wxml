@@ -1,5 +1,5 @@
 <view class="container">
-  <view class="form">
+  <view class="card">
     <view class="form-title">{{ title }}</view>
     <form onSubmit="onSubmit" onReset="onReset">
       <view class="form-section" wx:for="{{column}}" wx:key="unique">

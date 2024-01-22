@@ -1,12 +1,14 @@
 /**app.wxss**/
 page{
   --primary-color:#3b82f6;
+  --success-color:#67C23A;
   --secondary-color:#FFE9CE;
   --warning-color:#e6a23c;
   --warning-color-light:#f3d19e;
   --danger-color:#FF92A4;
   --gary-color:#ccc;
   --font-size-smal:30rpx;
+  --font-size-big:40rpx;
 }
 .container {
   height: 100vh;
@@ -19,6 +21,43 @@ page{
   font-weight: bold;
   color:var(--warning-color) !important;
   background-color:var(--warning-color-light) !important;
+}
+.card{
+  border-radius: 10px;
+  padding: 30rpx 20rpx;
+  background-color: #ffffff;
+  box-shadow: 0 0 2px rgb(71, 71, 71);
+}
+
+.font-bold{
+  font-weight: bold;
+}
+.font-big{
+  font-size: var(--font-size-big);
+}
+.font-center{
+  text-align: center;
+}
+.footer-btn{
+  margin: auto;
+  color: #ffffff;
+  border-radius: 1.5rem;
+  position: fixed;
+  bottom: 50rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.icon{
+  width: 50rpx;
+  height: 50rpx;
+}
+.icon + .icon{
+  margin-left: 20rpx;
 }
 
 
