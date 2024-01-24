@@ -1,3 +1,23 @@
+/* pages/accounting/index.wxss */
+.tool-gird{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 200rpx;
+}
+.tool-box{
+  border: 0 solid #e5e7eb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.site-list{
+  padding-bottom:20rpx;
+  padding: 30rpx 20rpx;
+  background-color: #ffffff;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+}
 .mp-tabs{
   width: 100%;
 }
@@ -9,3 +29,7 @@
   justify-content: center;
   gap: 50rpx;
 }
+.swiper-class{
+  height: 92vh;
+}
+

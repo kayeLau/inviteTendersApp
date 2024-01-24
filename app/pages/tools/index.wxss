@@ -1,12 +1,11 @@
 /* pages/accounting/index.wxss */
 .tool-gird{
-  padding: 30rpx 0;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 200rpx;
 }
 .tool-box{
-  font-size: 40rpx;
+  font-size: 30rpx;
   border: 0 solid #e5e7eb;
   display: flex;
   flex-direction: column;
@@ -16,4 +15,7 @@
 .tool-box-icon{
   width: 100rpx;
   height: 100rpx;
+}
+.location-bar{
+  height: 120rpx;
 }

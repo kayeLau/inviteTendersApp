@@ -9,9 +9,15 @@ Page({
       },
       {
         name:'人员管理',
-        icon:'../../assert/hook.png',
+        icon:'../../assert/workers.png',
         id:'stuff-manager-boss',
         path:'toolTab'
+      },
+      {
+        name:'考勤记录',
+        icon:'../../assert/under-construction.png',
+        id:'records-boss',
+        path:'toolSite'
       },
       {
         name:'记录',

@@ -1,0 +1,12 @@
+<view class="container">
+  <view class="location-bar">{{}}</view>
+  <view class="card" style="margin: 0 20rpx;">
+    <view class="font-bold">记录管理</view>
+    <view class="tool-gird">
+      <view class="tool-box" wx:for="{{role}}" wx:key="unique" bind:tap="jumpTo" data-id='{{ item.id }}' data-path='{{ item.path }}'>
+        <image src="{{item.icon}}" class="tool-box-icon" />
+        <view>{{ item.name }}</view>
+      </view>
+    </view>
+  </view>
+</view>

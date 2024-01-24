@@ -35,6 +35,10 @@ Component({
       )
     },
 
+    textData(params) {
+      this.setData({params})
+    },
+
     bindChange(e) {
       console.log('发送选择改变，携带值为', e);
       let params = this.data.params

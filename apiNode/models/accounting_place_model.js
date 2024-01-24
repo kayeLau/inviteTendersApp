@@ -1,5 +1,4 @@
-const { checkRepeated, createNew , updateItem , deleteItem , getItems } = require('./base_model')
-const db = require('./connection_db')
+const { createNew , updateItem , deleteItem , getItems } = require('./base_model')
 
 function createNewPlace(data) {
     return createNew("place_info",data)

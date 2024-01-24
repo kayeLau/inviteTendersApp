@@ -28,12 +28,61 @@ export const config = {
     }
   ],
   'stuff-manager-boss': [{
-      title: '在埸',
-      desc: '本视频系列课程，由腾讯课堂NEXT学院与微信团队联合出品，通过实战案例，深入浅出地进行讲解。',
-    },
-    {
-      title: '离开',
-      desc: '微信小程序直播系列课程持续更新中，帮助大家更好地理解、应用微信小程序直播功能。',
-    },
-  ]
+    key:'user_name',
+    type: 'input',
+    label: '人员名称',
+    value: '',
+  },
+  {
+    key:'phone_number',
+    type: 'input',
+    label: '手机号码',
+    value: '',
+  },
+  {
+    key:'job_type',
+    type: 'input',
+    label: '岗位工种',
+    value: '',
+  },
+  {
+    key:'salary',
+    type: 'input',
+    label: '当前日薪',
+    value: '',
+  },
+  {
+    key:'gender',
+    type: 'radio',
+    label: '性别',
+    value: 0,
+    options: [{
+        id: 0,
+        name: '男',
+      },
+      {
+        id: 1,
+        name: '女',
+      }
+    ]
+  },
+  {
+    key:'id_card_number',
+    type: 'input',
+    label: '身份证号',
+    value: '',
+  },
+  {
+    key:'bank_number',
+    type: 'input',
+    label: '银行卡号',
+    value: 0,
+  },
+  {
+    key:'bank',
+    type: 'input',
+    label: '发卡银行',
+    value: 0,
+  }
+]
 }

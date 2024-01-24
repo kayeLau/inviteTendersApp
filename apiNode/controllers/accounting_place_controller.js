@@ -21,6 +21,7 @@ module.exports = class bud {
             place_name: req.body.place_name,
             attendance_time: req.body.attendance_time,
             attendance_unit: req.body.attendance_unit,
+            state:0,
             update_time: getCurrentTime()
         }
 
@@ -33,16 +34,17 @@ module.exports = class bud {
     }
 
     postUpdatePlaceInformation(req, res, next) {
-        const budCode = req.body.budCode
-        const budData = {
-            place: req.body.place,
+        const id = req.body.id
+        const data = {
+            place_name: req.body.place_name,
             attendance_time: req.body.attendance_time,
             attendance_unit: req.body.attendance_unit,
+            state:req.body.state,
             update_time: getCurrentTime()
         }
 
 
-        updatePlaceInformation(budCode, budData).then(result => {
+        updatePlaceInformation(id, data).then(result => {
             console.log(result)
             res.json(result)
         }).catch(err => {
