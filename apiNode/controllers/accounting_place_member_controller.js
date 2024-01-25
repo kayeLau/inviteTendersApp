@@ -17,6 +17,7 @@ module.exports = class bud {
 
     postCreateAccountingPlaceMember(req, res, next) {
         const data = {
+            create_user_id: req.body.create_user_id,
             user_name: req.body.user_name,
             place_id: req.body.place_id,
             user_id: req.body.user_id,
@@ -28,6 +29,7 @@ module.exports = class bud {
             bank: req.body.bank,
             bank_number: req.body.bank_number,
             remark: req.body.remark,
+            state:0,
             update_time: getCurrentTime()
         }
 
@@ -42,6 +44,7 @@ module.exports = class bud {
     postUpdatePlaceMemberInformation(req, res, next) {
         const id = req.body.id
         const data = {
+            create_user_id: req.body.create_user_id,
             user_name: req.body.user_name,
             place_id: req.body.place_id,
             user_id: req.body.user_id,
@@ -53,6 +56,7 @@ module.exports = class bud {
             bank: req.body.bank,
             bank_number: req.body.bank_number,
             remark: req.body.remark,
+            state:req.body.state,
             update_time: getCurrentTime()
         }
 

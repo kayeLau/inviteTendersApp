@@ -33,7 +33,7 @@
               </view>
               </view>
             </view>
-            <view class="footer-btn" bind:tap="switchToEdit" style="background-color: var(--primary-color);" data-mode='craete'>添加工地</view>
+            <view class="footer-btn" bind:tap="switchToEdit" style="background-color: var(--primary-color);" data-mode='create'>添加工地</view>
           </view>
         </view>
       </mp-tabs>

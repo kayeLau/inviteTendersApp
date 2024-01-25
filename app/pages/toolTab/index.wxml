@@ -13,8 +13,11 @@
       <mp-tabs tabs="{{tabConfig}}" activeTab="{{activeTab}}" tab-class="mp-tabs" swiper-class='swiper-class'>
         <view wx:for="{{tabConfig}}" wx:key="unique" slot="tab-content-{{index}}">
           <view>
-            <view wx:for="{{index === 0 ? siteList : endSiteList}}" wx:key="{{item.id}}" class="site-list" wx:for-index="subIndex">
-              <view class="font-bold">{{item.place_name}}</view>
+            <view wx:for="{{index === 0 ? staffList : endstaffList}}" wx:key="{{item.id}}" class="site-list" wx:for-index="subIndex">
+            <view class="li-info">
+              <view class="font-bold font-big">{{item.user_name}}</view>
+              <view>{{item.phone_number}}</view>
+            </view>
               <!-- btn-group -->
               <view wx:if="{{index === 0 }}" class="flex">
               <view class="btn-icon btn-primary" bind:tap="switchToEdit" data-current='{{item}}' data-mode='edit' >
@@ -33,7 +36,7 @@
               </view>
               </view>
             </view>
-            <view class="footer-btn" bind:tap="switchToEdit" style="background-color: var(--primary-color);" data-mode='craete'>添加人员</view>
+            <view class="footer-btn" bind:tap="switchToEdit" style="background-color: var(--primary-color);" data-mode='create'>添加人员</view>
           </view>
         </view>
       </mp-tabs>

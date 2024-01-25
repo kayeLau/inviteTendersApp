@@ -20,7 +20,7 @@
           </block>
           <!-- picker -->
           <picker wx:if="{{item.type === 'picker'}}" bindchange="bindChange" data-key="{{item.key}}" range="{{item.options}}" range-key="name" class="picker" value="{{params[item.key]}}">
-            {{item.options[item.value].name}}
+            {{item.options[params[item.key]].name}}
           </picker>
         </view>
       </view>

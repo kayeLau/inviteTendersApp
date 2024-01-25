@@ -9,8 +9,8 @@ Page({
   data: {
     formMode:'',
     isEdit: false,
-    siteList: [], // 人员列表
-    endSiteList: [], // 离开的人员列表
+    staffList: [], // 人员列表
+    endstaffList: [], // 离开的人员列表
     activeTab: 0,
     tabConfig: [{
         title: '在场',
@@ -33,17 +33,18 @@ Page({
     }
     http.post('/accountingPlaceMember/getAccountingPlaceMemberList', params).then(res => {
       if (res.data.success) {
-        let siteList = res.data.resource.filter(item => item.state === 0)
-        let endSiteList = res.data.resource.filter(item => item.state === 1)
+        let staffList = res.data.resource.filter(item => item.state === 0)
+        let endstaffList = res.data.resource.filter(item => item.state === 1)
         this.setData({
-          siteList,
-          endSiteList
+          staffList,
+          endstaffList
         })
       }
     })
   },
 
   sumbitPlaceInfo(){
+
     if(this.data.formMode === 'create'){
       this.createPlaceInfo()
     }else if(this.data.formMode === 'edit'){
@@ -56,9 +57,16 @@ Page({
     const userInfo = wx.getStorageSync('userInfo')
     let params = {
       create_user_id: userInfo.id,
-      place_name: data.place_name,
-      attendance_time: data.attendance_time,
-      attendance_unit: data.attendance_unit,
+      place_id:userInfo.current_place_id,
+      user_name:data.user_name,
+      user_id:data.user_id,
+      phone_number: data.phone_number,
+      salary: data.salary,
+      gender: data.gender,
+      id_card_number:data.id_card_number,
+      bank:data.bank,
+      bank_number:data.bank_number,
+      remark:data.remark,
     }
     http.post('/accountingPlaceMember/createAccountingPlaceMember', params).then(res => {
       if (res.data.success) {
@@ -74,12 +82,17 @@ Page({
     let data = this.selectComponent("#xl-form").getData()
     const userInfo = wx.getStorageSync('userInfo')
     let params = {
-      id:data.id,
       create_user_id: userInfo.id,
-      place_name: data.place_name,
-      attendance_time: data.attendance_time,
-      attendance_unit: data.attendance_unit,
-      state:0,
+      place_id:userInfo.current_place_id,
+      user_name:data.user_name,
+      user_id:data.user_id,
+      phone_number: data.phone_number,
+      salary: data.salary,
+      gender: data.gender,
+      id_card_number:data.id_card_number,
+      bank:data.bank,
+      bank_number:data.bank_number,
+      remark:data.remark,
     }
     http.post('/accountingPlaceMember/updatePlaceMemberInformation', params).then(res => {
       if (res.data.success) {

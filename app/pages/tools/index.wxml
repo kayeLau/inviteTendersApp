@@ -1,5 +1,8 @@
 <view class="container">
-  <view class="location-bar">{{}}</view>
+  <view class="location-bar" >
+    <image class="avatar" src="{{avatarUrl}}"></image>
+    <view bind:tap="openSiteSelector">{{currentPlace}}</view>
+  </view>
   <view class="card" style="margin: 0 20rpx;">
     <view class="font-bold">记录管理</view>
     <view class="tool-gird">
@@ -9,4 +12,11 @@
       </view>
     </view>
   </view>
+
+  <xl-popup visiable='{{visiable}}' title=''>
+    <view style="text-align: center;">当前工地:{{}}</view>
+    <view wx:for="{{siteList}}" wx:key="unique" class="site-list" wx:for-index="subIndex">
+      <view>{{item.place_name}}</view>
+    </view>
+  </xl-popup>
 </view>

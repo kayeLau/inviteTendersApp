@@ -17,5 +17,26 @@
   height: 100rpx;
 }
 .location-bar{
+  padding: 0 20rpx;
+  background-color: #ffffff;
+  margin-bottom: 20rpx;
   height: 120rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 40rpx;
+}
+.avatar{
+  display: block;
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 50%;
+  background-color: var(--gary-color);
+}
+.location-picker{
+  height: 100%;
+}
+.site-list{
+  padding: 20rpx 10rpx;
+  background-color: var(--background-color);
 }

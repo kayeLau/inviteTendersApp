@@ -1,0 +1,21 @@
+.xl-popup-container{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 100;
+  background-color: rgba(0,0,0,.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.xl-popup{
+  width: 80%;
+  height: 75%;
+}
+.xl-popup-header{
+  display: flex;
+  justify-content: space-between;
+}

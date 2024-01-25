@@ -1,6 +1,6 @@
 import http from '@chunpu/http';
 import { promisify } from '../utils/util'
-const baseURL = 'http://192.168.8.16:3000'
+const baseURL = 'http://localhost:3000'
 
 http.init({
   baseURL, // 定义 baseURL, 用于本地测试
