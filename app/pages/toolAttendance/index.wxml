@@ -1,1 +1,23 @@
-
+<view class="container">
+  <view style="padding:10rpx 20rpx;">
+    <view wx:if="{{isEdit}}">
+      <xl-form column="{{config}}" title='添加考勤' id='xl-form' bind:showStaffPenal="showStaffPenal">
+        <view class="footer">
+          <view class="round-btn" bind:tap="switchToList" style="background-color: var(--gary-color);width: 30%;">返回</view>
+          <view class="round-btn" bind:tap="sumbitPlaceInfo" style="background-color: var(--success-color);width: 70%;">保存</view>
+        </view>
+      </xl-form>
+    </view>
+  </view>
+  <view wx:if="{{!isEdit}}">
+    <view class="attendance-header">
+      <view>{{searchDate}}</view>
+      <view bind:tap="showSitePenal">{{searchSite}}</view>
+      <view bind:tap="showStaffPenal">{{searchStaff}}</view>
+    </view>
+    <view class="footer-btn" bind:tap="switchToEdit" style="background-color: var(--primary-color);" data-mode='create'>添加工地</view>
+  </view>
+  
+  <xl-staff-penal id="xl-staff-penal" visible="{{staffVisible}}"></xl-staff-penal>
+  <xl-site-penal id="xl-site-penal" visible="{{siteVisible}}"></xl-site-penal>
+</view>

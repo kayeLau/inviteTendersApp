@@ -3,7 +3,11 @@ Component({
     styleIsolation: 'shared'
   },
   properties: {
-    visiable: {
+    buttomBtn:{
+      type: Boolean,
+      value: true
+    },
+    visible: {
       type: Boolean,
       value: false
     },
@@ -15,7 +19,7 @@ Component({
 
   methods:{
     closePopup(e){
-      this.setData({visiable:false})
+      this.setData({visible:false})
     },
 
     refresh(){

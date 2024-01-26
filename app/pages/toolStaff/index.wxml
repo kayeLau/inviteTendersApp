@@ -5,7 +5,7 @@
       </xl-form>
       <view class="footer" >
         <view class="round-btn" bind:tap="switchToList" style="background-color: var(--gary-color);width: 30%;">返回</view>
-        <view class="round-btn" bind:tap="sumbitPlaceInfo" style="background-color: var(--success-color);width: 70%;">保存</view>
+        <view class="round-btn" bind:tap="sumbitPlaceMemberInfo" style="background-color: var(--success-color);width: 70%;">保存</view>
       </view>
     </view>
     <!-- list -->
@@ -13,7 +13,7 @@
       <mp-tabs tabs="{{tabConfig}}" activeTab="{{activeTab}}" tab-class="mp-tabs" swiper-class='swiper-class'>
         <view wx:for="{{tabConfig}}" wx:key="unique" slot="tab-content-{{index}}">
           <view>
-            <view wx:for="{{index === 0 ? staffList : endstaffList}}" wx:key="{{item.id}}" class="site-list" wx:for-index="subIndex">
+            <view wx:for="{{index === 0 ? staffList : endstaffList}}" wx:key="unique" class="site-list" wx:for-index="subIndex">
             <view class="li-info">
               <view class="font-bold font-big">{{item.user_name}}</view>
               <view>{{item.phone_number}}</view>
@@ -24,13 +24,13 @@
                 <image src="../../assert/icon/edit.png" class="icon" />
                 <text>编辑</text>
               </view>
-              <view class="btn-icon btn-warning" bind:tap="setPlaceInfoState" data-current='{{item}}' data-state='{{1}}' >
+              <view class="btn-icon btn-warning" bind:tap="setPlaceMemberInfoState" data-current='{{item}}' data-state='{{1}}' >
                 <image src="../../assert/icon/finished.png" class="icon" />
                 <text>离场</text>
               </view>
               </view>
               <view wx:else="{{index === 1 }}">
-              <view class="btn-icon btn-warning" bind:tap="setPlaceInfoState" data-current='{{item}}' data-state='{{0}}'>
+              <view class="btn-icon btn-warning" bind:tap="setPlaceMemberInfoState" data-current='{{item}}' data-state='{{0}}'>
                 <image src="../../assert/icon/return.png" class="icon"  />
                 <text>返场</text>
               </view>

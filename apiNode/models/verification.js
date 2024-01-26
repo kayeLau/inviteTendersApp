@@ -30,7 +30,7 @@ function verifyToken(token,getUser = false){
             });
         }
     }).then(async res => {
-        if(getUser){
+        if(getUser && res.success){
             const open_Id = res.data.split('|')[0]
             let userInfo = await getItem("user_info", {open_Id})
             tokenResult.userInfo = userInfo.resource[0]

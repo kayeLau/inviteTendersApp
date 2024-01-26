@@ -24,7 +24,7 @@ Page({
     config: [],
   },
 
-  getPlaceInfo() {
+  getPlaceMemberInfo() {
     let params = {
       size: 999,
       page: 1
@@ -41,16 +41,16 @@ Page({
     })
   },
 
-  sumbitPlaceInfo(){
+  sumbitPlaceMemberInfo(){
 
     if(this.data.formMode === 'create'){
-      this.createPlaceInfo()
+      this.createPlaceMemberInfo()
     }else if(this.data.formMode === 'edit'){
-      this.updatePlaceInfo()
+      this.updatePlaceMemberInfo()
     }
   },
 
-  createPlaceInfo() {
+  createPlaceMemberInfo() {
     let data = this.selectComponent("#xl-form").getData()
     const userInfo = wx.getStorageSync('userInfo')
     let params = {
@@ -69,7 +69,7 @@ Page({
     }
     http.post('/accountingPlaceMember/createAccountingPlaceMember', params).then(res => {
       if (res.data.success) {
-        this.getPlaceInfo()
+        this.getPlaceMemberInfo()
         this.setData({
           isEdit: false
         })
@@ -77,7 +77,7 @@ Page({
     })
   },
 
-  updatePlaceInfo(){
+  updatePlaceMemberInfo(){
     let data = this.selectComponent("#xl-form").getData()
     const userInfo = wx.getStorageSync('userInfo')
     let params = {
@@ -98,7 +98,7 @@ Page({
     }
     http.post('/accountingPlaceMember/updatePlaceMemberInformation', params).then(res => {
       if (res.data.success) {
-        this.getPlaceInfo()
+        this.getPlaceMemberInfo()
         this.setData({
           isEdit: false
         })
@@ -123,7 +123,7 @@ Page({
     })
   },
 
-  setPlaceInfoState(e){
+  setPlaceMemberInfoState(e){
     const currentItem = e.currentTarget.dataset.current
     const state = e.currentTarget.dataset.state
     let params = Object.assign(
@@ -132,7 +132,7 @@ Page({
     )
     http.post('/accountingPlaceMember/updatePlaceMemberInformation', params).then(res => {
       if (res.data.success) {
-        this.getPlaceInfo()
+        this.getPlaceMemberInfo()
       }})
   },
 
@@ -146,6 +146,6 @@ Page({
       'path': option.path,
       'config': config[option.id]
     })
-    this.getPlaceInfo()
+    this.getPlaceMemberInfo()
   }
 });

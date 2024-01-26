@@ -48,10 +48,13 @@ Component({
         params
       });
     },
+
+    showStaffPenal(){
+      this.triggerEvent('showStaffPenal')
+    },
   },
 
   onLoad() {
-    this.init()
   },
 
 });

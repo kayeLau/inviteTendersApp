@@ -6,7 +6,7 @@ Page({
   data: {
     avatarUrl: '',
     currentPlace: '',
-    visiable: false,
+    visible: false,
     siteList: [],
     triggered: false,
     role: [{
@@ -18,7 +18,7 @@ Page({
       {
         name: '人员管理',
         icon: '../../assert/workers.png',
-        id: 'stuff-manager-boss',
+        id: 'staff-manager-boss',
         path: 'toolStaff'
       },
       {
@@ -54,7 +54,7 @@ Page({
   async openSiteSelector() {
     await this.getPlaceInfo()
     this.setData({
-      visiable: true
+      visible: true
     })
   },
 
@@ -85,7 +85,7 @@ Page({
         const currentPlace = this.data.siteList.find(item => item.id === res.data.current_place_id)
         this.setData({
           currentPlace: currentPlace ? currentPlace.place_name : '',
-          visiable:false
+          visible:false
         })
       }
     })

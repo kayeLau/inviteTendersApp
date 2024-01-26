@@ -1,7 +1,6 @@
 {
   "usingComponents": {
     "xl-form": "../../components/xl-form/index",
-    "mp-half-screen-dialog": "weui-miniprogram/half-screen-dialog/half-screen-dialog",
     "mp-tabs": "@miniprogram-component-plus/tabs"
   }
 }

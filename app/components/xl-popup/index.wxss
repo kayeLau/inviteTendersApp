@@ -13,7 +13,7 @@
 
 .xl-popup{
   width: 80%;
-  height: 75%;
+  height: 80%;
   z-index: 300;
 }
 .xl-popup-header{

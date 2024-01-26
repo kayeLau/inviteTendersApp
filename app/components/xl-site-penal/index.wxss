@@ -1,0 +1,4 @@
+.site-list{
+  padding: 20rpx 10rpx;
+  background-color: var(--background-color);
+}

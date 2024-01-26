@@ -27,7 +27,7 @@ export const config = {
       ]
     }
   ],
-  'stuff-manager-boss': [{
+  'staff-manager-boss': [{
     key:'user_name',
     type: 'input',
     label: '人员名称',
@@ -84,5 +84,24 @@ export const config = {
     label: '发卡银行',
     value: 0,
   }
+  ],
+  'records-boss':[{
+    key:'record_time',
+    type: 'datepicker',
+    label: '记录日期',
+    value: '',
+  },
+  {
+    key:'staff',
+    type: 'staffPicker',
+    label: '出席人员',
+    value: '',
+  },
+  {
+    key:'remark',
+    type: 'input',
+    label: '细节备注',
+    value: '',
+  },
 ]
 }
