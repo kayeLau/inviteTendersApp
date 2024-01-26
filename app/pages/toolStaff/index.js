@@ -25,9 +25,7 @@ Page({
   },
 
   getPlaceInfo() {
-    const userInfo = wx.getStorageSync('userInfo')
     let params = {
-      create_user_id: userInfo.id,
       size: 999,
       page: 1
     }
@@ -63,6 +61,7 @@ Page({
       phone_number: data.phone_number,
       salary: data.salary,
       gender: data.gender,
+      job_type:data.job_type,
       id_card_number:data.id_card_number,
       bank:data.bank,
       bank_number:data.bank_number,
@@ -82,6 +81,7 @@ Page({
     let data = this.selectComponent("#xl-form").getData()
     const userInfo = wx.getStorageSync('userInfo')
     let params = {
+      id:data.id,
       create_user_id: userInfo.id,
       place_id:userInfo.current_place_id,
       user_name:data.user_name,
@@ -89,10 +89,12 @@ Page({
       phone_number: data.phone_number,
       salary: data.salary,
       gender: data.gender,
+      job_type:data.job_type,
       id_card_number:data.id_card_number,
       bank:data.bank,
       bank_number:data.bank_number,
       remark:data.remark,
+      state:0
     }
     http.post('/accountingPlaceMember/updatePlaceMemberInformation', params).then(res => {
       if (res.data.success) {

@@ -25,9 +25,7 @@ Page({
   },
 
   getPlaceInfo() {
-    const userInfo = wx.getStorageSync('userInfo')
     let params = {
-      create_user_id: userInfo.id,
       size: 999,
       page: 1
     }
@@ -53,9 +51,7 @@ Page({
 
   createPlaceInfo() {
     let data = this.selectComponent("#xl-form").getData()
-    const userInfo = wx.getStorageSync('userInfo')
     let params = {
-      create_user_id: userInfo.id,
       place_name: data.place_name,
       attendance_time: data.attendance_time,
       attendance_unit: data.attendance_unit,
@@ -72,10 +68,8 @@ Page({
 
   updatePlaceInfo(){
     let data = this.selectComponent("#xl-form").getData()
-    const userInfo = wx.getStorageSync('userInfo')
     let params = {
       id:data.id,
-      create_user_id: userInfo.id,
       place_name: data.place_name,
       attendance_time: data.attendance_time,
       attendance_unit: data.attendance_unit,
@@ -96,9 +90,15 @@ Page({
       isEdit: true,
       formMode
     })
-    const currentItem = e.currentTarget.dataset.current
+    const currentItem = e.currentTarget.dataset.current 
     if(currentItem){
       this.selectComponent("#xl-form").textData(currentItem)
+    }else{
+      this.selectComponent("#xl-form").textData({
+        place_name: '',
+        attendance_time: 0,
+        attendance_unit: 0,
+      })
     }
   },
 
