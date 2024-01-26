@@ -30,9 +30,9 @@ function verifyToken(token,getUser = false){
             });
         }
     }).then(async res => {
-        console.log(res)
         if(getUser){
-            let userInfo = await getItem("user_info", {open_Id:res.data})
+            const open_Id = res.data.split('|')[0]
+            let userInfo = await getItem("user_info", {open_Id})
             tokenResult.userInfo = userInfo.resource[0]
         }
         return tokenResult

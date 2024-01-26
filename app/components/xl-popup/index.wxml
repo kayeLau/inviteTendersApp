@@ -1,9 +1,9 @@
-<view class="xl-popup-container" wx:if="{{visiable}}" bind:tap="closePopup">
+<view class="xl-popup-container" wx:if="{{visiable}}">
   <view class="card xl-popup">
     <view class="xl-popup-header">
       <text class="font-bold">{{title}}</text>
-      <text>X</text>
     </view>
-    <slot></slot>
+      <slot></slot>
+    <view class="btn-icon btn-warning" catch:tap="closePopup">取消</view>
   </view>
 </view>

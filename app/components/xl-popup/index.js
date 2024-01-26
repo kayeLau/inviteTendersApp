@@ -16,6 +16,10 @@ Component({
   methods:{
     closePopup(e){
       this.setData({visiable:false})
+    },
+
+    refresh(){
+      this.triggerEvent('refresh')
     }
 
   }

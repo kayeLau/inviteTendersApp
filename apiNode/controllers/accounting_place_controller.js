@@ -3,7 +3,8 @@ const { getPlaceItems , createNewPlace , updatePlaceInformation , deletePlaceIte
 
 module.exports = class bud {
     getAccountingPlaceList(req, res, next) {
-        const options = { create_user_id: req.body.create_user_id , id:req.body.id }
+        const userInfo = req.userInfo
+        const options = { create_user_id: userInfo.id , id:req.body.id }
         const size = req.body.size
         const page = req.body.page
 
@@ -16,8 +17,9 @@ module.exports = class bud {
     }
 
     postCreateAccountingPlace(req, res, next) {
+        const userInfo = req.userInfo
         const data = {
-            create_user_id: req.body.create_user_id,
+            create_user_id: userInfo.id,
             place_name: req.body.place_name,
             attendance_time: req.body.attendance_time,
             attendance_unit: req.body.attendance_unit,

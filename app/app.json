@@ -1,12 +1,13 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/tools/index",
-    "pages/toolSite/index",
-    "pages/toolTab/index",
     "pages/logs/logs",
     "pages/detail/index",
-    "pages/accounting/index"
+    "pages/accounting/index",
+    "pages/tools/index",
+    "pages/toolSite/index",
+    "pages/toolStaff/index",
+    "pages/toolAttendance/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

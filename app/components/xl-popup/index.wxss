@@ -14,8 +14,14 @@
 .xl-popup{
   width: 80%;
   height: 75%;
+  z-index: 300;
 }
 .xl-popup-header{
   display: flex;
   justify-content: space-between;
+}
+.xl-popup-scroll{
+  height: 90%;
+  overflow: hidden;
+  box-sizing: border-box;
 }

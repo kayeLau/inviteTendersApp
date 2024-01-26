@@ -9,4 +9,6 @@ router.get('/info',userModifyMethod.getUserInfo)
 
 router.post('/login', userModifyMethod.postLogin);
 
+router.post('/updateUserinfo', userModifyMethod.postUpdateUserinfo);
+
 module.exports = router;

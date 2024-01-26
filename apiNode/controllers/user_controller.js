@@ -1,5 +1,5 @@
 const { verifyToken } = require('../models/verification')
-const { toRegister, getUsersItemById } = require('../models/user_model')
+const { toRegister, getUsersItemById, updateUserInformation } = require('../models/user_model')
 const config = require('../config/development_config')
 const axios = require('axios');
 const jwt = require('jsonwebtoken');
@@ -8,17 +8,37 @@ const jwt = require('jsonwebtoken');
 module.exports = class Member {
   // 获取用戶
   getUserInfo(req, res, next) {
-    const open_Id = req.open_Id
+    const userInfo = req.userInfo
+    res.json({
+      name: userInfo.name,
+      current_place_id: userInfo.current_place_id,
+      phone: userInfo.phone,
+      success: true
+    })
 
-    getUsersItemById({ open_Id }).then(result => {
-      if (result.success) {
-        let user = result.resource[0]
-        res.json({ ...user, success: true })
-      }
-    }).catch(err => {
+  }
+
+  async postUpdateUserinfo(req, res, next) {
+    const userInfo = req.userInfo
+    const data = {
+      current_place_id: req.body.current_place_id
+    }
+
+    await updateUserInformation(userInfo.id, data).catch(err => {
       next(err)
     })
 
+    getUsersItemById({ open_Id: req.open_Id }).then(result => {
+      const userInfo = result.resource[0]
+      res.json({
+        name: userInfo.name,
+        current_place_id: userInfo.current_place_id,
+        phone: userInfo.phone,
+        success: true
+      })
+    }).catch(err => {
+      next(err)
+    })
   }
 
   // 登入

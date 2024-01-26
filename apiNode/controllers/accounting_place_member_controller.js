@@ -3,7 +3,8 @@ const { getPlaceMemberItems , createNewPlaceMember , updatePlaceMemberInformatio
 
 module.exports = class bud {
     getAccountingPlaceMemberList(req, res, next) {
-        const options = { create_user_id: req.body.create_user_id }
+        const userInfo = req.userInfo
+        const options = { create_user_id: userInfo.create_user_id , place_id: userInfo.current_place_id }
         const size = req.body.size
         const page = req.body.page
 
@@ -16,8 +17,9 @@ module.exports = class bud {
     }
 
     postCreateAccountingPlaceMember(req, res, next) {
+        const userInfo = req.userInfo
         const data = {
-            create_user_id: req.body.create_user_id,
+            create_user_id: userInfo.create_user_id,
             user_name: req.body.user_name,
             place_id: req.body.place_id,
             user_id: req.body.user_id,
@@ -42,9 +44,10 @@ module.exports = class bud {
     }
 
     postUpdatePlaceMemberInformation(req, res, next) {
+        const userInfo = req.userInfo
         const id = req.body.id
         const data = {
-            create_user_id: req.body.create_user_id,
+            create_user_id: userInfo.create_user_id,
             user_name: req.body.user_name,
             place_id: req.body.place_id,
             user_id: req.body.user_id,
