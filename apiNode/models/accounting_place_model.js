@@ -4,7 +4,7 @@ function createNewPlace(data) {
     return createNew("place_info",data)
 }
 
-function updatePlaceInformation(id,data){
+function updatePlace(id,data){
     return updateItem("place_info",data,'id',id)
 }
 
@@ -17,4 +17,4 @@ function getPlaceItems(options,size,page){
 }
 
 
-module.exports = { getPlaceItems , createNewPlace , updatePlaceInformation , deletePlaceItem }
+module.exports = { getPlaceItems , createNewPlace , updatePlace , deletePlaceItem }

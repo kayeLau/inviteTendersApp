@@ -1,7 +1,7 @@
 .form-section{
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-start;
   padding: 25rpx 0 ;
   border-bottom: 1px solid var(--gary-color);
 }
@@ -35,4 +35,13 @@
   display: flex;
   justify-content: center;
   width: 100%;
+}
+.selected-list{
+  padding-top: 10rpx;
+  display: flex;
+  gap: 10rpx;
+}
+.selected-item{
+  padding: 10rpx;
+  background-color: var(--primary-color-light);
 }

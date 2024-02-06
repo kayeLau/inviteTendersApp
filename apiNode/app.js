@@ -2,8 +2,8 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
-// require('./models/create_tabel')
-// require('./spider/index')
+require('./models/create_tabel')
+require('./spider/index')
 
 const app = express();
 
@@ -25,12 +25,14 @@ const usersRouter = require('./routes/users');
 const budsRouter = require('./routes/bud')
 const accountingPlaceRouter = require('./routes/accounting_place')
 const accountingPlaceMemberRouter = require('./routes/accounting_place_member')
+const attendance = require('./routes/attendance')
 
 
 app.use('/users', usersRouter);
 app.use('/buds',budsRouter)
 app.use('/accountingPlace',accountingPlaceRouter)
 app.use('/accountingPlaceMember',accountingPlaceMemberRouter)
+app.use('/attendance',attendance)
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {

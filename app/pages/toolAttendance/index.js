@@ -5,54 +5,54 @@ Page({
   data: {
     formMode:'',
     isEdit: false,
+    attendanceList:[],
     //search
     dateVisible:false,
     siteVisible:false,
     staffVisible:false,
-    searchDate:'2024-01',
+    searchDate:'2024-01-27',
     searchSite:'广州',
-    searchStaff:'陈大明',
+    searchStaff:'',
     // config
     id: '',
     path: '',
     config: [],
   },
 
-  getPlaceInfo() {
+  getAttendance() {
     let params = {
       size: 999,
-      page: 1
+      page: 1,
+      attendance_date:this.data.searchDate,
+      place_id:this.data.searchSite,
+      staff_id:this.data.searchStaff,
     }
-    http.post('/accountingPlace/getAccountingPlaceList', params).then(res => {
+    http.post('/attendance/getAddendce', params).then(res => {
       if (res.data.success) {
-        let siteList = res.data.resource.filter(item => item.state === 0)
-        let endSiteList = res.data.resource.filter(item => item.state === 1)
-        this.setData({
-          siteList,
-          endSiteList
-        })
+        let attendanceList = res.data.resource
+        this.setData({attendanceList})
       }
     })
   },
 
-  sumbitPlaceInfo(){
+  sumbitAttendance(){
     if(this.data.formMode === 'create'){
-      this.createPlaceInfo()
+      this.createAttendance()
     }else if(this.data.formMode === 'edit'){
-      this.updatePlaceInfo()
+      this.updateAttendance()
     }
   },
 
-  createPlaceInfo() {
+  createAttendance() {
     let data = this.selectComponent("#xl-form").getData()
     let params = {
-      place_name: data.place_name,
-      attendance_time: data.attendance_time,
-      attendance_unit: data.attendance_unit,
+      attendance_date: data.attendance_date,
+      staff: data.staff,
+      remark: data.remark,
     }
-    http.post('/accountingPlace/createAccountingPlace', params).then(res => {
+    http.post('/attendance/createAddendce', params).then(res => {
       if (res.data.success) {
-        this.getPlaceInfo()
+        this.getAttendance()
         this.setData({
           isEdit: false
         })
@@ -60,7 +60,7 @@ Page({
     })
   },
 
-  updatePlaceInfo(){
+  updateAttendance(){
     let data = this.selectComponent("#xl-form").getData()
     let params = {
       id:data.id,
@@ -69,9 +69,9 @@ Page({
       attendance_unit: data.attendance_unit,
       state:0,
     }
-    http.post('/accountingPlace/updatePlaceInformation', params).then(res => {
+    http.post('/accountingPlace/updatePlace', params).then(res => {
       if (res.data.success) {
-        this.getPlaceInfo()
+        this.getAttendance()
         this.setData({
           isEdit: false
         })
@@ -90,8 +90,8 @@ Page({
       this.selectComponent("#xl-form").textData(currentItem)
     }else{
       this.selectComponent("#xl-form").textData({
-        record_time: today,
-        staff: [],
+        attendance_date: today,
+        staff: {},
         remark: '',
       })
     }
@@ -108,16 +108,16 @@ Page({
     return date.getFullYear() + '-' + String(date.getMonth() + 1).padStart(2,'0') + '-' + String(date.getDate()).padStart(2,'0')
   },
 
-  setPlaceInfoState(e){
+  setAttendanceState(e){
     const currentItem = e.currentTarget.dataset.current
     const state = e.currentTarget.dataset.state
     let params = Object.assign(
       currentItem,
       {state},
     )
-    http.post('/accountingPlace/updatePlaceInformation', params).then(res => {
+    http.post('/accountingPlace/updatePlace', params).then(res => {
       if (res.data.success) {
-        this.getPlaceInfo()
+        this.getAttendance()
       }})
   },
 
@@ -131,12 +131,24 @@ Page({
     this.setData({siteVisible:true})
   },
 
+  onSumbit(e){
+    console.log(e)
+    const staff = Object.values(e.detail)
+    if(this.data.isEdit){
+      this.selectComponent("#xl-form").textData({staff})
+    }else{
+      const searchStaff = staff.map(item => item.id)
+      this.setData({searchStaff})
+      this.getAttendance()
+    }
+  },
+
   onLoad: function (option) {
     this.setData({
       'id': option.id,
       'path': option.path,
       'config': config[option.id]
     })
-    this.getPlaceInfo()
+    this.getAttendance()
   }
 });

@@ -9,7 +9,7 @@ router.post('/getAccountingPlaceList',accountingPlaceModifyMethod.getAccountingP
 
 router.post('/createAccountingPlace',accountingPlaceModifyMethod.postCreateAccountingPlace)
 
-router.post('/updatePlaceInformation',accountingPlaceModifyMethod.postUpdatePlaceInformation)
+router.post('/updatePlace',accountingPlaceModifyMethod.postUpdatePlace)
 
 router.post('/deletePlaceItem',accountingPlaceModifyMethod.postDeletePlaceItem)
 

@@ -1,5 +1,5 @@
 const { getCurrentTime } = require('../utils')
-const { getPlaceMemberItems , createNewPlaceMember , updatePlaceMemberInformation , deletePlaceMemberItem } = require('../models/accounting_place_member_model')
+const { getPlaceMemberItems , createNewPlaceMember , updatePlaceMember , deletePlaceMemberItem } = require('../models/accounting_place_member_model')
 
 module.exports = class bud {
     getAccountingPlaceMemberList(req, res, next) {
@@ -43,7 +43,7 @@ module.exports = class bud {
 
     }
 
-    postUpdatePlaceMemberInformation(req, res, next) {
+    postUpdatePlaceMember(req, res, next) {
         const userInfo = req.userInfo
         const id = req.body.id
         const data = {
@@ -64,7 +64,7 @@ module.exports = class bud {
         }
 
 
-        updatePlaceMemberInformation(id, data).then(result => {
+        updatePlaceMember(id, data).then(result => {
             res.json(result)
         }).catch(err => {
             next(err)

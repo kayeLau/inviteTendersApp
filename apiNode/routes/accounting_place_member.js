@@ -9,7 +9,7 @@ router.post('/getAccountingPlaceMemberList',accountingPlaceMemderModifyMethod.ge
 
 router.post('/createAccountingPlaceMember',accountingPlaceMemderModifyMethod.postCreateAccountingPlaceMember)
 
-router.post('/updatePlaceMemberInformation',accountingPlaceMemderModifyMethod.postUpdatePlaceMemberInformation)
+router.post('/updatePlaceMember',accountingPlaceMemderModifyMethod.postUpdatePlaceMember)
 
 router.post('/deletePlaceMember',accountingPlaceMemderModifyMethod.postDeletePlaceMember)
 

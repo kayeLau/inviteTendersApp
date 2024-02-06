@@ -1,6 +1,6 @@
 const { getCurrentTime } = require('../utils')
 const { generateUUID } = require('../models/encryption');
-const { getBudItems, createNewBud, updateBudInformation, deleteBudItem, insertBudItems, checkRepeated } = require('../models/bud_manage_model')
+const { getBudItems, createNewBud, updateBud, deleteBudItem, insertBudItems, checkRepeated } = require('../models/bud_manage_model')
 
 module.exports = class bud {
     getBudList(req, res, next) {
@@ -60,7 +60,7 @@ module.exports = class bud {
         }
 
 
-        updateBudInformation(budCode, budData).then(result => {
+        updateBud(budCode, budData).then(result => {
             console.log(result)
             res.json(result)
         }).catch(err => {

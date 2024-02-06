@@ -40,6 +40,11 @@ Component({
         selected[target.id] = target
       }
       this.setData({selected})
+    },
+
+    sumbit(){
+      this.triggerEvent('sumbit',this.data.selected)
+      this.setData({visible:false})
     }
   },
 

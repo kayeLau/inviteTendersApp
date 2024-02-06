@@ -4,7 +4,7 @@ function createNewPlaceMember(data) {
     return createNew("place_member_info",data)
 }
 
-function updatePlaceMemberInformation(id,data){
+function updatePlaceMember(id,data){
     return updateItem("place_member_info",data,'id',id)
 }
 
@@ -17,4 +17,4 @@ function getPlaceMemberItems(options,size,page){
 }
 
 
-module.exports = { getPlaceMemberItems , createNewPlaceMember , updatePlaceMemberInformation , deletePlaceMemberItem }
+module.exports = { getPlaceMemberItems , createNewPlaceMember , updatePlaceMember , deletePlaceMemberItem }

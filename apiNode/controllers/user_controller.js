@@ -1,5 +1,5 @@
 const { verifyToken } = require('../models/verification')
-const { toRegister, getUsersItemById, updateUserInformation } = require('../models/user_model')
+const { toRegister, getUsersItemById, updateUser } = require('../models/user_model')
 const config = require('../config/development_config')
 const axios = require('axios');
 const jwt = require('jsonwebtoken');
@@ -24,7 +24,7 @@ module.exports = class Member {
       current_place_id: req.body.current_place_id
     }
 
-    await updateUserInformation(userInfo.id, data).catch(err => {
+    await updateUser(userInfo.id, data).catch(err => {
       next(err)
     })
 

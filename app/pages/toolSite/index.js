@@ -75,7 +75,7 @@ Page({
       attendance_unit: data.attendance_unit,
       state:0,
     }
-    http.post('/accountingPlace/updatePlaceInformation', params).then(res => {
+    http.post('/accountingPlace/updatePlace', params).then(res => {
       if (res.data.success) {
         this.getPlaceInfo()
         this.setData({
@@ -115,7 +115,7 @@ Page({
       currentItem,
       {state},
     )
-    http.post('/accountingPlace/updatePlaceInformation', params).then(res => {
+    http.post('/accountingPlace/updatePlace', params).then(res => {
       if (res.data.success) {
         this.getPlaceInfo()
       }})

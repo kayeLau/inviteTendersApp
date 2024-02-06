@@ -7,7 +7,7 @@ function toRegister(memberData) {
         .catch(err => err)
 }
 
-function updateUserInformation(id,data){
+function updateUser(id,data){
     return updateItem("user_info",data,'id',id)
 }
 
@@ -19,7 +19,7 @@ function getUsersItemById(options) {
     return getItem("user_info", options )
 }
 
-// function updateUserInformation(id, memberData) {
+// function updateUser(id, memberData) {
 //     let result = {}
 //     return new Promise((resolve, reject) => {
 //         db.query('UPDATE member_info SET ? where id = ?', [memberData, id], (err) => {
@@ -36,4 +36,4 @@ function getUsersItemById(options) {
 //     })
 // }
 
-module.exports = { toRegister , updateUserInformation , getUsersItems , getUsersItemById}
+module.exports = { toRegister , updateUser , getUsersItems , getUsersItemById}

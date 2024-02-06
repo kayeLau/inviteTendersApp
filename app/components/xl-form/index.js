@@ -18,25 +18,24 @@ Component({
   },
 
   methods: {
-    getDefaultValue() {
-      let defaultValue = {}
-      this.properties.column.forEach(item => {
-        defaultValue[item.key] = item.value
-      })
-      return defaultValue
-    },
+    // getDefaultValue() {
+    //   let defaultValue = {}
+    //   this.properties.column.forEach(item => {
+    //     defaultValue[item.key] = item.value
+    //   })
+    //   return defaultValue
+    // },
 
     getData() {
-      let defaultValue = this.getDefaultValue()
-      let value = this.data.params
-      return Object.assign(
-        defaultValue,
-        value
-      )
+      // let defaultValue = this.getDefaultValue()
+      // let value = this.data.params
+      return this.data.params
     },
 
     textData(params) {
-      this.setData({params})
+      let oldValue = this.data.params
+      let newValue = Object.assign(oldValue,params)
+      this.setData({params:newValue})
     },
 
     bindChange(e) {

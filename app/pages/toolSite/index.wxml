@@ -13,7 +13,7 @@
       <mp-tabs tabs="{{tabConfig}}" activeTab="{{activeTab}}" tab-class="mp-tabs" swiper-class='swiper-class'>
         <view wx:for="{{tabConfig}}" wx:key="unique" slot="tab-content-{{index}}">
           <view>
-            <view wx:for="{{index === 0 ? siteList : endSiteList}}" wx:key="{{item.id}}" class="site-list" wx:for-index="subIndex">
+            <view wx:for="{{index === 0 ? siteList : endSiteList}}" wx:key="unique" class="site-list" wx:for-index="subIndex">
               <view class="font-bold">{{item.place_name}}</view>
               <!-- btn-group -->
               <view wx:if="{{index === 0 }}" class="flex">

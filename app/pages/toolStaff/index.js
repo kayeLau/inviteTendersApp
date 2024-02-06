@@ -96,7 +96,7 @@ Page({
       remark:data.remark,
       state:0
     }
-    http.post('/accountingPlaceMember/updatePlaceMemberInformation', params).then(res => {
+    http.post('/accountingPlaceMember/updatePlaceMember', params).then(res => {
       if (res.data.success) {
         this.getPlaceMemberInfo()
         this.setData({
@@ -130,7 +130,7 @@ Page({
       currentItem,
       {state},
     )
-    http.post('/accountingPlaceMember/updatePlaceMemberInformation', params).then(res => {
+    http.post('/accountingPlaceMember/updatePlaceMember', params).then(res => {
       if (res.data.success) {
         this.getPlaceMemberInfo()
       }})

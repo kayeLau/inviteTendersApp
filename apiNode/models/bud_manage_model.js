@@ -7,7 +7,7 @@ function createNewBud(data) {
         .catch(err => err)
 }
 
-function updateBudInformation(id,data){
+function updateBud(id,data){
     return updateItem("bud_info",data,'bud_id',id)
 }
 
@@ -37,4 +37,4 @@ function insertBudItems(list) {
         update_time) VALUES ? `, [list] )
 }
 
-module.exports = { getBudItems , createNewBud , updateBudInformation , deleteBudItem , insertBudItems , checkRepeated }
+module.exports = { getBudItems , createNewBud , updateBud , deleteBudItem , insertBudItems , checkRepeated }

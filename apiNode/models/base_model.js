@@ -80,7 +80,7 @@ function deleteItem(table, key, value) {
 }
 
 // @params
-function optionsSQLFromatter(options) {
+function optionsSQLFromatter(options,table) {
     let whereClause = ''
     for (const key in options) {
         if (options.hasOwnProperty(key)) {
@@ -102,7 +102,9 @@ function optionsSQLFromatter(options) {
                         : `${key} = '${options[key]}'`;
                     break
                 default:
-                    query = `${key} = '${options[key]}'`
+                    query = Array.isArray(options[key]) ? 
+                    options[key].reduce((accumulator, currentValue, index) => index === 0 ? `${table}.${key} = '${currentValue}'` : `${accumulator} OR ${table}.${key} = '${currentValue}'`, '')
+                    : `${table}.${key} = '${options[key]}'`;
             }
 
             if (whereClause === '') {
@@ -118,7 +120,7 @@ function optionsSQLFromatter(options) {
 function getItems({ table, options, size, page, orderby = 'update_time', sort = 'DESC', join , columns }) {
     let result = {}
     return new Promise((resolve, reject) => {
-        let optionsSQL = optionsSQLFromatter(options)
+        let optionsSQL = optionsSQLFromatter(options,table)
         db.query(`SELECT COUNT(*) AS total FROM ${table} ${optionsSQL}`, (err, rows) => {
             if (err) {
                 result.msg = "server error, please try again";

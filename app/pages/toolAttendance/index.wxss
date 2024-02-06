@@ -24,3 +24,15 @@
 .search-penal{
   position: absolute;
 }
+
+.attendance-scroll{
+  margin-top: 20rpx;
+  height: 100%;
+}
+
+.attendance-item{
+  padding: 20rpx 30rpx;
+  background-color: #fff;
+  margin-bottom: 1px;
+  border-bottom: 1px solid #ccc;
+}

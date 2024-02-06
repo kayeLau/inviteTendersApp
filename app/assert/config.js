@@ -86,7 +86,7 @@ export const config = {
   }
   ],
   'records-boss':[{
-    key:'record_time',
+    key:'attendance_date',
     type: 'datepicker',
     label: '记录日期',
     value: '',
