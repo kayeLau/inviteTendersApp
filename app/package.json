@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@chunpu/http": "^3.0.0",
-    "@miniprogram-component-plus/tabs": "^1.0.0"
+    "@miniprogram-component-plus/tabs": "^1.0.0",
+    "miniprogram-component-plus": "^1.0.0"
   }
 }

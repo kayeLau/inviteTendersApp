@@ -28,7 +28,16 @@ Page({
   onLoad() {
     this.getbudInfo()
   },
-
+//输入为空时刷新页面
+  checkInput(event) {
+    if (!event.detail.value) {
+      const pages = getCurrentPages();
+      const currentPage = pages[pages.length - 1];
+      wx.reLaunch({
+        url: `/${currentPage.route}`
+      });
+    }},
+    
   getbudInfobyInput(event){
     let bud_title = event.detail.value
     if(bud_title){

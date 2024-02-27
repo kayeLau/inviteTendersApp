@@ -2,7 +2,7 @@
 <view class="container">
   <view class="bid-header">
     <view class="bid-header-search">
-      <input type="text" placeholder="请输入招标内容" bindconfirm='getbudInfobyInput' />
+      <input type="text" placeholder="请输入招标内容" bindconfirm='getbudInfobyInput' bind:blur="checkInput"/>
     </view>
     <mp-icon icon="more2" color="#fff" size="{{30}}" bind:tap="switchPanel"></mp-icon>
   </view>
@@ -10,7 +10,7 @@
     <scroll-view class='buds-body-scroll' type="list" scroll-y refresher-enabled="{{true}}" bindscrolltolower='getbudInfo' lower-threshold='100' bindrefresherrefresh='getbudInfo'>
       <view class="buds-body-header">
         <h2>最新招标</h2>
-        <text>共有{{params.total}}項結果</text>
+        <text>共有{{params.total}}项结果</text>
       </view>
       <view wx:for="{{list}}" wx:key="unique" class="buds-cell">
         <view data-bud="{{item}}" bind:tap="jumpTo">
@@ -31,7 +31,7 @@
             </view>
           </view>
           <view class="form-footer">
-            <button size="mini">確定</button>
+            <button size="mini">确定</button>
             <button size="mini" bind:tap="switchPanel">取消</button>
           </view>
         </form>
