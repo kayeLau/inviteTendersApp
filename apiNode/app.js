@@ -21,8 +21,8 @@ app.use(helmet())
 app.use(rateLimiter)
 
 // router
-const budsRouter = require('./routes/bud')
-app.use('/buds',budsRouter)
+const bidsRouter = require('./routes/bid')
+app.use('/bids',bidsRouter)
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {

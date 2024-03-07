@@ -93,7 +93,7 @@ function optionsSQLFromatter(options,table) {
                 case 'release_time':
                     query = `${key} BETWEEN '${options[key][0]}' AND '${options[key][1]}'`
                     break
-                case 'bud_title':
+                case 'bid_title':
                     query = `${key} LIKE '%${options[key]}%'`
                     break
                 case 'orderShopId':

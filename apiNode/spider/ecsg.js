@@ -4,8 +4,8 @@ module.exports = async () => {
   let resultList = []
   let pageStart = 1
   let pageEnd = 4
-  const Bud_controller = require('../controllers/bud_controller')
-  const bud_controller = new Bud_controller()
+  const Bid_controller = require('../controllers/bid_controller')
+  const bid_controller = new Bid_controller()
   const browser = await puppeteer.launch({
     headless: false,
   });
@@ -17,7 +17,7 @@ module.exports = async () => {
     await jumpToPage(i)
     await getHref()
     await getContent()
-    await insertBud()
+    await insertBid()
   }
 
   browser.close();
@@ -51,7 +51,7 @@ module.exports = async () => {
           })
           return text
         })
-        resultList[i].bud_body = result
+        resultList[i].bid_body = result
       } catch (err) {
         continue
       }
@@ -64,35 +64,35 @@ module.exports = async () => {
       return Array.from(rows, row => {
         const columns = row.querySelectorAll('td');
         const data_href = row.querySelector('td > a').href
-        const bud_title = columns[0].innerText
-        const bud_unit = columns[1].innerText
+        const bid_title = columns[0].innerText
+        const bid_unit = columns[1].innerText
         const release_time = columns[2].innerText
-        const bud_body = ''
-        return { data_href, bud_title, bud_unit, release_time, bud_body }
+        const bid_body = ''
+        return { data_href, bid_title, bid_unit, release_time, bid_body }
       });
     });
     resultList = result
   }
 
-  async function insertBud() {
+  async function insertBid() {
     const data = resultList.map(item => {
       return {
-        bud_title: item.bud_title,
-        bud_body: item.bud_body,
-        bud_table: item.bud_table,
+        bid_title: item.bid_title,
+        bid_body: item.bid_body,
+        bid_table: item.bid_table,
         release_time: item.release_time,
-        bud_unit: item.bud_unit || null,
-        bud_type: 0, // 政府项目
+        bid_unit: item.bid_unit || null,
+        bid_type: 0, // 政府项目
         pj_type: item.pj_type || 0,
-        bud_city: item.bud_city || null,
-        bud_contact: item.bud_contact || null,
-        bud_amount: item.bud_amount || null,
+        bid_city: item.bid_city || null,
+        bid_contact: item.bid_contact || null,
+        bid_amount: item.bid_amount || null,
         data_source: 0, // 机器获取
         data_href: item.data_href
       }
     })
     if(data.length){
-      await bud_controller.postInsertBudItems(data).then(res => {
+      await bid_controller.postInsertBidItems(data).then(res => {
         if(res.success){
           console.log('已成功存入')
         }
