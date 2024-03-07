@@ -7,7 +7,8 @@ module.exports = async () => {
   const Bid_controller = require('../controllers/bid_controller')
   const bid_controller = new Bid_controller()
   const browser = await puppeteer.launch({
-    headless: false,
+    ignoreDefaultArgs: ['--disable-extensions'],
+    headless: true,
   });
   const page = await browser.newPage();
   await page.evaluateOnNewDocument('const newProto = navigator.__proto__;delete newProto.webdriver;navigator.__proto__ = newProto;');
