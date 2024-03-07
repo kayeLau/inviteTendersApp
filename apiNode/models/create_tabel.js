@@ -23,14 +23,6 @@ const sql_tabel = [
             UNIQUE INDEX bud_title (bud_title) USING BTREE
         )`
     },
-    {
-        name: 'user_info',
-        sql: `CREATE TABLE user_info (
-            open_Id VARCHAR(50) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
-            session_key VARCHAR(50) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
-            PRIMARY KEY (open_Id) USING BTREE
-        )`
-    }
 ]
 
 checkTabel()
