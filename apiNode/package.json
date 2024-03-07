@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "nodemon ./bin/www"
+    "dev": "nodemon ./bin/www",
+    "prod": "set NODE_ENV=production && pm2 start bin/www --name='inviteTenderApp'",
+    "prod_restart": "set NODE_ENV=production && pm2 restart inviteTenderApp",
+    "spider": "node ./spider/index"
   },
   "dependencies": {
     "axios": "^1.6.0",
