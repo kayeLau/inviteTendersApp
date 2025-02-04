@@ -1,7 +1,7 @@
 const { getCurrentTime } = require('../utils')
 const { getPlaceItems , createNewPlace , updatePlace , deletePlaceItem } = require('../models/accounting_place_model')
 
-module.exports = class bud {
+module.exports = class bid {
     getAccountingPlaceList(req, res, next) {
         const userInfo = req.userInfo
         const options = { create_user_id: userInfo.id , id:req.body.id }

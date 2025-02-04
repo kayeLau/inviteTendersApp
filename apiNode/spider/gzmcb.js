@@ -14,10 +14,10 @@ module.exports = async () => {
   // await page.goto('https://ecsg.com.cn/cms/NoticeList.html?id=1-1&typeid=4&word=&seacrhDate=');
 
   for (let i = pageStart; i < pageEnd; i++) {
-    await jumpToPage(i)
-    await getHref()
-    await getContent()
-    await insertBid()
+      await getHref()
+      await getContent()
+      await insertBid()
+      await jumpToPage()
   }
 
   browser.close();
@@ -27,13 +27,13 @@ module.exports = async () => {
     for (let i = 0; i < resultList.length; i++) {
       try {
         await page.goto(resultList[i].data_href);
-        await page.waitForSelector('#noticeContentDiv>p')
-        const result = await page.$eval('#noticeContentDiv', row => {
+        await page.waitForSelector('.edit-container > p')
+        const result = await page.$eval('.edit-container', row => {
           let text = ''
-          const columns = row.querySelectorAll('#noticeContentDiv>p,#noticeContentDiv>table');
+          const columns = row.querySelectorAll('.edit-container>p,.edit-container>table');
           columns.forEach(item => {
             if (item.tagName === 'TABLE') {
-              let targetHTML = item.innerHTML.replaceAll('windowtext', '#000')
+              let targetHTML = item.innerHTML.replaceAll('windowtext','#000')
               text += '<table>' + targetHTML + '</table>'
               // item.querySelectorAll('tr').forEach(tr => {
               //   text += '<tr>'
@@ -91,9 +91,9 @@ module.exports = async () => {
         data_href: item.data_href
       }
     })
-    if (data.length) {
+    if(data.length){
       await bid_controller.postInsertBidItems(data).then(res => {
-        if (res.success) {
+        if(res.success){
           console.log('已成功存入')
         }
       }).catch(err => {
@@ -107,13 +107,8 @@ module.exports = async () => {
   }
 
   async function jumpToPage(pageNum) {
-    await page.goto('https://ecsg.com.cn/cms/NoticeList.html?id=1-1&typeid=4&word=&seacrhDate=');
-    await page.waitForSelector('.page-skip-num')
-    await page.click('.page-skip-num');
-    await page.keyboard.press('Backspace');
-    await page.type('.page-skip-num', String(pageNum));
-    await page.waitForSelector('.cui-button')
-    await page.click('.cui-button')
-
+    await page.goto('https://sw.gz.gov.cn/xxgk/cggk/index.html');
+    await page.waitForSelector('.page_div')
+    await page.click('.next');
   }
 };

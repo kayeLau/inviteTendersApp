@@ -7,7 +7,7 @@
    module.exports.isTable = isTable;
 </wxs>
 <view class="container detail">
-  <block wx:for="{{budDetail.bud_body}}" wx:key="unquie">
+  <block wx:for="{{bidDetail.bid_body}}" wx:key="unquie">
     <scroll-view scroll-x wx:if="{{utils.isTable(item)}}">
       <rich-text class='table' nodes="{{item}}" />
     </scroll-view>

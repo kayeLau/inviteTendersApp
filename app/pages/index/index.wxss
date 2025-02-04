@@ -13,7 +13,6 @@
   padding: 2rpx 15rpx;
   width: 100%;
   height: 60rpx;
-  border-radius: 10px;
   background-color: #fff;
   border: var(--secondary-color) 1px solid;
   z-index: 100;
@@ -21,7 +20,7 @@
 .bid-header-search > input{
   height: 100%;
 }
-.buds-cell{
+.bids-cell{
   padding: 5px 0;
   font-size: var(--font-size-smal);
   border-bottom: 1px #ccc solid;
@@ -30,14 +29,12 @@
   text-align: right;
   color: #ccc;
 }
-.buds-body{
+.bids-body{
   padding: 0 10rpx;
   height: calc(100% - 140rpx);
   background-color: #fff;
-  border-top-left-radius: 15px;
-  /* border-top-right-radius: 8px; */
 }
-.buds-body-scroll{
+.bids-body-scroll{
   height: 100%;
 }
 .search-panel-bg{
@@ -71,15 +68,15 @@
   padding: 1px 5px;
   border-radius: 5px;
 }
-.buds-body-header{
+.bids-body-header{
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 35px;
 }
-.buds-body-header > h2{
+.bids-body-header > h2{
   font-weight: bold;
 }
-.buds-body-header > text{
+.bids-body-header > text{
   font-size: var(--font-size-smal);
 }

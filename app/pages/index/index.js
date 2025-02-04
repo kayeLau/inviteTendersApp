@@ -26,7 +26,7 @@ Page({
   },
 
   onLoad() {
-    this.getbudInfo()
+    this.getbidInfo()
   },
 //输入为空时刷新页面
   checkInput(event) {
@@ -38,16 +38,16 @@ Page({
       });
     }},
     
-  getbudInfobyInput(event){
-    let bud_title = event.detail.value
-    if(bud_title){
-      this.getbudInfo('refresh',{bud_title})
+  getbidInfobyInput(event){
+    let bid_title = event.detail.value
+    if(bid_title){
+      this.getbidInfo('refresh',{bid_title})
     }
   },
 
-  getbudInfo(type,options) {
+  getbidInfo(type,options) {
     let params = Object.assign(this.data.params,options)
-    http.post('/buds/getBudList',params).then(res => {
+    http.post('/bids/getBidList',params).then(res => {
       if(res.data.success){
         if(type !== 'refresh'){
           params.size += this.data.pagesize
@@ -62,7 +62,7 @@ Page({
     })
   },
   jumpTo(event){
-    app.globalData.currentBudDetail = event.currentTarget.dataset.bud
+    app.globalData.currentBidDetail = event.currentTarget.dataset.bid
     wx.navigateTo({url: '/pages/detail/index'})
   },
   switchPanel(event){

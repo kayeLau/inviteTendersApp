@@ -2,7 +2,7 @@ const app = getApp()
 
 Page({
   data: {
-    budDetail:{}
+    bidDetail:{}
   },
 
   onLoad() {
@@ -10,10 +10,10 @@ Page({
   },
 
   detailFormatter(){
-    let currentBudDetail = app.globalData.currentBudDetail
-    currentBudDetail.bud_body = currentBudDetail.bud_body.replace('windowtext','#000')
-    currentBudDetail.bud_body = currentBudDetail.bud_body.split('|')
+    let currentBidDetail = app.globalData.currentBidDetail
+    currentBidDetail.bid_body = currentBidDetail.bid_body.replace('windowtext','#000')
+    currentBidDetail.bid_body = currentBidDetail.bid_body.split('|')
     .filter(item => item !== '')
-    this.setData({budDetail:currentBudDetail})
+    this.setData({bidDetail:currentBidDetail})
   },
 })

@@ -22,14 +22,14 @@ app.use(rateLimiter)
 
 // router
 const usersRouter = require('./routes/users');
-const budsRouter = require('./routes/bud')
+const bidsRouter = require('./routes/bid')
 const accountingPlaceRouter = require('./routes/accounting_place')
 const accountingPlaceMemberRouter = require('./routes/accounting_place_member')
 const attendance = require('./routes/attendance')
 
 
 app.use('/users', usersRouter);
-app.use('/buds',budsRouter)
+app.use('/bids',bidsRouter)
 app.use('/accountingPlace',accountingPlaceRouter)
 app.use('/accountingPlaceMember',accountingPlaceMemberRouter)
 app.use('/attendance',attendance)

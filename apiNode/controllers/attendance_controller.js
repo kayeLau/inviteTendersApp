@@ -1,7 +1,7 @@
 const { getCurrentTime } = require('../utils')
 const { getAttendance , createAttendance , updateAttendance } = require('../models/attendance_mpdel')
 
-module.exports = class bud {
+module.exports = class bid {
     getAttendance(req, res, next) {
         const userInfo = req.userInfo
         const options = { 
