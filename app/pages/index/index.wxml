@@ -2,7 +2,7 @@
 <view class="container">
   <view class="bid-header">
     <view class="bid-header-search">
-      <input type="text" placeholder="请输入招标内容" bindconfirm='getbidInfobyInput' bind:blur="checkInput"/>
+      <input type="text" placeholder="请输入招标内容" class="bid-header-input" bindconfirm='getbidInfobyInput' bind:blur="checkInput"/>
     </view>
     <mp-icon icon="more2" color="#fff" size="{{30}}" bind:tap="switchPanel"></mp-icon>
   </view>

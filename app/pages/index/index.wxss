@@ -10,6 +10,7 @@
   background-color: var(--primary-color);
 }
 .bid-header-search{
+  border-radius: 25px;
   padding: 2rpx 15rpx;
   width: 100%;
   height: 60rpx;

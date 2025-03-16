@@ -1,11 +1,11 @@
 const puppeteer = require('puppeteer');
+const Bid_controller = require('../controllers/bid_controller')
+const bid_controller = new Bid_controller()
 
 module.exports = async () => {
   let resultList = []
   let pageStart = 1
-  let pageEnd = 4
-  const Bid_controller = require('../controllers/bid_controller')
-  const bid_controller = new Bid_controller()
+  let pageEnd = 2
   const browser = await puppeteer.launch({
     headless: false,
   });
@@ -92,7 +92,7 @@ module.exports = async () => {
       }
     })
     if (data.length) {
-      await bid_controller.postInsertBidItems(data).then(res => {
+      await bid_controller.insertBidItems(data).then(res => {
         if (res.success) {
           console.log('已成功存入')
         }

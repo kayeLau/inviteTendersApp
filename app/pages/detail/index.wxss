@@ -2,10 +2,6 @@
 .detail{
   font-size: 33rpx;
   padding: 0 10rpx;
-  border-style:solid;
-  border-radius:2ch;
-  border-width:3px;
-  border-color: var(--primary-color);
   margin: 5px;
   letter-spacing:150%;
   line-height: 180%;
