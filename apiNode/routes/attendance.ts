@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const AttendanceMOdifyMethod = require('../controllers/attendance_controller')
+const AttendanceMOdifyMethod = require('../controllers/attendance')
 
 const attendanceMOdifyMethod = new AttendanceMOdifyMethod()
 

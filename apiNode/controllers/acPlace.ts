@@ -1,21 +1,21 @@
-import { getPlaceItems, createNewPlace, updatePlace, deletePlaceItem } from '../models/accounting_place_model'
+import { getPlaces, createPlace, updatePlace, deletePlace } from '../models/acPlace'
 
 module.exports = class Place {
-    getAccountingPlaceList(req, res, next) {
+    getPlaces(req, res, next) {
         const userInfo = req.userInfo
         const options = { create_user_id: userInfo.id, id: req.body.id }
         const size = req.body.size
         const page = req.body.page
 
 
-        getPlaceItems(options, size, page).then(result => {
+        getPlaces(options, size, page).then(result => {
             res.json(result)
         }).catch(err => {
             next(err)
         })
     }
 
-    postCreateAccountingPlace(req, res, next) {
+    createPlace(req, res, next) {
         const userInfo = req.userInfo
         const data = {
             create_user_id: userInfo.id,
@@ -25,7 +25,7 @@ module.exports = class Place {
             state: 0,
         }
 
-        createNewPlace(data).then(result => {
+        createPlace(data).then(result => {
             res.json(result)
         }).catch(err => {
             next(err)
@@ -33,7 +33,7 @@ module.exports = class Place {
 
     }
 
-    postUpdatePlace(req, res, next) {
+    updatePlace(req, res, next) {
         const id = req.body.id
         const data = {
             place_name: req.body.place_name,
@@ -53,10 +53,10 @@ module.exports = class Place {
     }
 
 
-    postDeletePlaceItem(req, res, next) {
+    deletePlace(req, res, next) {
         const id = req.body.create_user_id
 
-        deletePlaceItem(id).then(result => {
+        deletePlace(id).then(result => {
             res.json(result)
         }).catch(err => {
             next(err)

@@ -1,21 +1,21 @@
-import { getPlaceMemberItems , createNewPlaceMember , updatePlaceMember , deletePlaceMemberItem } from '../models/accounting_place_member_model'
+import { createMember , updateMember , deleteMember , getMembers } from '../models/acMember'
 
 module.exports = class bid {
-    getAccountingPlaceMemberList(req, res, next) {
+    getMembers(req, res, next) {
         const userInfo = req.userInfo
         const options = { create_user_id: userInfo.create_user_id , place_id: userInfo.current_place_id }
         const size = req.body.size
         const page = req.body.page
 
 
-        getPlaceMemberItems(options, size, page).then(result => {
+        getMembers(options, size, page).then(result => {
             res.json(result)
         }).catch(err => {
             next(err)
         })
     }
 
-    postCreateAccountingPlaceMember(req, res, next) {
+    createMember(req, res, next) {
         const userInfo = req.userInfo
         const data = {
             create_user_id: userInfo.create_user_id,
@@ -33,7 +33,7 @@ module.exports = class bid {
             state:0,
         }
 
-        createNewPlaceMember(data).then(result => {
+        createMember(data).then(result => {
             res.json(result)
         }).catch(err => {
             next(err)
@@ -41,7 +41,7 @@ module.exports = class bid {
 
     }
 
-    postUpdatePlaceMember(req, res, next) {
+    updateMember(req, res, next) {
         const userInfo = req.userInfo
         const id = req.body.id
         const data = {
@@ -61,7 +61,7 @@ module.exports = class bid {
         }
 
 
-        updatePlaceMember(id, data).then(result => {
+        updateMember(id, data).then(result => {
             res.json(result)
         }).catch(err => {
             next(err)
@@ -70,10 +70,10 @@ module.exports = class bid {
     }
 
 
-    postDeletePlaceMember(req, res, next) {
+    deleteMember(req, res, next) {
         const id = req.body.create_user_id
 
-        deletePlaceMemberItem(id).then(result => {
+        deleteMember(id).then(result => {
             res.json(result)
         }).catch(err => {
             next(err)

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const BidModifyMethod = require('../controllers/bid_controller')
+const BidModifyMethod = require('../controllers/bid')
 
 const bidModifyMethod = new BidModifyMethod()
 

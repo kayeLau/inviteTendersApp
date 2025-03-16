@@ -1,4 +1,4 @@
-import { getAttendance , createAttendance , updateAttendance } from '../models/attendance_model'
+import { getAttendance , createAttendance , updateAttendance } from '../models/attendance'
 
 module.exports = class Attendance {
     getAttendance(req, res, next) {

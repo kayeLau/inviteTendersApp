@@ -15,7 +15,7 @@ const startApp = async () => {
 startApp();
 
 // spider
-require('./spider/index')
+// require('./spider/index')
 
 // middleware
 const auth = require('./middleware/auth')
@@ -28,8 +28,8 @@ app.use(rateLimiter)
 // router
 const usersRouter = require('./routes/users');
 const bidsRouter = require('./routes/bid')
-const accountingPlaceRouter = require('./routes/accounting_place')
-const accountingPlaceMemberRouter = require('./routes/accounting_place_member')
+const accountingPlaceRouter = require('./routes/acPlace')
+const accountingPlaceMemberRouter = require('./routes/acMember')
 const attendance = require('./routes/attendance')
 
 

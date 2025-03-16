@@ -1,20 +1,17 @@
 const { createNew , updateItem , deleteItem , getItems } = require('./base_model')
 
-function createNewPlace(data) {
+export function createPlace(data) {
     return createNew("place_info",data)
 }
 
-function updatePlace(id,data){
+export function updatePlace(id,data){
     return updateItem("place_info",data,'id',id)
 }
 
-function deletePlaceItem(id){
+export function deletePlace(id){
     return deleteItem("place_info",'id',id)
 }
 
-function getPlaceItems(options,size,page){
+export function getPlaces(options,size,page){
     return getItems({table:"place_info",options,size,page})
 }
-
-
-module.exports = { getPlaceItems , createNewPlace , updatePlace , deletePlaceItem }

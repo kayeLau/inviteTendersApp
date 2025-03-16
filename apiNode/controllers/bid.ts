@@ -1,4 +1,4 @@
-import { getBids, createBid, updateBid, deleteBid, insertBidItems } from '../models/bid_manage_model'
+import { getBids, createBid, updateBid, deleteBid, insertBidItems } from '../models/bid'
 
 module.exports = class bid {
     getBids(req, res, next) {

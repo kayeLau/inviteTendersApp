@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const UserModifyMethod = require('../controllers/user_controller')
+const UserModifyMethod = require('../controllers/user')
 
 const userModifyMethod = new UserModifyMethod()
 
