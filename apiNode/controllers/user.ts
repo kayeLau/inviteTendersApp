@@ -33,56 +33,53 @@ module.exports = class Member {
     })
   }
 
-  // 登入
-  login(req, res, next) {
-    var params = req.body
-    var { code, type } = params
-    if (type === 'wxapp') {
-      const params = {
-        appid: config.wxAppId,
-        secret: config.wxAppSecret,
-        js_code: code,
-        grant_type: 'authorization_code'
-      }
-      let openId = null
-      let sessionKey = null
 
-      axios.get('https://api.weixin.qq.com/sns/jscode2session', { params }).then(async ({ data }) => {
-          openId = data.openid
-          sessionKey = data.sessionKey
-          let user = null
-          await getUsersItemById({ openId: openId }).then(result => {
-            if (result.success) {
-              user = result
-            }
-          })
-          return user
-        }).then(user => {
-          if (!user) {
-            user = {
-              openId: openId,
-              sessionKey: sessionKey
-            }
-            registerUser(user).then(result => {
-              if (result.success) {
-                console.log('新用户', user)
-              }
-            })
-          } else {
-            console.log('老用户', user)
+  async login(req, res, next) {
+    try {
+      const params = req.body;
+      const { code, type } = params;
+
+      if (type === 'wxapp') {
+        const wxParams = {
+          appid: config.wxAppId,
+          secret: config.wxAppSecret,
+          js_code: code,
+          grant_type: 'authorization_code'
+        };
+
+        // 獲取微信 session
+        const { data: { openid, session_key } } = await axios.get('https://api.weixin.qq.com/sns/jscode2session', { params: wxParams });
+
+        // 查詢用戶
+        const userResult = await getUsersItemById({ openId: openid });
+        let user = userResult.success ? userResult : null;
+
+        // 如果用戶不存在則註冊新用戶
+        if (user.data === null) {
+          const registerResult = await registerUser({
+            openId: openid,
+            sessionKey: session_key
+          });
+          if (registerResult.success) {
+            console.log('新用户', user);
           }
-          const token = jwt.sign({ data: user.openId + '|' + user.sessionKey }, config.secret, { expiresIn: '6h' });
-          return token
-        }).then(token => {
-          res.set('set-token', token);
-          res.set('Access-Control-Expose-Headers', 'set-token')
-          res.json({ success: true, token })
-        }).catch(err => {
-          console.log(err)
-          res.json({ success: false })
-        })
-    } else {
-      throw new Error('未知的授权类型')
+        } else {
+          console.log('老用户', user);
+        }
+
+        // 生成 token
+        const token = jwt.sign({ data: openid }, config.secret, { expiresIn: '6h' });
+
+        // 設置響應頭和返回結果
+        res.set('set-token', token);
+        res.set('Access-Control-Expose-Headers', 'set-token');
+        res.json({ success: true, token });
+      } else {
+        throw new Error('未知的授权类型');
+      }
+    } catch (err) {
+      console.log(err);
+      res.json({ success: false });
     }
   }
 }

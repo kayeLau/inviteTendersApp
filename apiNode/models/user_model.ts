@@ -37,10 +37,6 @@ export function updateUser(id,data){
 
 export async function getUsersItemById(options) {
     const { conditions, parameters } = optionsGenerater(options, "user")
-    const total = await UserRepository
-        .createQueryBuilder("user")
-        .where(conditions.join(" AND "), parameters)
-        .getCount();
 
     return UserRepository
         .createQueryBuilder("user")
@@ -56,7 +52,7 @@ export async function getUsersItemById(options) {
         .then((result) => {
             return {
                 success: true,
-                data: result
+                data: result.length ? result : null
             };
         })
 }

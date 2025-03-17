@@ -2,24 +2,44 @@ import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
 
 @Entity()
 export class AcMember {
-
     @PrimaryGeneratedColumn()
     id: number
 
     @Column()
+    createUserId: number
+    
+    @Column()
     placeId: number
 
-    @Column()
-    createUserId: number
+    @Column({length: 50, nullable:true})
+    name: string
+
+    @Column({length: 50, nullable:true})
+    phoneNumber: string
 
     @Column()
-    staffId: number
+    jobType: number
 
     @Column()
+    salary: number
+
+    @Column()
+    gender: number
+
+    @Column({length: 50, nullable:true})
+    idCardNumber: string
+
+    @Column({length: 50, nullable:true})
+    bank: string
+
+    @Column({length: 50, nullable:true})
+    bankNumber: string
+
+    @Column({length: 50, nullable:true})
     remark: string
 
-    @Column({ type: 'date' })
-    attendanceDate: Date
+    @Column()
+    state: number
 
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
     updateTime: Date

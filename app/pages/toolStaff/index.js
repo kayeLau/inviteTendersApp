@@ -31,8 +31,8 @@ Page({
     }
     http.post('/accountingPlaceMember/getAccountingPlaceMemberList', params).then(res => {
       if (res.data.success) {
-        let staffList = res.data.resource.filter(item => item.state === 0)
-        let endstaffList = res.data.resource.filter(item => item.state === 1)
+        let staffList = res.data.data.filter(item => item.state === 0)
+        let endstaffList = res.data.data.filter(item => item.state === 1)
         this.setData({
           staffList,
           endstaffList
@@ -67,7 +67,7 @@ Page({
       bank_number:data.bank_number,
       remark:data.remark,
     }
-    http.post('/accountingPlaceMember/createAccountingPlaceMember', params).then(res => {
+    http.post('/accountingPlaceMember/createPlaceMember', params).then(res => {
       if (res.data.success) {
         this.getPlaceMemberInfo()
         this.setData({

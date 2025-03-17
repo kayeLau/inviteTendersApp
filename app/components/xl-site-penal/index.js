@@ -22,7 +22,7 @@ Component({
       }
       await http.post('/accountingPlace/getPlaces', params).then(res => {
         if (res.data.success) {
-          let siteList = res.data.resource.filter(item => item.state === 0)
+          let siteList = res.data.data.filter(item => item.state === 0)
           this.setData({
             siteList
           })

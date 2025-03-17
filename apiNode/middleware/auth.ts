@@ -10,9 +10,9 @@ async function auth(req, res, next) {
         return
     }
     await verifyToken(token, true).then(tokenResult => {
-        console.log(tokenResult)
         if (tokenResult.success === true) {
-            const openId = tokenResult.data.split('|')[0]
+            const openId = tokenResult
+            console.log(tokenResult)
             req.openId = openId
             req.userInfo = tokenResult.userInfo
             next()

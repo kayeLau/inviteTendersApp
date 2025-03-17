@@ -65,13 +65,13 @@ Page({
     }
     await http.post('/accountingPlace/getPlaces', params).then(res => {
       if (res.data.success) {
-        let siteList = res.data.resource.filter(item => item.state === 0)
+        let siteList = res.data.data.filter(item => item.state === 0)
         const userInfo = wx.getStorageSync('userInfo')
         const currentPlace = siteList.find(item => item.id === userInfo.current_place_id)
         this.setData({
           triggered: false,
           siteList,
-          currentPlace: currentPlace ? currentPlace.place_name : ''
+          currentPlace: currentPlace ? currentPlace.name : ''
         })
       }
     })
@@ -84,7 +84,7 @@ Page({
         wx.setStorageSync('userInfo', res.data)
         const currentPlace = this.data.siteList.find(item => item.id === res.data.current_place_id)
         this.setData({
-          currentPlace: currentPlace ? currentPlace.place_name : '',
+          currentPlace: currentPlace ? currentPlace.name : '',
           visible:false
         })
       }

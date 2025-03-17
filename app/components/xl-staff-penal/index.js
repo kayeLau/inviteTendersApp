@@ -23,7 +23,7 @@ Component({
       }
       http.post('/accountingPlaceMember/getAccountingPlaceMemberList', params).then(res => {
         if (res.data.success) {
-          let staffList = res.data.resource.filter(item => item.state === 0)
+          let staffList = res.data.data.filter(item => item.state === 0)
           this.setData({
             staffList,
           })

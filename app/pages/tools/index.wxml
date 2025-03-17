@@ -17,7 +17,7 @@
     <view style="text-align: center;">当前工地: {{currentPlace}}</view>
     <scroll-view class='xl-popup-scroll' type="list" scroll-y refresher-enabled="{{true}}" bindrefresherrefresh='getPlaceInfo' refresher-triggered="{{triggered}}">
       <view wx:for="{{siteList}}" wx:key="unique" class="site-list" wx:for-index="subIndex" bind:tap="setCurrentPlace" data-pid="{{item.id}}">
-        <view>{{item.place_name}}</view>
+        <view>{{item.name}}</view>
       </view>
     </scroll-view>
   </xl-popup>

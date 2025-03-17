@@ -15,7 +15,7 @@ const startApp = async () => {
 startApp();
 
 // spider
-require('./spider/index')
+// require('./spider/index')
 
 // middleware
 const auth = require('./middleware/auth')

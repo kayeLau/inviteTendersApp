@@ -31,8 +31,8 @@ Page({
     }
     http.post('/accountingPlace/getPlaces', params).then(res => {
       if (res.data.success) {
-        let siteList = res.data.resource.filter(item => item.state === 0)
-        let endSiteList = res.data.resource.filter(item => item.state === 1)
+        let siteList = res.data.data.filter(item => item.state === 0)
+        let endSiteList = res.data.data.filter(item => item.state === 1)
         this.setData({
           siteList,
           endSiteList
@@ -52,11 +52,11 @@ Page({
   createPlaceInfo() {
     let data = this.selectComponent("#xl-form").getData()
     let params = {
-      place_name: data.place_name,
-      attendance_time: data.attendance_time,
-      attendance_unit: data.attendance_unit,
+      name: data.name,
+      attendanceTime: data.attendanceTime,
+      attendanceUnit: data.attendanceUnit,
     }
-    http.post('/accountingPlace/createAccountingPlace', params).then(res => {
+    http.post('/accountingPlace/createPlace', params).then(res => {
       if (res.data.success) {
         this.getPlaceInfo()
         this.setData({
@@ -70,9 +70,9 @@ Page({
     let data = this.selectComponent("#xl-form").getData()
     let params = {
       id:data.id,
-      place_name: data.place_name,
-      attendance_time: data.attendance_time,
-      attendance_unit: data.attendance_unit,
+      name: data.name,
+      attendanceTime: data.attendanceTime,
+      attendanceUnit: data.attendanceUnit,
       state:0,
     }
     http.post('/accountingPlace/updatePlace', params).then(res => {
@@ -95,9 +95,9 @@ Page({
       this.selectComponent("#xl-form").textData(currentItem)
     }else{
       this.selectComponent("#xl-form").textData({
-        place_name: '',
-        attendance_time: 0,
-        attendance_unit: 0,
+        name: '',
+        attendanceTime: 0,
+        attendanceUnit: 0,
       })
     }
   },

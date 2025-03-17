@@ -14,7 +14,7 @@
         <view wx:for="{{tabConfig}}" wx:key="unique" slot="tab-content-{{index}}">
           <view>
             <view wx:for="{{index === 0 ? siteList : endSiteList}}" wx:key="unique" class="site-list" wx:for-index="subIndex">
-              <view class="font-bold">{{item.place_name}}</view>
+              <view class="font-bold">{{item.name}}</view>
               <!-- btn-group -->
               <view wx:if="{{index === 0 }}" class="flex">
               <view class="btn-icon btn-primary" bind:tap="switchToEdit" data-current='{{item}}' data-mode='edit' >

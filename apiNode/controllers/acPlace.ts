@@ -19,9 +19,9 @@ module.exports = class Place {
         const userInfo = req.userInfo
         const data = {
             createUserId: userInfo.id,
-            place_name: req.body.place_name,
-            attendance_time: req.body.attendance_time,
-            attendance_unit: req.body.attendance_unit,
+            name: req.body.name,
+            attendanceTime: req.body.attendanceTime,
+            attendanceUnit: req.body.attendanceUnit,
             state: 0,
         }
 
@@ -36,9 +36,9 @@ module.exports = class Place {
     updatePlace(req, res, next) {
         const id = req.body.id
         const data = {
-            place_name: req.body.place_name,
-            attendance_time: req.body.attendance_time,
-            attendance_unit: req.body.attendance_unit,
+            name: req.body.name,
+            attendanceTime: req.body.attendanceTime,
+            attendanceUnit: req.body.attendanceUnit,
             state: req.body.state,
         }
 

@@ -7,19 +7,19 @@ export class AcPlace {
     id: number
 
     @Column()
-    placeId: number
-
-    @Column()
     createUserId: number
 
-    @Column()
-    staffId: number
+    @Column({ length: 50 })
+    name: string
 
-    @Column()
-    remark: string
+    @Column({})
+    state: number
 
-    @Column({ type: 'date' })
-    attendanceDate: Date
+    @Column({})
+    attendanceTime: number
+
+    @Column({ length: 50 })
+    attendanceUnit: string
 
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
     updateTime: Date

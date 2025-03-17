@@ -6,6 +6,12 @@ export class User {
     @PrimaryGeneratedColumn()
     id: number
 
+    @Column({ length: 50, nullable:true })
+    name: string
+
+    @Column({ length: 50, nullable:true })
+    phone: string
+
     @Column({ length: 50, comment: 'WX' })
     openId: string
 

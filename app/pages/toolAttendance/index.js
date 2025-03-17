@@ -29,7 +29,7 @@ Page({
     }
     http.post('/attendance/getAddendce', params).then(res => {
       if (res.data.success) {
-        let attendanceList = res.data.resource
+        let attendanceList = res.data.data
         this.setData({attendanceList})
       }
     })
@@ -64,9 +64,9 @@ Page({
     let data = this.selectComponent("#xl-form").getData()
     let params = {
       id:data.id,
-      place_name: data.place_name,
-      attendance_time: data.attendance_time,
-      attendance_unit: data.attendance_unit,
+      name: data.name,
+      attendanceTime: data.attendanceTime,
+      attendanceUnit: data.attendanceUnit,
       state:0,
     }
     http.post('/accountingPlace/updatePlace', params).then(res => {
