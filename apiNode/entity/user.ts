@@ -7,10 +7,10 @@ export class User {
     id: number
 
     @Column({ length: 50, comment: 'WX' })
-    open_Id: string
+    openId: string
 
     @Column({ length: 50, comment: 'WX' })
-    session_key: string
+    sessionKey: string
 
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
     updateTime: Date;

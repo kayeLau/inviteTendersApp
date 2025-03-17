@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 
 interface userInfo {
   name: string
-  current_place_id: number
+  current_placeId: number
   phone: string
 }
 
@@ -15,7 +15,7 @@ module.exports = class Member {
     const userInfo = req.userInfo
     res.json({
       name: userInfo.name,
-      current_place_id: userInfo.current_place_id,
+      current_placeId: userInfo.current_placeId,
       phone: userInfo.phone,
       success: true
     })
@@ -24,7 +24,7 @@ module.exports = class Member {
 
   async updateUserinfo(req, res, next) {
     const userInfo = req.userInfo
-    const data = { current_place_id: req.body.current_place_id }
+    const data = { current_placeId: req.body.current_placeId }
 
     await updateUser(userInfo.id, data).then(result => {
       res.json(result)
@@ -47,12 +47,11 @@ module.exports = class Member {
       let openId = null
       let sessionKey = null
 
-      axios.get('https://api.weixin.qq.com/sns/jscode2session', { params })
-        .then(async ({ data }) => {
+      axios.get('https://api.weixin.qq.com/sns/jscode2session', { params }).then(async ({ data }) => {
           openId = data.openid
-          sessionKey = data.session_key
+          sessionKey = data.sessionKey
           let user = null
-          await getUsersItemById({ open_Id: openId }).then(result => {
+          await getUsersItemById({ openId: openId }).then(result => {
             if (result.success) {
               user = result
             }
@@ -61,8 +60,8 @@ module.exports = class Member {
         }).then(user => {
           if (!user) {
             user = {
-              open_Id: openId,
-              session_key: sessionKey
+              openId: openId,
+              sessionKey: sessionKey
             }
             registerUser(user).then(result => {
               if (result.success) {
@@ -72,7 +71,7 @@ module.exports = class Member {
           } else {
             console.log('老用户', user)
           }
-          const token = jwt.sign({ data: user.open_Id + '|' + user.session_key }, config.secret, { expiresIn: '6h' });
+          const token = jwt.sign({ data: user.openId + '|' + user.sessionKey }, config.secret, { expiresIn: '6h' });
           return token
         }).then(token => {
           res.set('set-token', token);

@@ -29,7 +29,7 @@ Page({
       size: 999,
       page: 1
     }
-    http.post('/accountingPlace/getAccountingPlaceList', params).then(res => {
+    http.post('/accountingPlace/getPlaces', params).then(res => {
       if (res.data.success) {
         let siteList = res.data.resource.filter(item => item.state === 0)
         let endSiteList = res.data.resource.filter(item => item.state === 1)

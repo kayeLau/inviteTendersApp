@@ -11,8 +11,8 @@ Page({
 
   detailFormatter(){
     let currentBidDetail = app.globalData.currentBidDetail
-    currentBidDetail.bid_body = currentBidDetail.bid_body.replace('windowtext','#000')
-    currentBidDetail.bid_body = currentBidDetail.bid_body.split('|')
+    currentBidDetail.bidBody = currentBidDetail.bidBody.replace('windowtext','#000')
+    currentBidDetail.bidBody = currentBidDetail.bidBody.split('|')
     .filter(item => item !== '')
     this.setData({bidDetail:currentBidDetail})
   },

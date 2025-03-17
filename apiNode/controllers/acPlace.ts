@@ -3,7 +3,7 @@ import { getPlaces, createPlace, updatePlace, deletePlace } from '../models/acPl
 module.exports = class Place {
     getPlaces(req, res, next) {
         const userInfo = req.userInfo
-        const options = { create_user_id: userInfo.id, id: req.body.id }
+        const options = { createUserId: userInfo.id, id: req.body.id }
         const size = req.body.size
         const page = req.body.page
 
@@ -18,7 +18,7 @@ module.exports = class Place {
     createPlace(req, res, next) {
         const userInfo = req.userInfo
         const data = {
-            create_user_id: userInfo.id,
+            createUserId: userInfo.id,
             place_name: req.body.place_name,
             attendance_time: req.body.attendance_time,
             attendance_unit: req.body.attendance_unit,
@@ -54,7 +54,7 @@ module.exports = class Place {
 
 
     deletePlace(req, res, next) {
-        const id = req.body.create_user_id
+        const id = req.body.createUserId
 
         deletePlace(id).then(result => {
             res.json(result)

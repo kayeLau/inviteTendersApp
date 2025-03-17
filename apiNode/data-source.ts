@@ -3,6 +3,8 @@ import { DataSource } from "typeorm"
 import { Bid } from "./entity/bid"
 import { User } from "./entity/user"
 import { Attendance } from "./entity/attendance"
+import { AcMember } from "./entity/acMember"
+import { AcPlace } from "./entity/acPlace"
 const config = require('./config/development_config')
 
 const AppDataSource = new DataSource({
@@ -14,7 +16,7 @@ const AppDataSource = new DataSource({
     database: config.mysql.database,
     synchronize: true,
     logging: false,
-    entities: [Bid, User, Attendance],
+    entities: [Bid, User, Attendance, AcMember, AcPlace],
     migrations: [],
     subscribers: [],
 })

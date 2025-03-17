@@ -1,26 +1,26 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
 
 @Entity()
-export class PlaceMember {
+export class AcMember {
 
     @PrimaryGeneratedColumn()
     id: number
 
     @Column()
-    place_id: number
+    placeId: number
 
     @Column()
-    create_user_id: number
+    createUserId: number
 
     @Column()
-    staff_id: number
+    staffId: number
 
     @Column()
     remark: string
 
     @Column({ type: 'date' })
-    attendance_date: Date
+    attendanceDate: Date
 
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
-    update_time: Date
+    updateTime: Date
 }

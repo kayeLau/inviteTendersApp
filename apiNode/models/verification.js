@@ -1,10 +1,9 @@
 const jwt = require('jsonwebtoken')
 const config = require('../config/development_config')
-const { getItem } = require('../models/base_model')
 
 // @ params
 // getUser 是否需要取得用戶資料
-function verifyToken(token,getUser = false){
+function verifyToken(token, getUser = false){
     let tokenResult = {
         status: "token verify fail",
         success: false
@@ -29,13 +28,6 @@ function verifyToken(token,getUser = false){
                 success: false
             });
         }
-    }).then(async res => {
-        if(getUser && res.success){
-            const open_Id = res.data.split('|')[0]
-            let userInfo = await getItem("user_info", {open_Id})
-            tokenResult.userInfo = userInfo.resource[0]
-        }
-        return tokenResult
     })
 }
 

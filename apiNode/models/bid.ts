@@ -58,14 +58,18 @@ export async function getBids(options, size, page) {
         .createQueryBuilder("bid")
         .select([
             "bid.id AS id",
-            "bid.name AS name",
-            "bid.password AS password",
-            "bid.auth AS auth",
-            "bid.shopPartition AS shopPartition",
-            "bid.shopId AS shopId",
-            "shop.shopName AS shopName",
-            "partition.partitionName AS partitionName",
-            "DATE_FORMAT(member.updateDate, '%Y-%m-%d %H:%i:%S') AS updateDate"
+            "bid.bidTitle AS bidTitle",
+            "bid.bidBody AS bidBody",
+            "bid.bidTable AS bidTable",
+            "bid.releaseTime AS releaseTime",
+            "bid.bidUnit AS bidUnit",
+            "bid.bidType AS bidType",
+            "bid.bidCity AS bidCity",
+            "bid.bidContact AS bidContact",
+            "bid.pjType AS pjType",
+            "bid.dataSource AS dataSource",
+            "bid.dataHref AS dataHref",
+            "DATE_FORMAT(bid.updateTime, '%Y-%m-%d %H:%i:%S') AS updateDate"
         ])
         .where(conditions.join(" AND "), parameters)
         .offset((page - 1) * size)

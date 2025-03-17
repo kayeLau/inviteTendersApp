@@ -39,21 +39,21 @@ Page({
     }},
     
   getbidInfobyInput(event){
-    let bid_title = event.detail.value
-    if(bid_title){
-      this.getbidInfo('refresh',{bid_title})
+    let bidTitle = event.detail.value
+    if(bidTitle){
+      this.getbidInfo('refresh',{bidTitle})
     }
   },
 
   getbidInfo(type,options) {
     let params = Object.assign(this.data.params,options)
-    http.post('/bids/getBidList',params).then(res => {
+    http.post('/bids/getBids',params).then(res => {
       if(res.data.success){
         if(type !== 'refresh'){
           params.size += this.data.pagesize
         }
         params.total = res.data.total
-        this.setData({list:res.data.resource,params:params})
+        this.setData({list:res.data.data ,params:params})
       }else{
         this.setData({list:[]})
       }

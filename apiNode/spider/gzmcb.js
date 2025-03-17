@@ -4,7 +4,7 @@ module.exports = async () => {
   let resultList = []
   let pageStart = 1
   let pageEnd = 4
-  const Bid_controller = require('../controllers/bid_controller')
+  const Bid_controller = require('../controllers/bid')
   const bid_controller = new Bid_controller()
   const browser = await puppeteer.launch({
     headless: false,
@@ -26,7 +26,7 @@ module.exports = async () => {
   async function getContent() {
     for (let i = 0; i < resultList.length; i++) {
       try {
-        await page.goto(resultList[i].data_href);
+        await page.goto(resultList[i].dataHref);
         await page.waitForSelector('.edit-container > p')
         const result = await page.$eval('.edit-container', row => {
           let text = ''
@@ -51,7 +51,7 @@ module.exports = async () => {
           })
           return text
         })
-        resultList[i].bid_body = result
+        resultList[i].bidBody = result
       } catch (err) {
         continue
       }
@@ -63,12 +63,12 @@ module.exports = async () => {
     const result = await page.$$eval('#noticeListTBody tr', rows => {
       return Array.from(rows, row => {
         const columns = row.querySelectorAll('td');
-        const data_href = row.querySelector('td > a').href
-        const bid_title = columns[0].innerText
-        const bid_unit = columns[1].innerText
-        const release_time = columns[2].innerText
-        const bid_body = ''
-        return { data_href, bid_title, bid_unit, release_time, bid_body }
+        const dataHref = row.querySelector('td > a').href
+        const bidTitle = columns[0].innerText
+        const bidUnit = columns[1].innerText
+        const releaseTime = columns[2].innerText
+        const bidBody = ''
+        return { dataHref, bidTitle, bidUnit, releaseTime, bidBody }
       });
     });
     resultList = result
@@ -77,18 +77,18 @@ module.exports = async () => {
   async function insertBid() {
     const data = resultList.map(item => {
       return {
-        bid_title: item.bid_title,
-        bid_body: item.bid_body,
-        bid_table: item.bid_table,
-        release_time: item.release_time,
-        bid_unit: item.bid_unit || null,
-        bid_type: 0, // 政府项目
-        pj_type: item.pj_type || 0,
-        bid_city: item.bid_city || null,
-        bid_contact: item.bid_contact || null,
-        bid_amount: item.bid_amount || null,
-        data_source: 0, // 机器获取
-        data_href: item.data_href
+        bidTitle: item.bidTitle,
+        bidBody: item.bidBody,
+        bidTable: item.bidTable,
+        releaseTime: item.releaseTime,
+        bidUnit: item.bidUnit || null,
+        bidType: 0, // 政府项目
+        pjType: item.pjType || 0,
+        bidCity: item.bidCity || null,
+        bidContact: item.bidContact || null,
+        bidAmount: item.bidAmount || null,
+        dataSource: 0, // 机器获取
+        dataHref: item.dataHref
       }
     })
     if(data.length){

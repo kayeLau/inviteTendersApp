@@ -5,8 +5,8 @@ const UserRepository = AppDataSource.getRepository(User);
 
 export async function registerUser(data) {
     const existing = await UserRepository
-        .createQueryBuilder("bid")
-        .where("bid.title = :title", { title: data.title })
+        .createQueryBuilder("user")
+        .where("User.openId = :openId", { openId: data.openId })
         .getOne()
 
     if (!existing) {
@@ -38,16 +38,16 @@ export function updateUser(id,data){
 export async function getUsersItemById(options) {
     const { conditions, parameters } = optionsGenerater(options, "user")
     const total = await UserRepository
-        .createQueryBuilder("bid")
+        .createQueryBuilder("user")
         .where(conditions.join(" AND "), parameters)
         .getCount();
 
     return UserRepository
-        .createQueryBuilder("bid")
+        .createQueryBuilder("user")
         .select([
             "user.id AS id",
-            "user.open_Id AS openId",
-            "user.session_key AS sessionKey",
+            "user.openId AS openId",
+            "user.sessionKey AS sessionKey",
             "DATE_FORMAT(user.updateTime, '%Y-%m-%d %H:%i:%S') AS updateTime"
         ])
         .where(conditions.join(" AND "), parameters)

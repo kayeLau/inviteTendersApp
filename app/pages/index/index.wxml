@@ -14,8 +14,8 @@
       </view>
       <view wx:for="{{list}}" wx:key="unique" class="bids-cell">
         <view data-bid="{{item}}" bind:tap="jumpTo">
-          <view>{{item.bid_title}}</view>
-          <view class="release-time">{{item.release_time}}</view>
+          <view>{{item.bidTitle}}</view>
+          <view class="release-time">{{item.releaseTime}}</view>
         </view>
       </view>
       <view>到底了</view>

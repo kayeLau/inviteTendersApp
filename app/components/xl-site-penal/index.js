@@ -20,7 +20,7 @@ Component({
         size: 999,
         page: 1
       }
-      await http.post('/accountingPlace/getAccountingPlaceList', params).then(res => {
+      await http.post('/accountingPlace/getPlaces', params).then(res => {
         if (res.data.success) {
           let siteList = res.data.resource.filter(item => item.state === 0)
           this.setData({

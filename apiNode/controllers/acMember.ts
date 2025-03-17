@@ -3,7 +3,7 @@ import { createMember , updateMember , deleteMember , getMembers } from '../mode
 module.exports = class bid {
     getMembers(req, res, next) {
         const userInfo = req.userInfo
-        const options = { create_user_id: userInfo.create_user_id , place_id: userInfo.current_place_id }
+        const options = { createUserId: userInfo.createUserId , placeId: userInfo.current_placeId }
         const size = req.body.size
         const page = req.body.page
 
@@ -18,9 +18,9 @@ module.exports = class bid {
     createMember(req, res, next) {
         const userInfo = req.userInfo
         const data = {
-            create_user_id: userInfo.create_user_id,
+            createUserId: userInfo.createUserId,
             user_name: req.body.user_name,
-            place_id: req.body.place_id,
+            placeId: req.body.placeId,
             user_id: req.body.user_id,
             phone_number: req.body.phone_number,
             job_type: req.body.job_type,
@@ -45,9 +45,9 @@ module.exports = class bid {
         const userInfo = req.userInfo
         const id = req.body.id
         const data = {
-            create_user_id: userInfo.create_user_id,
+            createUserId: userInfo.createUserId,
             user_name: req.body.user_name,
-            place_id: req.body.place_id,
+            placeId: req.body.placeId,
             user_id: req.body.user_id,
             phone_number: req.body.phone_number,
             job_type: req.body.job_type,
@@ -71,7 +71,7 @@ module.exports = class bid {
 
 
     deleteMember(req, res, next) {
-        const id = req.body.create_user_id
+        const id = req.body.createUserId
 
         deleteMember(id).then(result => {
             res.json(result)

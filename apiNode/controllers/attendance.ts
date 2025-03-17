@@ -4,10 +4,10 @@ module.exports = class Attendance {
     getAttendance(req, res, next) {
         const userInfo = req.userInfo
         const options = { 
-            create_user_id: userInfo.create_user_id, 
-            // place_id: req.body.place_id,
-            attendance_date:req.body.attendance_date,
-            staff_id:req.body.staff_id,
+            createUserId: userInfo.createUserId, 
+            // placeId: req.body.placeId,
+            attendanceDate:req.body.attendanceDate,
+            staffId:req.body.staffId,
         }
         const size = req.body.size
         const page = req.body.page
@@ -30,10 +30,10 @@ module.exports = class Attendance {
         
         const data = staff.map(item => {
             return [
-                userInfo.current_place_id,
-                userInfo.create_user_id,
+                userInfo.current_placeId,
+                userInfo.createUserId,
                 item.id,
-                req.body.attendance_date,
+                req.body.attendanceDate,
                 req.body.remark,
             ]
         })
@@ -50,9 +50,9 @@ module.exports = class Attendance {
         const userInfo = req.userInfo
         const id = req.body.id
         const data = {
-            create_user_id: userInfo.create_user_id,
+            createUserId: userInfo.createUserId,
             user_name: req.body.user_name,
-            place_id: req.body.place_id,
+            placeId: req.body.placeId,
             user_id: req.body.user_id,
             phone_number: req.body.phone_number,
             job_type: req.body.job_type,
