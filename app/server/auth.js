@@ -13,7 +13,7 @@ export function login () {
 }
 
 function getUserInfo () {
-  return http.get('/users/info').then(response => {
+  return http.get('/users/getUserInfo').then(response => {
     let data = response.data
     if (data && typeof data === 'object') {
       // 获取用户信息成功则保存到全局

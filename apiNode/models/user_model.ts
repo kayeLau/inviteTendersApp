@@ -12,7 +12,7 @@ export async function registerUser(data) {
     if (!existing) {
         const newItem = UserRepository.create({ ...data });
         await UserRepository.save(newItem);
-        return { success: true };
+        return { success: true, data: newItem };
     } else {
         return {
             msg: "創建項已存在",
@@ -21,17 +21,17 @@ export async function registerUser(data) {
     }
 }
 
-export function updateUser(id,data){
+export function updateUser(id, data) {
     return UserRepository
-    .createQueryBuilder()
-    .update(User)
-    .set({ ...data })
-    .where("id = :id", { id })
-    .execute()
-    .then(() => { return { success: true } })
-    .catch((err) => {
-        return Promise.reject({ success: false, message: err.message })
-    })
+        .createQueryBuilder()
+        .update(User)
+        .set({ ...data })
+        .where("id = :id", { id })
+        .execute()
+        .then(() => { return { success: true } })
+        .catch((err) => {
+            return Promise.reject({ success: false, message: err.message })
+        })
 }
 
 

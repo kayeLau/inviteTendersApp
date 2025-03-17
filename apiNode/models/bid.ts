@@ -5,8 +5,8 @@ const BidRepository = AppDataSource.getRepository(Bid);
 
 export async function createBid(data) {
     const existing = await BidRepository
-        .createQueryBuilder("bid")
-        .where("bid.title = :title", { title: data.title })
+        .createQueryBuilder("Bid")
+        .where("Bid.title = :title", { title: data.title })
         .getOne()
 
     if (!existing) {
@@ -48,28 +48,28 @@ export function deleteBid(id) {
 }
 
 export async function getBids(options, size, page) {
-    const { conditions, parameters } = optionsGenerater(options, "bid")
+    const { conditions, parameters } = optionsGenerater(options, "Bid")
     const total = await BidRepository
-        .createQueryBuilder("bid")
+        .createQueryBuilder("Bid")
         .where(conditions.join(" AND "), parameters)
         .getCount();
 
     return BidRepository
-        .createQueryBuilder("bid")
+        .createQueryBuilder("Bid")
         .select([
-            "bid.id AS id",
-            "bid.bidTitle AS bidTitle",
-            "bid.bidBody AS bidBody",
-            "bid.bidTable AS bidTable",
-            "bid.releaseTime AS releaseTime",
-            "bid.bidUnit AS bidUnit",
-            "bid.bidType AS bidType",
-            "bid.bidCity AS bidCity",
-            "bid.bidContact AS bidContact",
-            "bid.pjType AS pjType",
-            "bid.dataSource AS dataSource",
-            "bid.dataHref AS dataHref",
-            "DATE_FORMAT(bid.updateTime, '%Y-%m-%d %H:%i:%S') AS updateDate"
+            "Bid.id AS id",
+            "Bid.BidTitle AS bidTitle",
+            "Bid.BidBody AS bidBody",
+            "Bid.BidTable AS bidTable",
+            "Bid.releaseTime AS releaseTime",
+            "Bid.BidUnit AS bidUnit",
+            "Bid.BidType AS bidType",
+            "Bid.BidCity AS bidCity",
+            "Bid.BidContact AS bidContact",
+            "Bid.pjType AS pjType",
+            "Bid.dataSource AS dataSource",
+            "Bid.dataHref AS dataHref",
+            "DATE_FORMAT(Bid.updateTime, '%Y-%m-%d %H:%i:%S') AS updateDate"
         ])
         .where(conditions.join(" AND "), parameters)
         .offset((page - 1) * size)

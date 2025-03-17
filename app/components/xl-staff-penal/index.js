@@ -21,7 +21,7 @@ Component({
         size: 999,
         page: 1
       }
-      http.post('/accountingPlaceMember/getAccountingPlaceMemberList', params).then(res => {
+      http.post('/accountingPlaceMember/getMembers', params).then(res => {
         if (res.data.success) {
           let staffList = res.data.data.filter(item => item.state === 0)
           this.setData({

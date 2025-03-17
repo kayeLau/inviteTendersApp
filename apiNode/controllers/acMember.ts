@@ -3,7 +3,7 @@ import { createMember , updateMember , deleteMember , getMembers } from '../mode
 module.exports = class bid {
     getMembers(req, res, next) {
         const userInfo = req.userInfo
-        const options = { createUserId: userInfo.createUserId , placeId: userInfo.current_placeId }
+        const options = { createUserId: userInfo.id , placeId: userInfo.current_placeId }
         const size = req.body.size
         const page = req.body.page
 
@@ -18,17 +18,16 @@ module.exports = class bid {
     createMember(req, res, next) {
         const userInfo = req.userInfo
         const data = {
-            createUserId: userInfo.createUserId,
-            user_name: req.body.user_name,
+            createUserId: userInfo.id,
+            name: req.body.name,
             placeId: req.body.placeId,
-            user_id: req.body.user_id,
-            phone_number: req.body.phone_number,
-            job_type: req.body.job_type,
+            phoneNumber: req.body.phoneNumber,
+            jobType: req.body.jobType,
             salary: req.body.salary,
             gender: req.body.gender,
-            id_card_number: req.body.id_card_number,
+            idCardNumber: req.body.idCardNumber,
             bank: req.body.bank,
-            bank_number: req.body.bank_number,
+            bankNumber: req.body.bankNumber,
             remark: req.body.remark,
             state:0,
         }

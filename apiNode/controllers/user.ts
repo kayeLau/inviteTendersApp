@@ -14,9 +14,7 @@ module.exports = class Member {
   getUserInfo(req, res, next) {
     const userInfo = req.userInfo
     res.json({
-      name: userInfo.name,
-      current_placeId: userInfo.current_placeId,
-      phone: userInfo.phone,
+      id:userInfo.id,
       success: true
     })
 
@@ -73,7 +71,7 @@ module.exports = class Member {
         // 設置響應頭和返回結果
         res.set('set-token', token);
         res.set('Access-Control-Expose-Headers', 'set-token');
-        res.json({ success: true, token });
+        res.json({ success: true, token , ...user });
       } else {
         throw new Error('未知的授权类型');
       }

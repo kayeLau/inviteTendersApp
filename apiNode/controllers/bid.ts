@@ -54,7 +54,7 @@ module.exports = class bid {
 
 
         updateBid(bidCode, data).then(result => {
-            console.log(result)
+
             res.json(result)
         }).catch(err => {
             next(err)
@@ -67,7 +67,6 @@ module.exports = class bid {
         const id = req.body.id
 
         deleteBid(id).then(result => {
-            console.log(result)
             res.json(result)
         }).catch(err => {
             next(err)

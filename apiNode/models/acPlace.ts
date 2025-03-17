@@ -37,22 +37,22 @@ export async function deletePlace(id: number) {
 }
 
 export async function getPlaces(options, size, page) {
-    const { conditions, parameters } = optionsGenerater(options, "acPlace")
+    const { conditions, parameters } = optionsGenerater(options, "AcPlace")
     const total = await AcPlaceRepository
-        .createQueryBuilder("acPlace")
+        .createQueryBuilder("AcPlace")
         .where(conditions.join(" AND "), parameters)
         .getCount();
 
     return AcPlaceRepository
-        .createQueryBuilder("acPlace")
+        .createQueryBuilder("AcPlace")
         .select([
-        "acPlace.id AS id",
-        "acPlace.createUserId AS createUserId",
-        "acPlace.name AS name",
-        "acPlace.state AS state",
-        "acPlace.attendanceTime AS attendanceTime",
-        "acPlace.attendanceUnit AS attendanceUnit",
-        "DATE_FORMAT(acPlace.updateTime, '%Y-%m-%d %H:%i:%S') AS updateDate"    
+            "AcPlace.id AS id",
+            "AcPlace.createUserId AS createUserId",
+            "AcPlace.name AS name",
+            "AcPlace.state AS state",
+            "AcPlace.attendanceTime AS attendanceTime",
+            "AcPlace.attendanceUnit AS attendanceUnit",
+            "DATE_FORMAT(AcPlace.updateTime, '%Y-%m-%d %H:%i:%S') AS updateDate"
         ])
         .where(conditions.join(" AND "), parameters)
         .offset((page - 1) * size)

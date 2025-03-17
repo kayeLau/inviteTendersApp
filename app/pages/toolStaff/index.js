@@ -29,7 +29,7 @@ Page({
       size: 999,
       page: 1
     }
-    http.post('/accountingPlaceMember/getAccountingPlaceMemberList', params).then(res => {
+    http.post('/accountingPlaceMember/getMembers', params).then(res => {
       if (res.data.success) {
         let staffList = res.data.data.filter(item => item.state === 0)
         let endstaffList = res.data.data.filter(item => item.state === 1)
@@ -44,13 +44,13 @@ Page({
   sumbitPlaceMemberInfo(){
 
     if(this.data.formMode === 'create'){
-      this.createPlaceMemberInfo()
+      this.createMemberInfo()
     }else if(this.data.formMode === 'edit'){
       this.updatePlaceMemberInfo()
     }
   },
 
-  createPlaceMemberInfo() {
+  createMemberInfo() {
     let data = this.selectComponent("#xl-form").getData()
     const userInfo = wx.getStorageSync('userInfo')
     let params = {
@@ -67,7 +67,7 @@ Page({
       bank_number:data.bank_number,
       remark:data.remark,
     }
-    http.post('/accountingPlaceMember/createPlaceMember', params).then(res => {
+    http.post('/accountingPlaceMember/createMember', params).then(res => {
       if (res.data.success) {
         this.getPlaceMemberInfo()
         this.setData({
