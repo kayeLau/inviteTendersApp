@@ -26,6 +26,16 @@
   align-items: center;
   font-size: 40rpx;
 }
+.role-avatar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.role-avatar-text{
+  font-size: 35rpx;
+  line-height: 42rpx;
+}
 .avatar{
   display: block;
   height: 100rpx;

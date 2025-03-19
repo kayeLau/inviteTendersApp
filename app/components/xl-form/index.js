@@ -14,21 +14,12 @@ Component({
   },
 
   data: {
-    params: {}
+    params: {},
+    pickerVisible:{}
   },
 
   methods: {
-    // getDefaultValue() {
-    //   let defaultValue = {}
-    //   this.properties.column.forEach(item => {
-    //     defaultValue[item.key] = item.value
-    //   })
-    //   return defaultValue
-    // },
-
     getData() {
-      // let defaultValue = this.getDefaultValue()
-      // let value = this.data.params
       return this.data.params
     },
 
@@ -54,6 +45,14 @@ Component({
   },
 
   onLoad() {
+    const pickerVisible = {}
+    this.column.forEach(item => {
+      if(item.type === 'picker'){
+        pickerVisible[item.key] = item.visible
+      }
+    });
+    this.setData({pickerVisible})
+    console.log(pickerVisible)
   },
 
 });

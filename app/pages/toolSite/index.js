@@ -1,9 +1,5 @@
-import {
-  config
-} from '../../assert/config.js';
-import {
-  http
-} from '../../server/api'
+import { site } from '../../utils/config.js';
+import { http } from '../../server/api'
 
 Page({
   data: {
@@ -21,7 +17,7 @@ Page({
     ],
     id: '',
     path: '',
-    config: [],
+    config: site,
   },
 
   getPlaceInfo() {
@@ -126,10 +122,10 @@ Page({
   },
 
   onLoad: function (option) {
+    console.log(option)
     this.setData({
       'id': option.id,
       'path': option.path,
-      'config': config[option.id]
     })
     this.getPlaceInfo()
   }

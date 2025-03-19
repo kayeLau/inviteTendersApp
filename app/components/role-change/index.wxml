@@ -1,7 +1,7 @@
 <!--pages/tool/index.wxml-->
-<view class="container">
+<view class="container role-change">
   <view class="role-gird">
-    <view class="role-box" wx:for="{{role}}" wx:key="unique" bind:tap="jumpTo">
+    <view class="role-box" wx:for="{{role}}" wx:key="unique" bind:tap="changeRole" data-id="{{item.id}}" data-icon='{{item.icon}}'>
       <view class="role-box-image">
         <image src="{{item.icon}}"></image>
       </view>

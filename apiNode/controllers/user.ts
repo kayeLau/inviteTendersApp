@@ -22,8 +22,8 @@ module.exports = class Member {
 
   async updateUserinfo(req, res, next) {
     const userInfo = req.userInfo
-    const data = { current_placeId: req.body.current_placeId }
-
+    const data = { currentPlaceId: req.body.currentPlaceId }
+    
     await updateUser(userInfo.id, data).then(result => {
       res.json(result)
     }).catch(err => {

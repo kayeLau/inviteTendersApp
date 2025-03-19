@@ -6,33 +6,41 @@ Page({
   data: {
     avatarUrl: '',
     currentPlace: '',
+    currentRole: 1,
+    currentRoleImage:'../../assert/construction-worker.png',
+    roleMap: {
+      1:'工人',
+      2:'工头',
+      3:'老板'
+    },
     visible: false,
+    roleVisible: false,
     siteList: [],
     triggered: false,
-    role: [{
-        name: '设置工地',
-        icon: '../../assert/hook.png',
-        id: 'site-boss',
-        path: 'toolSite'
-      },
-      {
-        name: '人员管理',
-        icon: '../../assert/workers.png',
-        id: 'staff-manager-boss',
-        path: 'toolStaff'
-      },
-      {
-        name: '考勤记录',
-        icon: '../../assert/under-construction.png',
-        id: 'records-boss',
-        path: 'toolAttendance'
-      },
-      {
-        name: '记录',
-        icon: '../../assert/hook.png',
-        id: 'records-boss',
-        path: 'toolSite'
-      }
+    tools: [{
+      name: '设置工地',
+      icon: '../../assert/hook.png',
+      id: 'site-boss',
+      path: 'toolSite'
+    },
+    {
+      name: '人员管理',
+      icon: '../../assert/workers.png',
+      id: 'staff-manager-boss',
+      path: 'toolStaff'
+    },
+    {
+      name: '记工',
+      icon: '../../assert/note.png',
+      id: 'records-boss',
+      path: 'toolAttendance'
+    },
+    {
+      name: '考勤记录',
+      icon: '../../assert/under-construction.png',
+      id: 'records-boss',
+      path: 'toolRecord'
+    }
     ]
   },
   jumpTo(event) {
@@ -66,28 +74,42 @@ Page({
     await http.post('/accountingPlace/getPlaces', params).then(res => {
       if (res.data.success) {
         let siteList = res.data.data.filter(item => item.state === 0)
-        const userInfo = wx.getStorageSync('userInfo')
-        const currentPlace = siteList.find(item => item.id === userInfo.current_place_id)
+        const currentPlaceId = wx.getStorageSync('currentPlaceId')
+        const currentPlace = siteList.find(item => item.id === currentPlaceId)
         this.setData({
           triggered: false,
           siteList,
-          currentPlace: currentPlace ? currentPlace.name : ''
+          currentPlace: currentPlace ? currentPlace.name : '工地'
         })
       }
     })
   },
 
-  setCurrentPlace(e){
-    let current_place_id = e.currentTarget.dataset.pid
-    http.post('/users/updateUserinfo', {current_place_id}).then(res => {
-      if(res.data.success){
-        wx.setStorageSync('userInfo', res.data)
-        const currentPlace = this.data.siteList.find(item => item.id === res.data.current_place_id)
-        this.setData({
-          currentPlace: currentPlace ? currentPlace.name : '',
-          visible:false
-        })
-      }
+  setCurrentPlace(e) {
+    let currentPlaceId = e.currentTarget.dataset.pid
+    wx.setStorageSync('currentPlaceId', currentPlaceId)
+    const currentPlace = this.data.siteList.find(item => item.id === currentPlaceId)
+    this.setData({
+      currentPlace: currentPlace ? currentPlace.name : '工地',
+      visible: false
+    })
+  },
+
+  showRoleChange(){
+    this.setData({
+      roleVisible: true,
+    })
+  },
+
+  changeRole(e) {
+    console.log(e)
+    this.setData({
+      roleVisible: false,
+      currentRole: e.detail.id,
+      currentRoleImage:e.detail.icon
+    })
+    wx.setStorage({
+      currentRole: e.id
     })
   },
 

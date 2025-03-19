@@ -96,6 +96,7 @@ page{
 }
 /* card */
 .card{
+  margin-top: 10rpx;
   border-radius: 10px;
   padding: 30rpx 20rpx;
   background-color: #ffffff;
@@ -123,6 +124,9 @@ page{
   justify-content: center;
   align-items: center;
 }
+/* form */
+
+
 
 
 

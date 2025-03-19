@@ -1,6 +1,4 @@
-import {
-  config
-} from '../../assert/config.js';
+import { staff } from '../../utils/config.js';
 import {
   http
 } from '../../server/api'
@@ -21,7 +19,7 @@ Page({
     ],
     id: '',
     path: '',
-    config: [],
+    config: staff,
   },
 
   getPlaceMemberInfo() {

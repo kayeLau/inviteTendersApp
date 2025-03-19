@@ -1,7 +1,5 @@
 {
   "usingComponents": {
-    "xl-form": "../../components/xl-form/index",
-    "xl-staff-penal": "../../components/xl-staff-penal/index",
     "xl-site-penal": "../../components/xl-site-penal/index"
   }
 }

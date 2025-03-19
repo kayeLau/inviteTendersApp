@@ -3,11 +3,11 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/detail/index",
-    "pages/accounting/index",
     "pages/tools/index",
     "pages/toolSite/index",
     "pages/toolStaff/index",
     "pages/toolAttendance/index",
+    "pages/toolRecord/index",
     "pages/statistics/index"
   ],
   "window": {
@@ -23,7 +23,7 @@
         "text": "招标"
       },
       {
-        "pagePath": "pages/accounting/index",
+        "pagePath": "pages/tools/index",
         "text": "记帐"
       },
       {
@@ -40,7 +40,6 @@
     "kbone": true,
     "weui": true
   },
-  "style": "v2",
   "lazyCodeLoading": "requiredComponents",
   "sitemapLocation": "sitemap.json"
 }

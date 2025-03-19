@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "xl-popup": "../../components/xl-popup"
+    "xl-popup": "../../components/xl-popup",
+    "role-change": "../../components/role-change"
   }
 }
