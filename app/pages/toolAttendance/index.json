@@ -1,5 +1,8 @@
 {
   "usingComponents": {
-    "xl-site-penal": "../../components/xl-site-penal/index"
+    "xl-site-penal": "../../components/xl-site-penal/index",
+    "xl-form": "../../components/xl-form/index",
+    "t-tabs": "tdesign-miniprogram/tabs/tabs",
+    "t-tab-panel": "tdesign-miniprogram/tab-panel/tab-panel"
   }
 }

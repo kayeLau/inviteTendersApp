@@ -25,3 +25,18 @@
   padding: 10rpx;
   background-color: var(--primary-color-light);
 }
+.cell{
+  background-color: #ffffff;
+  padding: 20rpx 30rpx;
+}
+.radio{
+  display: flex;
+  justify-content: space-between;
+}
+.t-box {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 45rpx;
+  background-color: var(--td-bg-color-container, #fff);
+}

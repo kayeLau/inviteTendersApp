@@ -8,7 +8,7 @@ export class AcMember {
     @Column()
     createUserId: number
     
-    @Column()
+    @Column({nullable:true})
     placeId: number
 
     @Column({length: 50, nullable:true})
@@ -17,8 +17,8 @@ export class AcMember {
     @Column({length: 50, nullable:true})
     phoneNumber: string
 
-    @Column()
-    jobType: number
+    @Column({nullable:true})
+    jobType: String
 
     @Column()
     salary: number

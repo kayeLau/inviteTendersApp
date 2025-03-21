@@ -1,120 +1,161 @@
 export const site = [{
     key: 'name',
-    type: 'input',
+    prop: 'input',
     label: '工地名称',
     value: '',
   },
   {
     key: 'attendanceTime',
-    type: 'input',
+    prop: 'input',
+    type: 'number',
     label: '考勤时长',
     value: 0,
   },
   {
     key: 'attendanceUnit',
-    type: 'picker',
+    prop: 'picker',
     label: '考勤单位',
-    visible:false,
+    visible: false,
     value: '',
-    options: {
-      0: '分钟',
-      1: '小时',
-    }
+    options: [{
+        label: '分钟',
+        value: 0
+      },
+      {
+        label: '小时',
+        value: 1
+      },
+    ]
   }
 ]
 export const staff = [{
-    key: 'user_name',
-    type: 'input',
+    key: 'name',
+    prop: 'input',
     label: '人员名称',
     value: '',
   },
   {
-    key: 'phone_number',
-    type: 'input',
+    key: 'phoneNumber',
+    prop: 'input',
     label: '手机号码',
     value: '',
   },
   {
-    key: 'job_type',
-    type: 'input',
+    key: 'jobType',
+    prop: 'input',
     label: '岗位工种',
     value: '',
   },
   {
     key: 'salary',
-    type: 'input',
+    prop: 'input',
     label: '当前日薪',
     value: '',
   },
   {
     key: 'gender',
-    type: 'radio',
+    prop: 'radio',
     label: '性别',
     value: 0,
     options: [{
-        id: 0,
-        name: '男',
+        value: 0,
+        label: '男',
       },
       {
-        id: 1,
-        name: '女',
+        value: 1,
+        label: '女',
       }
     ]
   },
   {
-    key: 'id_card_number',
-    type: 'input',
+    key: 'idCardNumber',
+    prop: 'input',
     label: '身份证号',
     value: '',
   },
   {
-    key: 'bank_number',
-    type: 'input',
+    key: 'bankNumber',
+    prop: 'input',
     label: '银行卡号',
     value: 0,
   },
   {
     key: 'bank',
-    type: 'input',
+    prop: 'input',
     label: '发卡银行',
     value: 0,
   }
 ]
-export const attendance = [{
-    key: 'attendance_date',
-    type: 'datepicker',
-    label: '记录日期',
-    value: '',
-  },
-  {
-    key: 'staff',
-    type: 'staffPicker',
-    label: '出席人员',
-    value: '',
-  },
-  {
-    key: 'remark',
-    type: 'input',
-    label: '细节备注',
-    value: '',
-  },
-]
 export const workRecords = [{
     key: 'attendance_date',
-    type: 'datepicker',
+    prop: 'datepicker',
     label: '记录日期',
     value: '',
   },
   {
     key: 'staff',
-    type: 'staffPicker',
+    prop: 'staffPicker',
     label: '出席人员',
     value: '',
   },
   {
     key: 'remark',
-    type: 'input',
+    prop: 'input',
     label: '细节备注',
     value: '',
   },
 ]
+export const atTimePlace = [{
+    key: 'attendance_date',
+    prop: 'datepicker',
+    label: '记录日期',
+    value: '',
+    visible: false
+  },
+  {
+    key: 'staff',
+    prop: 'picker',
+    label: '项目',
+    visible: false,
+    value: '',
+    options: []
+  },
+]
+export const atWorkRecord = [{
+  key: 'remark',
+  prop: 'input',
+  label: '工时',
+  value: '',
+}, {
+  key: 'remark',
+  prop: 'input',
+  label: '备注',
+  value: '',
+}, {
+  key: 'recordImg',
+  prop: 'upload',
+  label: '上传图片',
+  value: [],
+}]
+
+export const ataccount = [{
+  key: 'costName',
+  prop: 'input',
+  label: '费用名称',
+  value: '',
+}, {
+  key: 'cost',
+  prop: 'input',
+  label: '金额',
+  value: '',
+},{
+  key: 'remark',
+  prop: 'input',
+  label: '备注',
+  value: '',
+}, {
+  key: 'recordImg',
+  prop: 'upload',
+  label: '上传图片',
+  value: [],
+}]

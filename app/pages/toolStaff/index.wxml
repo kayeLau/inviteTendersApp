@@ -1,22 +1,23 @@
 <view class="container">
   <view style="padding:15rpx 20rpx;">
     <view wx:if="{{isEdit}}">
-      <xl-form column="{{config}}" title='添加工地' id='xl-form'>
+      <xl-form column="{{config}}" title='添加人员' id='xl-form'>
       </xl-form>
       <view class="footer" >
         <view class="round-btn" bind:tap="switchToList" style="background-color: var(--gary-color);width: 30%;">返回</view>
         <view class="round-btn" bind:tap="sumbitPlaceMemberInfo" style="background-color: var(--success-color);width: 70%;">保存</view>
       </view>
     </view>
-    <!-- list -->
-    <view wx:if="{{!isEdit}}">
+  </view>
+      <!-- list -->
+      <view wx:if="{{!isEdit}}">
       <mp-tabs tabs="{{tabConfig}}" activeTab="{{activeTab}}" tab-class="mp-tabs" swiper-class='swiper-class'>
         <view wx:for="{{tabConfig}}" wx:key="unique" slot="tab-content-{{index}}">
           <view>
             <view wx:for="{{index === 0 ? staffList : endstaffList}}" wx:key="unique" class="site-list" wx:for-index="subIndex">
             <view class="li-info">
-              <view class="font-bold font-big">{{item.user_name}}</view>
-              <view>{{item.phone_number}}</view>
+              <view class="font-bold font-big">{{item.name}}</view>
+              <view>{{item.phoneNumber}}</view>
             </view>
               <!-- btn-group -->
               <view wx:if="{{index === 0 }}" class="flex">
@@ -41,5 +42,4 @@
         </view>
       </mp-tabs>
     </view>
-  </view>
 </view>

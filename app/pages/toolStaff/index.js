@@ -52,17 +52,14 @@ Page({
     let data = this.selectComponent("#xl-form").getData()
     const userInfo = wx.getStorageSync('userInfo')
     let params = {
-      create_user_id: userInfo.id,
-      place_id:userInfo.current_place_id,
-      user_name:data.user_name,
-      user_id:data.user_id,
-      phone_number: data.phone_number,
+      name:data.name,
+      phoneNumber: data.phoneNumber,
       salary: data.salary,
       gender: data.gender,
-      job_type:data.job_type,
-      id_card_number:data.id_card_number,
+      jobType:data.jobType,
+      idCardNumber:data.idCardNumber,
       bank:data.bank,
-      bank_number:data.bank_number,
+      bankNumber:data.bankNumber,
       remark:data.remark,
     }
     http.post('/accountingPlaceMember/createMember', params).then(res => {
@@ -80,21 +77,17 @@ Page({
     const userInfo = wx.getStorageSync('userInfo')
     let params = {
       id:data.id,
-      create_user_id: userInfo.id,
-      place_id:userInfo.current_place_id,
-      user_name:data.user_name,
-      user_id:data.user_id,
-      phone_number: data.phone_number,
+      name:data.name,
+      phoneNumber: data.phoneNumber,
       salary: data.salary,
       gender: data.gender,
-      job_type:data.job_type,
-      id_card_number:data.id_card_number,
+      jobType:data.jobType,
+      idCardNumber:data.idCardNumber,
       bank:data.bank,
-      bank_number:data.bank_number,
+      bankNumber:data.bankNumber,
       remark:data.remark,
-      state:0
     }
-    http.post('/accountingPlaceMember/updatePlaceMember', params).then(res => {
+    http.post('/accountingPlaceMember/updateMember', params).then(res => {
       if (res.data.success) {
         this.getPlaceMemberInfo()
         this.setData({
@@ -142,7 +135,6 @@ Page({
     this.setData({
       'id': option.id,
       'path': option.path,
-      'config': config[option.id]
     })
     this.getPlaceMemberInfo()
   }

@@ -45,16 +45,15 @@ module.exports = class bid {
         const id = req.body.id
         const data = {
             createUserId: userInfo.createUserId,
-            user_name: req.body.user_name,
+            name: req.body.name,
             placeId: req.body.placeId,
-            user_id: req.body.user_id,
-            phone_number: req.body.phone_number,
-            job_type: req.body.job_type,
+            phoneNumber: req.body.phoneNumber,
+            jobType: req.body.jobType,
             salary: req.body.salary,
             gender: req.body.gender,
-            id_card_number: req.body.id_card_number,
+            idCardNumber: req.body.idCardNumber,
             bank: req.body.bank,
-            bank_number: req.body.bank_number,
+            bankNumber: req.body.bankNumber,
             remark: req.body.remark,
             state:req.body.state,
         }

@@ -1,21 +1,17 @@
 <view class="container">
-    <form onSubmit="onSubmit" onReset="onReset">
-      <view class="form-section-wide">
-        <view class="form-label">日期</view>
-        <view class="form-content">
-          <input  class="input" />
-        </view>
-      </view>
-      <view class="form-section-wide">
-        <view class="form-label">项目</view>
-        <view class="form-content">
-          <input class="input" />
-        </view>
-      </view>
-    </form>
-      <view class="footer" >
-        <view class="round-btn" bind:tap="switchToList" style="background-color: var(--gary-color);width: 30%;">返回</view>
-        <view class="round-btn" bind:tap="sumbitPlaceInfo" style="background-color: var(--success-color);width: 70%;">保存</view>
-      </view>
-      <xl-site-penal id="xl-site-penal" visible="{{siteVisible}}"></xl-site-penal>
+  <view>
+    <xl-form column="{{atTimePlace}}" id='xl-form'></xl-form>
+    <t-tabs defaultValue="{{0}}">
+      <t-tab-panel label="记工" value="0">
+        <xl-form column="{{atWorkRecord}}" id='xl-form'></xl-form>
+      </t-tab-panel>
+      <t-tab-panel label="记帐" value="1">
+        <xl-form column="{{ataccount}}" id='xl-form'></xl-form>
+      </t-tab-panel>
+    </t-tabs>
+    <view class="footer">
+      <view class="round-btn" bind:tap="switchToList" style="background-color: var(--gary-color);width: 30%;">返回</view>
+      <view class="round-btn" bind:tap="sumbitPlaceInfo" style="background-color: var(--success-color);width: 70%;">保存</view>
+    </view>
+  </view>
 </view>

@@ -1,10 +1,14 @@
-import { http } from '../../server/api'
+import { http } from '../../server/api';
+import { atTimePlace , atWorkRecord , ataccount } from '../../utils/config.js';
 
 Page({
   data: {
     siteVisible:false,
     id: '',
     path: '',
+    atTimePlace:atTimePlace,
+    atWorkRecord:atWorkRecord,
+    ataccount:ataccount
   },
 
   sumbitPlaceInfo(){
@@ -24,7 +28,6 @@ Page({
     }
     http.post('/accountingPlace/createPlace', params).then(res => {
       if (res.data.success) {
-        this.getPlaceInfo()
         this.setData({
           isEdit: false
         })
@@ -43,7 +46,6 @@ Page({
     }
     http.post('/accountingPlace/updatePlace', params).then(res => {
       if (res.data.success) {
-        this.getPlaceInfo()
         this.setData({
           isEdit: false
         })
@@ -65,6 +67,5 @@ Page({
       'id': option.id,
       'path': option.path,
     })
-    this.getPlaceInfo()
   }
 });

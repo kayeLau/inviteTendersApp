@@ -15,7 +15,17 @@ Component({
 
   data: {
     params: {},
-    pickerVisible:{}
+    pickerVisible: {},
+    test: false,
+    visibleComponentMap: {
+      'datepicker': true,
+      'picker': true
+    },
+    gridConfig: {
+      column: 4,
+      width: 160,
+      height: 160,
+    },
   },
 
   methods: {
@@ -25,34 +35,78 @@ Component({
 
     textData(params) {
       let oldValue = this.data.params
-      let newValue = Object.assign(oldValue,params)
-      this.setData({params:newValue})
+      let newValue = Object.assign(oldValue, params)
+      this.setData({
+        params: newValue
+      })
     },
 
     bindChange(e) {
       console.log('发送选择改变，携带值为', e);
-      let params = this.data.params
-      let key = e.currentTarget.dataset.key
-      params[key] = e.detail.value
+      const params = this.data.params
+      const pickerVisible = this.data.pickerVisible
+      const key = e.currentTarget.dataset.key
+      const param = this.paramsFormatter(e)
+      params[key] = param.value;
+      console.log(params)
+      if (pickerVisible[key]) {
+        pickerVisible[key] = {
+          label: param.label,
+          visible: false
+        }
+      }
       this.setData({
-        params
+        params,
+        pickerVisible
       });
     },
 
-    showStaffPenal(){
+    paramsFormatter(e) {
+      const key = e.currentTarget.dataset.key
+      const target = this.properties.column.find(item => item.key === key)
+      if (target.prop === 'datepicker') {
+        return {
+          value: e.detail.value,
+          label: new Date(e.detail.value)
+        }
+      } else if (target.prop === 'picker') {
+        return {
+          value: e.detail.value.join(','),
+          label: e.detail.label.join(' ')
+        }
+      } else if(target.prop === 'upload'){
+        return { value: e.detail.files }
+      } else {
+        return { value: e.detail.value }
+      }
+    },
+
+    showStaffPenal() {
       this.triggerEvent('showStaffPenal')
     },
+    showPicker(e) {
+      let key = e.currentTarget.dataset.key
+      const pickerVisible = this.data.pickerVisible
+      pickerVisible[key].visible = true
+      this.setData({
+        pickerVisible
+      })
+    }
   },
-
-  onLoad() {
-    const pickerVisible = {}
-    this.column.forEach(item => {
-      if(item.type === 'picker'){
-        pickerVisible[item.key] = item.visible
-      }
-    });
-    this.setData({pickerVisible})
-    console.log(pickerVisible)
-  },
-
+  lifetimes: {
+    attached: function () {
+      const pickerVisible = {}
+      this.properties.column.forEach(item => {
+        if (this.data.visibleComponentMap[item.prop]) {
+          pickerVisible[item.key] = {
+            visible: item.visible,
+            label: '请选择'
+          }
+        }
+      });
+      this.setData({
+        pickerVisible
+      })
+    },
+  }
 });
