@@ -106,14 +106,14 @@ export const workRecords = [{
   },
 ]
 export const atTimePlace = [{
-    key: 'attendance_date',
+    key: 'attendanceDate',
     prop: 'datepicker',
     label: '记录日期',
     value: '',
     visible: false
   },
   {
-    key: 'staff',
+    key: 'placeId',
     prop: 'picker',
     label: '项目',
     visible: false,
@@ -122,17 +122,17 @@ export const atTimePlace = [{
   },
 ]
 export const atWorkRecord = [{
-  key: 'remark',
+  key: 'workingHours',
   prop: 'input',
   label: '工时',
   value: '',
 }, {
-  key: 'remark',
+  key: 'remarkWK',
   prop: 'input',
   label: '备注',
   value: '',
 }, {
-  key: 'recordImg',
+  key: 'recordImgWK',
   prop: 'upload',
   label: '上传图片',
   value: [],
@@ -149,12 +149,12 @@ export const ataccount = [{
   label: '金额',
   value: '',
 },{
-  key: 'remark',
+  key: 'remarkAC',
   prop: 'input',
   label: '备注',
   value: '',
 }, {
-  key: 'recordImg',
+  key: 'recordImgAC',
   prop: 'upload',
   label: '上传图片',
   value: [],

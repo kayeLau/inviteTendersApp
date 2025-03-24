@@ -3,30 +3,33 @@ import { atTimePlace , atWorkRecord , ataccount } from '../../utils/config.js';
 
 Page({
   data: {
-    siteVisible:false,
-    id: '',
-    path: '',
     atTimePlace:atTimePlace,
     atWorkRecord:atWorkRecord,
-    ataccount:ataccount
+    ataccount:ataccount,
+    mode:'worker'
   },
 
   sumbitPlaceInfo(){
-    if(this.data.formMode === 'create'){
       this.createPlaceInfo()
-    }else if(this.data.formMode === 'edit'){
-      this.updatePlaceInfo()
-    }
   },
 
   createPlaceInfo() {
-    let data = this.selectComponent("#xl-form").getData()
+    let data1 = this.selectComponent("#xl-form-1").getData()
+    let data2 = this.selectComponent("#xl-form-2").getData()
+    let data3 = this.selectComponent("#xl-form-3").getData()
     let params = {
-      name: data.name,
-      attendanceTime: data.attendanceTime,
-      attendanceUnit: data.attendanceUnit,
+      attendanceDate: data1.attendanceDate,
+      placeId: data1.placeId,
+      workingHours:data2.workingHours,
+      remarkWK: data2.remarkWK,
+      recordImgWK: data2.recordImgWK,
+      costName: data3.costName,
+      cost: data3.cost,
+      remarkAC: data3.remarkAC,
+      recordImgAC: data3.recordImgAC,
+      mode:this.data.mode
     }
-    http.post('/accountingPlace/createPlace', params).then(res => {
+    http.post('/attendance/createAddendce', params).then(res => {
       if (res.data.success) {
         this.setData({
           isEdit: false
@@ -35,37 +38,30 @@ Page({
     })
   },
 
-  updatePlaceInfo(){
-    let data = this.selectComponent("#xl-form").getData()
+  getPlaces() {
     let params = {
-      id:data.id,
-      name: data.name,
-      attendanceTime: data.attendanceTime,
-      attendanceUnit: data.attendanceUnit,
-      state:0,
+      size: 999,
+      page: 1,
+      state:0
     }
-    http.post('/accountingPlace/updatePlace', params).then(res => {
+    http.post('/accountingPlace/getPlaces', params).then(res => {
       if (res.data.success) {
+        const siteList = res.data.data
+        const _atTimePlace = this.data.atTimePlace
+        _atTimePlace[1].options = siteList.map(item => {
+            return {
+              value:item.id,
+              label:item.name
+            }
+          })
         this.setData({
-          isEdit: false
+          atTimePlace:_atTimePlace
         })
-      }})
-  },
-
-  switchToList(e) {
-    this.setData({
-      isEdit: false,
+      }
     })
   },
-  
-  showBottomBtn(){
-    this.selectComponent("#xl-bottom-btn").showFrame()
-  },
 
-  onLoad: function (option) {
-    this.setData({
-      'id': option.id,
-      'path': option.path,
-    })
+  onLoad: function () {
+    this.getPlaces()
   }
 });

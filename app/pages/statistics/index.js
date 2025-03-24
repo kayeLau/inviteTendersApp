@@ -1,66 +1,40 @@
 // pages/records/index.js
+import { http } from '../../server/api';
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    currentYear:new Date().getFullYear(),
+    currentMonth:new Date().getMonth(),
+    value:new Date().getTime(),
+    minDate: new Date(2020, 1, 1).getTime(),
+    maxDate: new Date().getTime(),
+    workingRecord:[],
+    singleFormat(day) {
+      day.suffix = '¥60';
+      return day;
+    },
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
+  getWorkingRecord(){
+    http.post('/attendance/getAddendce', {}).then(res => {
+      if (res.data.success) {
+        this.setData({
+          isEdit: false
+        })
+      }
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
+  handleSelect(e){
+    console.log(e)
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
+  handlePanelChange(e){
+    this.getWorkingRecord()
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+  onShow : function () {
+    this.getWorkingRecord()
   }
+
 })

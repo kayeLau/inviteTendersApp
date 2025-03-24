@@ -1,13 +1,14 @@
-import { getAttendance , createAttendance , updateAttendance } from '../models/attendance'
+import { Worker } from 'cluster'
+import { getAttendance, createAttendance, updateAttendance } from '../models/attendance'
 
 module.exports = class Attendance {
     getAttendance(req, res, next) {
         const userInfo = req.userInfo
-        const options = { 
-            createUserId: userInfo.createUserId, 
+        const options = {
+            createUserId: userInfo.createUserId,
             // placeId: req.body.placeId,
-            attendanceDate:req.body.attendanceDate,
-            staffId:req.body.staffId,
+            attendanceDate: req.body.attendanceDate,
+            staffId: req.body.staffId,
         }
         const size = req.body.size
         const page = req.body.page
@@ -20,23 +21,24 @@ module.exports = class Attendance {
         })
     }
 
-    postCreateAttendance(req, res, next) {
+    createAttendance(req, res, next) {
         const userInfo = req.userInfo
-        const staff = req.body.staff
+        const mode = req.body.mode
 
-        if(!staff.length){
-            next({success:false})
+        const data = {
+            createUserId: userInfo.id,
+            placeId: req.body.placeId,
+            staffId: mode === 'worker' ? userInfo.id : req.body.staffId,
+            remark: req.body.remark,
+            attendanceDate: req.body.attendanceDate,
+            workingHours: req.body.workingHours,
+            costName: req.body.costName,
+            cost: req.body.cost,
+            remarkWK: req.body.remarkWK,
+            remarkAC: req.body.remarkAC,
+            recordImgWK: req.body.recordImgWK,
+            recordImgAC: req.body.recordImgAC,
         }
-        
-        const data = staff.map(item => {
-            return [
-                userInfo.current_placeId,
-                userInfo.createUserId,
-                item.id,
-                req.body.attendanceDate,
-                req.body.remark,
-            ]
-        })
 
         createAttendance(data).then(result => {
             res.json(result)
@@ -46,23 +48,18 @@ module.exports = class Attendance {
 
     }
 
-    postUpdateAttendance(req, res, next) {
+    updateAttendance(req, res, next) {
         const userInfo = req.userInfo
         const id = req.body.id
         const data = {
             createUserId: userInfo.createUserId,
-            user_name: req.body.user_name,
             placeId: req.body.placeId,
-            user_id: req.body.user_id,
-            phone_number: req.body.phone_number,
-            job_type: req.body.job_type,
-            salary: req.body.salary,
-            gender: req.body.gender,
-            id_card_number: req.body.id_card_number,
-            bank: req.body.bank,
-            bank_number: req.body.bank_number,
+            staffId: req.body.staffId,
             remark: req.body.remark,
-            state:req.body.state,
+            attendanceDate: req.body.attendanceDate,
+            workingHours: req.body.workingHours,
+            costName: req.body.costName,
+            cost: req.body.cost,
         }
 
 

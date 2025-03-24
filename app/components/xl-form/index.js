@@ -67,7 +67,7 @@ Component({
       if (target.prop === 'datepicker') {
         return {
           value: e.detail.value,
-          label: new Date(e.detail.value)
+          label: new Date(e.detail.value).toLocaleDateString()
         }
       } else if (target.prop === 'picker') {
         return {

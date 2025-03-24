@@ -7,9 +7,9 @@ const attendanceMOdifyMethod = new AttendanceMOdifyMethod()
 
 router.post('/getAddendce',attendanceMOdifyMethod.getAttendance)
 
-router.post('/createAddendce',attendanceMOdifyMethod.postCreateAttendance)
+router.post('/createAddendce',attendanceMOdifyMethod.createAttendance)
 
-router.post('/updateAddendce',attendanceMOdifyMethod.postUpdateAttendance)
+router.post('/updateAddendce',attendanceMOdifyMethod.updateAttendance)
 
 
 module.exports = router;

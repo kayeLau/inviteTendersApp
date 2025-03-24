@@ -15,11 +15,29 @@ export class Attendance {
     @Column()
     staffId: number
 
-    @Column()
-    remark: string
+    @Column({ nullable: true, length: 13 })
+    attendanceDate: string
 
-    @Column({ type: 'date' })
-    attendanceDate: Date
+    @Column({ nullable: true })
+    workingHours: number
+
+    @Column({ nullable: true, length: 50 })
+    costName: string
+
+    @Column({ nullable: true })
+    cost: number
+
+    @Column({ nullable: true, length: 100 })
+    remarkWK: string
+
+    @Column({ nullable: true, length: 100 })
+    remarkAC: string
+
+    @Column({ nullable: true })
+    recordImgWK: String
+
+    @Column({ nullable: true })
+    recordImgAC: String
 
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
     updateTime: Date

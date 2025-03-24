@@ -4,7 +4,6 @@ import {
 
 Page({
   data: {
-    avatarUrl: '',
     currentPlace: '',
     currentRole: 1,
     currentRoleImage:'../../assert/construction-worker.png',
@@ -102,7 +101,6 @@ Page({
   },
 
   changeRole(e) {
-    console.log(e)
     this.setData({
       roleVisible: false,
       currentRole: e.detail.id,

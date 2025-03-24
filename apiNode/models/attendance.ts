@@ -23,27 +23,24 @@ export function updateAttendance(id, data) {
 }
 
 export async function getAttendance(options, size, page) {
-    const { conditions, parameters } = optionsGenerater(options, "bid")
+    const { conditions, parameters } = optionsGenerater(options, "Attendance")
     const total = await AttendanceRepository
-        .createQueryBuilder("bid")
+        .createQueryBuilder("Attendance")
         .where(conditions.join(" AND "), parameters)
         .getCount();
 
     return AttendanceRepository
-        .createQueryBuilder("bid")
+        .createQueryBuilder("Attendance")
         .select([
-            "bid.id AS id",
-            "bid.bidTitle AS bidTitle",
-            "bid.bidBody AS bidBody",
-            "bid.bidTable AS bidTable",
-            "bid.releaseTime AS releaseTime",
-            "bid.bidUnit AS bidUnit",
-            "bid.bidType AS bidType",
-            "bid.bidCity AS bidCity",
-            "bid.bidContact AS bidContact",
-            "bid.pjType AS pjType",
-            "bid.dataSource AS dataSource",
-            "bid.dataHref AS dataHref",
+            "Attendance.id AS id",
+            "Attendance.placeId AS placeId",
+            "Attendance.createUserId AS createUserId",
+            "Attendance.staffId AS staffId",
+            "Attendance.remark AS remark",
+            "Attendance.attendanceDate AS attendanceDate",
+            "Attendance.workingHours AS workingHours",
+            "Attendance.costName AS costName",
+            "Attendance.cost AS cost",
             "DATE_FORMAT(member.updateDate, '%Y-%m-%d %H:%i:%S') AS updateDate"
         ])
         .where(conditions.join(" AND "), parameters)
