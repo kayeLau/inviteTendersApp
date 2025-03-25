@@ -1,7 +1,3 @@
-import {
-  http
-} from '../../server/api'
-
 Page({
   data: {
     currentPlace: '',
@@ -49,70 +45,5 @@ Page({
       url: `/pages/${path}/index?id=${id}&path=${path}`
     })
   },
-
-  bindchooseavatar(e) {
-    const avatarUrl = e.detail.avatarUrl
-    console.log("avatarUrl", avatarUrl)
-    this.setData({
-      avatarUrl
-    })
-  },
-
-  async openSiteSelector() {
-    await this.getPlaceInfo()
-    this.setData({
-      visible: true
-    })
-  },
-
-  async getPlaceInfo() {
-    let params = {
-      size: 999,
-      page: 1
-    }
-    await http.post('/accountingPlace/getPlaces', params).then(res => {
-      if (res.data.success) {
-        let siteList = res.data.data.filter(item => item.state === 0)
-        const currentPlaceId = wx.getStorageSync('currentPlaceId')
-        const currentPlace = siteList.find(item => item.id === currentPlaceId)
-        this.setData({
-          triggered: false,
-          siteList,
-          currentPlace: currentPlace ? currentPlace.name : '工地'
-        })
-      }
-    })
-  },
-
-  setCurrentPlace(e) {
-    let currentPlaceId = e.currentTarget.dataset.pid
-    wx.setStorageSync('currentPlaceId', currentPlaceId)
-    const currentPlace = this.data.siteList.find(item => item.id === currentPlaceId)
-    this.setData({
-      currentPlace: currentPlace ? currentPlace.name : '工地',
-      visible: false
-    })
-  },
-
-  showRoleChange(){
-    this.setData({
-      roleVisible: true,
-    })
-  },
-
-  changeRole(e) {
-    this.setData({
-      roleVisible: false,
-      currentRole: e.detail.id,
-      currentRoleImage:e.detail.icon
-    })
-    wx.setStorage({
-      currentRole: e.id
-    })
-  },
-
-  onLoad: function () {
-    this.getPlaceInfo()
-  }
 
 });

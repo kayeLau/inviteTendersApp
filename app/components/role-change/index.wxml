@@ -1,5 +1,5 @@
 <!--pages/tool/index.wxml-->
-<view class="container">
+<view>
   <view class="location-bar">
     <view bind:tap="showRoleChange" class="role-avatar">
       <image class="avatar" src="{{currentRoleImage}}"></image>
@@ -11,7 +11,7 @@
     <view bind:tap="openSiteSelector">{{currentPlace}}</view>
   </view>
   <!-- role -->
-  <view class="role-gird role-change" wx:if="roleVisible">
+  <view class="container role-gird popup-panel" wx:if="{{roleVisible}}">
     <view class="role-box" wx:for="{{role}}" wx:key="unique" bind:tap="changeRole" data-id="{{item.id}}" data-icon='{{item.icon}}'>
       <view class="role-box-image">
         <image src="{{item.icon}}"></image>
@@ -20,12 +20,9 @@
     </view>
   </view>
   <!-- place -->
-  <xl-popup visible='{{placeVisible}}' title=''>
-    <view style="text-align: center;">当前工地: {{currentPlace}}</view>
-    <scroll-view class='xl-popup-scroll' type="list" scroll-y refresher-enabled="{{true}}" bindrefresherrefresh='getPlaceInfo' refresher-triggered="{{triggered}}">
-      <view wx:for="{{siteList}}" wx:key="unique" class="site-list" wx:for-index="subIndex" bind:tap="setCurrentPlace" data-pid="{{item.id}}">
-        <view>{{item.name}}</view>
-      </view>
-    </scroll-view>
-  </xl-popup>
+  <view class="container popup-panel" wx:if="{{placeVisible}}">
+    <view wx:for="{{siteList}}" wx:key="unique" bind:tap="setCurrentPlace" data-id="{{item.id}}" data-icon='{{item.name}}'>
+      <view>{{item.name}}</view>
+    </view>
+  </view>
 </view>

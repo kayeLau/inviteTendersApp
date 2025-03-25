@@ -1,14 +1,5 @@
 <view class="container">
-  <view class="location-bar">
-    <view bind:tap="showRoleChange" class="role-avatar">
-      <image class="avatar" src="{{currentRoleImage}}"></image>
-      <view class="role-avatar-text">
-        <view>我是{{roleMap[currentRole]}}</view>
-        <view style="color: rgb(12, 131, 235);">点击切换角色</view>
-      </view>
-    </view>
-    <view bind:tap="openSiteSelector">{{currentPlace}}</view>
-  </view>
+  <role-change></role-change>
   <view class="card" style="margin: 0 20rpx;">
     <view class="font-bold">记录管理</view>
     <view class="tool-gird">
@@ -18,15 +9,4 @@
       </view>
     </view>
   </view>
-
-  <xl-popup visible='{{visible}}' title=''>
-    <view style="text-align: center;">当前工地: {{currentPlace}}</view>
-    <scroll-view class='xl-popup-scroll' type="list" scroll-y refresher-enabled="{{true}}" bindrefresherrefresh='getPlaceInfo' refresher-triggered="{{triggered}}">
-      <view wx:for="{{siteList}}" wx:key="unique" class="site-list" wx:for-index="subIndex" bind:tap="setCurrentPlace" data-pid="{{item.id}}">
-        <view>{{item.name}}</view>
-      </view>
-    </scroll-view>
-  </xl-popup>
-
-    <role-change wx:if='{{roleVisible}}' bind:changeRole="changeRole"></role-change>
 </view>
