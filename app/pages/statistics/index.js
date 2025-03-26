@@ -1,28 +1,78 @@
 // pages/records/index.js
 import { http } from '../../server/api';
+import { recordType } from '../../utils/dict';
 
 Page({
   data: {
+    currentDate:new Date().toLocaleDateString(),
     currentYear:new Date().getFullYear(),
     currentMonth:new Date().getMonth(),
     value:new Date().getTime(),
     minDate: new Date(2020, 1, 1).getTime(),
     maxDate: new Date().getTime(),
-    workingRecord:[],
+    workingRecordMap:{},
     singleFormat(day) {
-      day.suffix = '¥60';
       return day;
     },
+    recordType:recordType
   },
 
   getWorkingRecord(){
-    http.post('/attendance/getAddendce', {}).then(res => {
+    const data = {
+      size:999,
+      page:1
+    }
+    http.post('/attendance/getAttendance', data).then(res => {
       if (res.data.success) {
-        this.setData({
-          isEdit: false
+        const workingRecordMap = {}
+        res.data.data.forEach(item => {
+          let date = new Date(parseInt(item.attendanceDate)).toLocaleDateString();
+          if(workingRecordMap[date]){
+            workingRecordMap[date].push({
+              ...item,
+              explain:this.generateExplainText(item)
+            })
+          }else{
+            workingRecordMap[date] = [{
+              ...item,
+              explain:this.generateExplainText(item)
+            }]
+          }
         })
+
+        const singleFormat = (day) => {
+          const date = day.date.toLocaleDateString()
+          if(workingRecordMap[date]){
+            day.suffix = workingRecordMap[date].reduce((acc,cur) => {
+              let amount = cur.cost + (cur.workingHours * cur.salary)
+              return acc + amount
+            }, 0) + '¥'
+          }
+          return day
+        }
+        this.setData({workingRecordMap , singleFormat })
       }
     })
+  },
+
+  generateExplainText(item){
+    if(item.type === 0){
+      return `上班${item.workingHours}个小时`
+    }else if(item.type === 1){
+      return item.costName
+    }else{
+      return ''
+    }
+  },
+
+  addRecords(){
+    wx.navigateTo({
+      url: '/pages/toolAttendance/index',
+    })
+  },
+
+  onTabsChange(e){
+
   },
 
   handleSelect(e){
@@ -30,7 +80,7 @@ Page({
   },
 
   handlePanelChange(e){
-    this.getWorkingRecord()
+    // this.getWorkingRecord()
   },
 
   onShow : function () {

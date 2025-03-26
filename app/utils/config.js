@@ -126,13 +126,19 @@ export const atWorkRecord = [{
   prop: 'input',
   label: '工时',
   value: '',
+}, 
+{
+  key: 'salary',
+  prop: 'input',
+  label: '工资',
+  value: '',
 }, {
-  key: 'remarkWK',
+  key: 'remark',
   prop: 'input',
   label: '备注',
   value: '',
 }, {
-  key: 'recordImgWK',
+  key: 'recordImg',
   prop: 'upload',
   label: '上传图片',
   value: [],
@@ -149,12 +155,12 @@ export const ataccount = [{
   label: '金额',
   value: '',
 },{
-  key: 'remarkAC',
+  key: 'remark',
   prop: 'input',
   label: '备注',
   value: '',
 }, {
-  key: 'recordImgAC',
+  key: 'recordImg',
   prop: 'upload',
   label: '上传图片',
   value: [],

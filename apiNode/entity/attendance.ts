@@ -1,4 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Max } from 'class-validator';
 
 @Entity()
 export class Attendance {
@@ -15,29 +16,30 @@ export class Attendance {
     @Column()
     staffId: number
 
+    @Column()
+    type: number
+
     @Column({ nullable: true, length: 13 })
     attendanceDate: string
 
-    @Column({ nullable: true })
+    @Column({ default:0 })
+    @Max(24)
     workingHours: number
+
+    @Column({ default:0 })
+    salary: number
 
     @Column({ nullable: true, length: 50 })
     costName: string
 
-    @Column({ nullable: true })
+    @Column({ default:0 })
     cost: number
 
     @Column({ nullable: true, length: 100 })
-    remarkWK: string
-
-    @Column({ nullable: true, length: 100 })
-    remarkAC: string
+    remark: string
 
     @Column({ nullable: true })
-    recordImgWK: String
-
-    @Column({ nullable: true })
-    recordImgAC: String
+    recordImg: String
 
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
     updateTime: Date

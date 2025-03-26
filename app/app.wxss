@@ -74,13 +74,16 @@ page{
   justify-content: center;
   align-items: center;
 }
-.round-btn{
+.round-btn, .round-btn-whole{
   font-weight: bold;
   color: #ffffff;
   height: 80rpx;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.round-btn-whole{
+  border-radius: 1.5rem;
 }
 .round-btn:nth-child(1){
   border-top-left-radius: 1.5rem;

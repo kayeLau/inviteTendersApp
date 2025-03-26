@@ -1,7 +1,7 @@
 <view class="container">
   <view>
     <xl-form column="{{atTimePlace}}" id='xl-form-1'></xl-form>
-    <t-tabs defaultValue="{{0}}">
+    <t-tabs defaultValue="{{0}}" bind:change="onTabsChange">
       <t-tab-panel label="记工" value="0">
         <xl-form column="{{atWorkRecord}}" id='xl-form-2'></xl-form>
       </t-tab-panel>
@@ -10,8 +10,7 @@
       </t-tab-panel>
     </t-tabs>
     <view class="footer">
-      <view class="round-btn" bind:tap="switchToList" style="background-color: var(--gary-color);width: 30%;">返回</view>
-      <view class="round-btn" bind:tap="sumbitPlaceInfo" style="background-color: var(--success-color);width: 70%;">保存</view>
+      <view class="round-btn-whole" bind:tap="sumbitPlaceInfo" style="background-color: var(--success-color);width: 100%;">保存</view>
     </view>
   </view>
 </view>

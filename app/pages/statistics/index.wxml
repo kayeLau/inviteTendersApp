@@ -1,5 +1,22 @@
 <view class="container st">
-  <t-calendar title="记工记帐记录" use-popup="{{false}}" bind:select="handleSelect" switch-mode="month" format="{{singleFormat}}" value="{{value}}" minDate="{{minDate}}" maxDate="{{maxDate}}"   bind:panel-change="handlePanelChange"/>
+  <role-change></role-change>
+  <!-- 日历 -->
+  <t-calendar title="记工记帐记录" use-popup="{{false}}" bind:select="handleSelect" switch-mode="month" format="{{singleFormat}}" value="{{value}}" minDate="{{minDate}}" maxDate="{{maxDate}}" bind:panel-change="handlePanelChange" />
+  <!-- 详情 -->
   <view class="st-detail">
+    <view class="st-detail-title font-bold">{{ currentDate }}</view>
+    <view wx:for="{{workingRecordMap[currentDate]}}" wx:key="unique" class="st-detail-item">
+      <view>
+        <view class="font-big font-bold">{{recordType[item.type]}}</view>
+        <view>{{item.explain}}</view>
+      </view>
+      <view>
+        <view class="st-detail-price">
+          {{ (item.cost + (item.workingHours * item.salary)) }}¥
+        </view>
+      </view>
+    </view>
   </view>
+  <!-- 新增 -->
+  <t-fab style="right:50%;transform: translateX(50%);bottom:10px" bind:click="addRecords" text="记工记帐" />
 </view>

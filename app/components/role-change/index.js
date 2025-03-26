@@ -1,5 +1,8 @@
 import { http } from '../../server/api'
-Page({
+Component({
+  options: {
+    styleIsolation: 'shared'
+  },
   data:{
     roleVisible:false,
     placeVisible:false,
@@ -31,57 +34,61 @@ Page({
     ]
   },
   
-  changeRole(event){
-    this.triggerEvent('changeRole', { 
-      id: event.currentTarget.dataset.id,
-    });
-    this.setData({
-      currentRole:event.currentTarget.dataset.id,
-      roleVisible:false,
-      currentRoleImage:event.currentTarget.dataset.icon,
-    })
-  },
-
-  async openSiteSelector() {
-    await this.getPlaceInfo()
-    this.setData({ placeVisible: true })
-  },
-
-  async getPlaceInfo() {
-    let params = {
-      size: 999,
-      page: 1
-    }
-    await http.post('/accountingPlace/getPlaces', params).then(res => {
-      if (res.data.success) {
-        let siteList = res.data.data.filter(item => item.state === 0)
-        this.setData({siteList})
+  methods:{
+    changeRole(event){
+      this.triggerEvent('changeRole', { 
+        id: event.currentTarget.dataset.id,
+      });
+      this.setData({
+        currentRole:event.currentTarget.dataset.id,
+        roleVisible:false,
+        currentRoleImage:event.currentTarget.dataset.icon,
+      })
+    },
+  
+    async openSiteSelector() {
+      await this.getPlaceInfo()
+      this.setData({ placeVisible: true })
+    },
+  
+    async getPlaceInfo() {
+      let params = {
+        size: 999,
+        page: 1
       }
-    })
-  },
-
-  setCurrentPlace(e) {
-    let currentPlaceId
-    if(e){
-      currentPlaceId = e.currentTarget.dataset.id
-      wx.setStorageSync('currentPlaceId', currentPlaceId)
-    }else{
-      currentPlaceId = wx.getStorageSync('currentPlaceId')
+      await http.post('/accountingPlace/getPlaces', params).then(res => {
+        if (res.data.success) {
+          let siteList = res.data.data.filter(item => item.state === 0)
+          this.setData({siteList})
+        }
+      })
+    },
+  
+    setCurrentPlace(e) {
+      let currentPlaceId
+      if(e){
+        currentPlaceId = e.currentTarget.dataset.id
+        wx.setStorageSync('currentPlaceId', currentPlaceId)
+      }else{
+        currentPlaceId = wx.getStorageSync('currentPlaceId')
+      }
+      const currentPlace = this.data.siteList.find(item => item.id === currentPlaceId)
+      this.setData({
+        currentPlace: currentPlace ? currentPlace.name : '工地',
+        placeVisible: false
+      })
+    },
+  
+    showRoleChange(){
+      this.setData({ roleVisible: true })
     }
-    const currentPlace = this.data.siteList.find(item => item.id === currentPlaceId)
-    this.setData({
-      currentPlace: currentPlace ? currentPlace.name : '工地',
-      placeVisible: false
-    })
   },
 
-  showRoleChange(){
-    this.setData({ roleVisible: true })
-  },
-
-  onLoad: async function () {
-    await this.getPlaceInfo()
-    this.setCurrentPlace()
+  lifetimes: {
+    attached: async function () {
+      await this.getPlaceInfo()
+      this.setCurrentPlace()
+    },
   }
 
 });

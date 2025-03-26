@@ -5,7 +5,7 @@ const AttendanceMOdifyMethod = require('../controllers/attendance')
 
 const attendanceMOdifyMethod = new AttendanceMOdifyMethod()
 
-router.post('/getAddendce',attendanceMOdifyMethod.getAttendance)
+router.post('/getAttendance',attendanceMOdifyMethod.getAttendance)
 
 router.post('/createAddendce',attendanceMOdifyMethod.createAttendance)
 

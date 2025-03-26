@@ -3,6 +3,7 @@ import { atTimePlace , atWorkRecord , ataccount } from '../../utils/config.js';
 
 Page({
   data: {
+    tab:0,
     atTimePlace:atTimePlace,
     atWorkRecord:atWorkRecord,
     ataccount:ataccount,
@@ -14,28 +15,44 @@ Page({
   },
 
   createPlaceInfo() {
-    let data1 = this.selectComponent("#xl-form-1").getData()
-    let data2 = this.selectComponent("#xl-form-2").getData()
-    let data3 = this.selectComponent("#xl-form-3").getData()
-    let params = {
-      attendanceDate: data1.attendanceDate,
-      placeId: data1.placeId,
-      workingHours:data2.workingHours,
-      remarkWK: data2.remarkWK,
-      recordImgWK: data2.recordImgWK,
-      costName: data3.costName,
-      cost: data3.cost,
-      remarkAC: data3.remarkAC,
-      recordImgAC: data3.recordImgAC,
-      mode:this.data.mode
-    }
+    const params = this.getSumbitParams()
     http.post('/attendance/createAddendce', params).then(res => {
       if (res.data.success) {
-        this.setData({
-          isEdit: false
+        wx.navigateBack({
+          delta: 1
         })
       }
     })
+  },
+
+  getSumbitParams(){
+    let data1 = this.selectComponent("#xl-form-1").getData()
+    let data2 = this.selectComponent("#xl-form-2").getData()
+    let data3 = this.selectComponent("#xl-form-3").getData()
+    const type = this.data.tab
+    let params
+    if(type === 0){
+      params = {
+        workingHours:data2.workingHours,
+        salary:data2.salary,
+        remark: data2.remark,
+        recordImg: data2.recordImg,
+      }
+    }else{
+      params = {
+        remark: data2.remark,
+        recordImg: data3.recordImg,
+        costName: data3.costName,
+        cost: data3.cost,
+      }
+    }
+    return {
+      attendanceDate: data1.attendanceDate,
+      placeId: data1.placeId,
+      mode:this.data.mode,
+      type,
+      ...params
+    }
   },
 
   getPlaces() {
@@ -59,6 +76,10 @@ Page({
         })
       }
     })
+  },
+
+  onTabsChange(e){
+    this.setData({tab:e.detail.value})
   },
 
   onLoad: function () {

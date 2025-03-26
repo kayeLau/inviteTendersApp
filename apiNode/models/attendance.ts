@@ -37,11 +37,14 @@ export async function getAttendance(options, size, page) {
             "Attendance.createUserId AS createUserId",
             "Attendance.staffId AS staffId",
             "Attendance.remark AS remark",
+            "Attendance.recordImg AS recordImg",
             "Attendance.attendanceDate AS attendanceDate",
             "Attendance.workingHours AS workingHours",
             "Attendance.costName AS costName",
             "Attendance.cost AS cost",
-            "DATE_FORMAT(member.updateDate, '%Y-%m-%d %H:%i:%S') AS updateDate"
+            "Attendance.salary AS salary",
+            "Attendance.type AS type",
+            "DATE_FORMAT(Attendance.updateTime, '%Y-%m-%d %H:%i:%S') AS updateTime"
         ])
         .where(conditions.join(" AND "), parameters)
         .offset((page - 1) * size)

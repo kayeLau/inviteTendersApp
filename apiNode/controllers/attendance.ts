@@ -6,9 +6,6 @@ module.exports = class Attendance {
         const userInfo = req.userInfo
         const options = {
             createUserId: userInfo.createUserId,
-            // placeId: req.body.placeId,
-            attendanceDate: req.body.attendanceDate,
-            staffId: req.body.staffId,
         }
         const size = req.body.size
         const page = req.body.page
@@ -28,16 +25,14 @@ module.exports = class Attendance {
         const data = {
             createUserId: userInfo.id,
             placeId: req.body.placeId,
+            type:req.body.type,
             staffId: mode === 'worker' ? userInfo.id : req.body.staffId,
             remark: req.body.remark,
             attendanceDate: req.body.attendanceDate,
             workingHours: req.body.workingHours,
             costName: req.body.costName,
             cost: req.body.cost,
-            remarkWK: req.body.remarkWK,
-            remarkAC: req.body.remarkAC,
-            recordImgWK: req.body.recordImgWK,
-            recordImgAC: req.body.recordImgAC,
+            recordImg: req.body.recordImg,
         }
 
         createAttendance(data).then(result => {
