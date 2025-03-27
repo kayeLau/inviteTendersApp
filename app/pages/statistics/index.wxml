@@ -5,7 +5,7 @@
   <!-- 详情 -->
   <view class="st-detail">
     <view class="st-detail-title font-bold">{{ currentDate }}</view>
-    <view wx:for="{{workingRecordMap[currentDate]}}" wx:key="unique" class="st-detail-item">
+    <view wx:for="{{workingRecordMap[currentDate]}}" wx:key="unique" class="st-detail-item" bind:tap="toDetail" data-detail="{{item}}">
       <view>
         <view class="font-big font-bold">{{recordType[item.type]}}</view>
         <view>{{item.explain}}</view>

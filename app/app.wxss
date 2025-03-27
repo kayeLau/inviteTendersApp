@@ -127,7 +127,12 @@ page{
   justify-content: center;
   align-items: center;
 }
-/* form */
+/* st */
+.st-detail-price{
+  font-size: 50rpx;
+  font-weight: 700;
+  color: var(--primary-color);
+}
 
 
 

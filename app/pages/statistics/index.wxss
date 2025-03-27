@@ -34,8 +34,3 @@
   border-bottom: 1px #cfcfcf solid;
   background-color: #fff;
 }
-.st-detail-price{
-  font-size: 50rpx;
-  font-weight: 700;
-  color: var(--primary-color);
-}

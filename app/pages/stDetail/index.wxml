@@ -1,0 +1,10 @@
+<view class="container st-detail">
+  <view class="st-detail-price price-cell">
+    {{ stDetail.cost + (stDetail.workingHours * stDetail.salary)}}¥
+  </view>
+  <t-cell title="日期:" note="{{stDetail.dateString}}" />
+  <t-cell title="项目:" note="{{stDetail.attendanceDate}}" />
+  <t-cell title="工时:" note="{{stDetail.workingHours}}小时" />
+  <t-cell title="备注:" note="{{stDetail.remark}}" />
+  <t-cell title="照片:" />
+</view>

@@ -1,0 +1,14 @@
+/**index.wxss**/
+.st-detail{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.price-cell{
+  font-size: 70rpx;
+  width: 100%;
+  text-align: center;
+  background-color: #ffffff;
+  padding: 40rpx 0;
+  margin-bottom: 10rpx;
+}

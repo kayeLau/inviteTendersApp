@@ -1,4 +1,5 @@
 // pages/records/index.js
+const app = getApp()
 import { http } from '../../server/api';
 import { recordType } from '../../utils/dict';
 
@@ -71,12 +72,14 @@ Page({
     })
   },
 
-  onTabsChange(e){
-
+  toDetail(e){
+    app.globalData.workRecordDetail = e.currentTarget.dataset.detail;
+    wx.navigateTo({url: '/pages/stDetail/index'})
   },
 
   handleSelect(e){
-    console.log(e)
+    const currentDate = new Date(e.detail.value).toLocaleDateString()
+    this.setData({currentDate})
   },
 
   handlePanelChange(e){
