@@ -1,0 +1,34 @@
+.staff-panel{
+  overflow: scroll;
+}
+.staff-add{
+  margin-bottom: 30rpx;
+  padding: 20rpx 0;
+  background-color: #fff;
+}
+.staff-add-item{
+  flex-direction: column;
+  gap: 5rpx;
+}
+.t-checkbox{
+  align-items: center !important;
+}
+.t-checkbox__title{
+  font-weight: 700;
+}
+.icon{
+  background-color: var(--primary-color);
+  padding: 40rpx;
+  border-radius: 50%;
+  color: #fff;
+}
+.staff-panel-btn{
+  width: 100vw;
+  padding: 20rpx 50rpx;
+  background-color: #fff;
+  height: 120rpx;
+  box-sizing: border-box;
+}
+.t-icon-base {
+  text-align: left !important;
+}

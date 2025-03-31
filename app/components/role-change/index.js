@@ -9,7 +9,7 @@ Component({
     currentPlace: '77',
     siteList:[],
     currentRole: 1,
-    currentRoleImage:'../../assert/construction-worker.png',
+    currentRoleImage:'../../assert/worker.png',
     roleMap: {
       1:'工人',
       2:'工头',
@@ -19,7 +19,7 @@ Component({
       {
         name:'工人记账',
         id:1,
-        icon:'../../assert/construction-worker.png'
+        icon:'../../assert/worker.png'
       },
       {
         name:'带班记账',

@@ -24,12 +24,23 @@ page{
   justify-content: center;
   align-items: center;
 }
+.column{
+  flex-direction: column;
+}
 /* btn */
 .btn-group{
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10rpx;
+}
+.float-btn-group{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10rpx;
+  position: fixed;
+  bottom: 0;
 }
 .btn-icon + .btn-icon{
   margin-left:20rpx;
@@ -99,11 +110,8 @@ page{
 }
 /* card */
 .card{
-  margin-top: 10rpx;
-  border-radius: 10px;
   padding: 30rpx 20rpx;
   background-color: #ffffff;
-  box-shadow: 0 0 1px #ccc;
 }
 /* font */
 .font-bold{
@@ -132,6 +140,15 @@ page{
   font-size: 50rpx;
   font-weight: 700;
   color: var(--primary-color);
+}
+/* popup */
+.popup-panel{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
 }
 
 

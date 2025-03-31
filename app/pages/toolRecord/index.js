@@ -122,7 +122,6 @@ Page({
   },
 
   showStaffPenal(){
-    this.selectComponent('#xl-staff-penal').getList()
     this.setData({staffVisible:true})
   },
 
@@ -145,9 +144,7 @@ Page({
 
   onLoad: function (option) {
     this.setData({
-      'id': option.id,
       'path': option.path,
-      'config': config[option.id]
     })
     this.getAttendance()
   }

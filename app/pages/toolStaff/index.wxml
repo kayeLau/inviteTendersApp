@@ -1,13 +1,11 @@
 <view class="container">
-  <view style="padding:15rpx 20rpx;">
     <view wx:if="{{isEdit}}">
-      <xl-form column="{{config}}" title='添加人员' id='xl-form'>
+      <xl-form column="{{config}}" title='' id='xl-form'>
       </xl-form>
       <view class="footer" >
         <view class="round-btn" bind:tap="switchToList" style="background-color: var(--gary-color);width: 30%;">返回</view>
         <view class="round-btn" bind:tap="sumbitPlaceMemberInfo" style="background-color: var(--success-color);width: 70%;">保存</view>
       </view>
-    </view>
   </view>
       <!-- list -->
       <view wx:if="{{!isEdit}}">

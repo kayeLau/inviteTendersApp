@@ -1,6 +1,3 @@
-.form-section{
-  padding: 10rpx 0 ;
-}
 .form-content{
   width: 100%;
 }

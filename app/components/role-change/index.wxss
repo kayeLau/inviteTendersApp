@@ -1,11 +1,3 @@
-.popup-panel{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 10000;
-}
 /* role */
 .role-gird{
   box-sizing: border-box;
@@ -67,7 +59,7 @@
   height: 100rpx;
   width: 100rpx;
   border-radius: 50%;
-  background-color: var(--gary-color);
+  background-color: var(--primary-color-light);
 }
 .location-picker{
   height: 100%;

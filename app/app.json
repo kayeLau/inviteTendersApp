@@ -9,7 +9,8 @@
     "pages/toolAttendance/index",
     "pages/toolRecord/index",
     "pages/statistics/index",
-    "pages/stDetail/index"
+    "pages/stDetail/index",
+    "pages/staffPenal/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

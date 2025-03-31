@@ -122,9 +122,7 @@ Page({
   },
 
   onLoad: function (option) {
-    console.log(option)
     this.setData({
-      'id': option.id,
       'path': option.path,
     })
     this.getPlaceInfo()

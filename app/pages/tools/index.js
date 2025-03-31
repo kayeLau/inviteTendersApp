@@ -15,25 +15,21 @@ Page({
     tools: [{
       name: '设置工地',
       icon: '../../assert/hook.png',
-      id: 'site-boss',
       path: 'toolSite'
     },
     {
       name: '人员管理',
       icon: '../../assert/workers.png',
-      id: 'staff-manager-boss',
       path: 'toolStaff'
     },
     {
       name: '记工',
       icon: '../../assert/note.png',
-      id: 'records-boss',
       path: 'toolAttendance'
     },
     {
       name: '考勤记录',
       icon: '../../assert/under-construction.png',
-      id: 'records-boss',
       path: 'toolRecord'
     }
     ]
@@ -42,7 +38,7 @@ Page({
     const id = event.currentTarget.dataset.id
     const path = event.currentTarget.dataset.path
     wx.navigateTo({
-      url: `/pages/${path}/index?id=${id}&path=${path}`
+      url: `/pages/${path}/index?path=${path}`
     })
   },
 

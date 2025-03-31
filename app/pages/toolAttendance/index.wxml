@@ -1,6 +1,22 @@
 <view class="container">
   <view>
     <xl-form column="{{atTimePlace}}" id='xl-form-1'></xl-form>
+    <!-- 选工友 -->
+    <view class="card flex column" hidden="{{!!selected.length}}">
+      <span style="padding-bottom:30rpx">請先添加工友</span>
+      <t-button theme="primary" bind:tap="jumpto" variant="outline">添加</t-button>
+    </view>
+    <view class="card avatar-list" hidden="{{!selected.length}}">
+      <view class="flex column" wx:for="{{selected}}" wx:key="{{item.value}}">
+        <image class="avatar" src="/assert/worker.png" />
+        <view>{{ item.label }}</view>
+      </view>
+      <view class="flex column">
+        <t-button theme="primary" icon="user-transmit" shape="square" size="large" aria-label="搜索" variant="outline" t-class="staff-add-btn"></t-button>
+        <view style="color: #ccc;">选择</view>
+      </view>
+    </view>
+    <!-- 记工记帐 -->
     <t-tabs defaultValue="{{0}}" bind:change="onTabsChange">
       <t-tab-panel label="记工" value="0">
         <xl-form column="{{atWorkRecord}}" id='xl-form-2'></xl-form>

@@ -1,6 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "xl-popup":"../xl-popup/index"
+    "t-popup": "tdesign-miniprogram/popup/popup"
   }
 }

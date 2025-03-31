@@ -27,6 +27,5 @@
     <view class="footer-btn" bind:tap="switchToEdit" style="background-color: var(--primary-color);" data-mode='create'>添加工地</view>
   </view>
   
-  <xl-staff-penal id="xl-staff-penal" visible="{{staffVisible}}" bind:sumbit="onSumbit" ></xl-staff-penal>
   <xl-site-penal id="xl-site-penal" visible="{{siteVisible}}"></xl-site-penal>
 </view>
