@@ -6,7 +6,7 @@ Component({
   data:{
     roleVisible:false,
     placeVisible:false,
-    currentPlace: '77',
+    currentPlace: '',
     siteList:[],
     currentRole: 1,
     currentRoleImage:'../../assert/worker.png',
@@ -35,14 +35,14 @@ Component({
   },
   
   methods:{
-    changeRole(event){
-      this.triggerEvent('changeRole', { 
-        id: event.currentTarget.dataset.id,
-      });
+    setRole(e){
+      const id = e ? e.currentTarget.dataset.id : this.data.currentRole
+      const currentRoleId = this.wxStorage(id,'roleId')
+      const currentRoleImage = this.data.role.find(item => item.id === currentRoleId)
       this.setData({
-        currentRole:event.currentTarget.dataset.id,
+        currentRole:currentRoleId,
         roleVisible:false,
-        currentRoleImage:event.currentTarget.dataset.icon,
+        currentRoleImage:currentRoleImage.icon,
       })
     },
   
@@ -64,14 +64,9 @@ Component({
       })
     },
   
-    setCurrentPlace(e) {
-      let currentPlaceId
-      if(e){
-        currentPlaceId = e.currentTarget.dataset.id
-        wx.setStorageSync('currentPlaceId', currentPlaceId)
-      }else{
-        currentPlaceId = wx.getStorageSync('currentPlaceId')
-      }
+    setPlace(e) {
+      const id = e ? e.currentTarget.dataset.id : null
+      const currentPlaceId = this.wxStorage(id,'placeId')
       const currentPlace = this.data.siteList.find(item => item.id === currentPlaceId)
       this.setData({
         currentPlace: currentPlace ? currentPlace.name : '工地',
@@ -81,13 +76,23 @@ Component({
   
     showRoleChange(){
       this.setData({ roleVisible: true })
+    },
+
+    wxStorage(value, key){
+      if(value){
+        wx.setStorageSync(key, value)
+        return value
+      }else{
+        return wx.getStorageSync(key)
+      }
     }
   },
 
   lifetimes: {
     attached: async function () {
       await this.getPlaceInfo()
-      this.setCurrentPlace()
+      this.setPlace()
+      this.setRole()
     },
   }
 

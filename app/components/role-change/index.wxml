@@ -12,7 +12,7 @@
   </view>
   <!-- role -->
   <view class="container role-gird popup-panel" wx:if="{{roleVisible}}">
-    <view class="role-box" wx:for="{{role}}" wx:key="unique" bind:tap="changeRole" data-id="{{item.id}}" data-icon='{{item.icon}}'>
+    <view class="role-box" wx:for="{{role}}" wx:key="unique" bind:tap="setRole" data-id="{{item.id}}" data-icon='{{item.icon}}'>
       <view class="role-box-image">
         <image src="{{item.icon}}"></image>
       </view>
@@ -21,7 +21,7 @@
   </view>
   <!-- place -->
   <view class="container popup-panel" wx:if="{{placeVisible}}">
-    <view wx:for="{{siteList}}" wx:key="unique" bind:tap="setCurrentPlace" data-id="{{item.id}}" data-icon='{{item.name}}'>
+    <view wx:for="{{siteList}}" wx:key="unique" bind:tap="setPlace" data-id="{{item.id}}" data-icon='{{item.name}}'>
       <view>{{item.name}}</view>
     </view>
   </view>
