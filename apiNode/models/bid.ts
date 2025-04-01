@@ -1,6 +1,6 @@
 import AppDataSource from '../data-source';
 import { Bid } from '../entity/bid';
-import { optionsGenerater } from './base_model';
+import { optionsGenerater } from './module/base_model';
 const BidRepository = AppDataSource.getRepository(Bid);
 
 export async function createBid(data) {

@@ -1,6 +1,6 @@
 import AppDataSource from '../data-source';
 import { User } from '../entity/user';
-import { optionsGenerater } from './base_model';
+import { optionsGenerater } from './module/base_model';
 const UserRepository = AppDataSource.getRepository(User);
 
 export async function registerUser(data) {

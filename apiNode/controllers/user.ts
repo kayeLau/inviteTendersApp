@@ -1,4 +1,4 @@
-import { registerUser, getUsersItemById, updateUser } from '../models/user_model';
+import { registerUser, getUsersItemById, updateUser } from '../models/user';
 const config = require('../config/development_config')
 const axios = require('axios');
 const jwt = require('jsonwebtoken');

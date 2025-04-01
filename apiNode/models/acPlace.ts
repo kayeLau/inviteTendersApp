@@ -1,6 +1,6 @@
 import AppDataSource from '../data-source';
 import { AcPlace } from '../entity/acPlace';
-import { optionsGenerater } from './base_model';
+import { optionsGenerater } from './module/base_model';
 const AcPlaceRepository = AppDataSource.getRepository(AcPlace);
 
 export async function createPlace(data) {

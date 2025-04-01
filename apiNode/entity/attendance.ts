@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column , ManyToOne , JoinColumn } from "typeorm"
 import { Max } from 'class-validator';
+import { AcPlace } from "./acPlace"
 
 @Entity()
 export class Attendance {
@@ -13,23 +14,23 @@ export class Attendance {
     @Column()
     createUserId: number
 
-    @Column()
-    staffId: number
+    @Column({comment:"员工号"})
+    staffId: string
 
-    @Column()
+    @Column({comment:"0:记工 1:记帐"})
     type: number
 
-    @Column({ nullable: true, length: 13 })
+    @Column({ nullable: true, length: 13 , comment:"记录日期" })
     attendanceDate: string
 
     @Column({ default:0 })
     @Max(24)
     workingHours: number
 
-    @Column({ default:0 })
+    @Column({ default:0 , comment:"时薪"})
     salary: number
 
-    @Column({ nullable: true, length: 50 })
+    @Column({ nullable: true, length: 50 , comment:"费用名" })
     costName: string
 
     @Column({ default:0 })
@@ -43,4 +44,8 @@ export class Attendance {
 
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
     updateTime: Date
+
+    @ManyToOne(() => AcPlace, place => place.name)
+    @JoinColumn({ name: "placeId" })
+    AcPlace: AcPlace;
 }

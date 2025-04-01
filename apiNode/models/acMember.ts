@@ -1,6 +1,6 @@
 import AppDataSource from '../data-source';
 import { AcMember } from '../entity/acMember';
-import { optionsGenerater } from './base_model';
+import { optionsGenerater } from './module/base_model';
 const AcMemberRepository = AppDataSource.getRepository(AcMember);
 
 export async function createMember(data) {

@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column , OneToMany } from "typeorm"
+import { Attendance } from "./attendance"
 
 @Entity()
 export class AcPlace {
@@ -23,4 +24,7 @@ export class AcPlace {
 
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
     updateTime: Date
+
+    @OneToMany(() => Attendance, attendance => attendance.AcPlace)
+    attendances: Attendance[];
 }

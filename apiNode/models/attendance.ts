@@ -1,6 +1,7 @@
 import AppDataSource from '../data-source';
 import { Attendance } from '../entity/attendance';
-import { optionsGenerater } from './base_model';
+import { AcPlace } from '../entity/acPlace';
+import { optionsGenerater } from './module/base_model';
 const AttendanceRepository = AppDataSource.getRepository(Attendance);
 
 export function createAttendance(list) {
@@ -31,9 +32,11 @@ export async function getAttendance(options, size, page) {
 
     return AttendanceRepository
         .createQueryBuilder("Attendance")
+        .leftJoinAndSelect("Attendance.AcPlace", "AcPlace")
         .select([
             "Attendance.id AS id",
             "Attendance.placeId AS placeId",
+            "AcPlace.name AS placeName",
             "Attendance.createUserId AS createUserId",
             "Attendance.staffId AS staffId",
             "Attendance.remark AS remark",
