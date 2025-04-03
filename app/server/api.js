@@ -8,7 +8,9 @@ http.init({
 })
 
 http.interceptors.response.use(response => {
-  var {headers} = response
+  var {
+    headers
+  } = response
   var token = headers['set-token'] || ''
   if (token) {
     wx.setStorageSync('token', token)
@@ -18,8 +20,10 @@ http.interceptors.response.use(response => {
 
 http.interceptors.request.use(config => {
   // 给请求带上 cookie
-  if(config.url === baseURL + '/users/login')return config;
-  return promisify(wx.getStorage)({key: 'token'}).then(res => {
+  if (config.url === baseURL + '/users/login') return config;
+  return promisify(wx.getStorage)({
+    key: 'token'
+  }).then(res => {
     if (res && res.data) {
       Object.assign(config.headers, {
         token: res.data
@@ -32,5 +36,38 @@ http.interceptors.request.use(config => {
   })
 })
 
-module.exports = { http }
+function uploadImg(files) {
+  const user = wx.getStorageSync('userInfo')
+  const token = wx.getStorageSync('token')
+  const uploadPromises = files.map(file => {
+    return new Promise((resolve, reject) => {
+      wx.uploadFile({
+        url: 'http://localhost:3000/file/writeFile',
+        filePath: file.url,
+        name: 'file',
+        formData: {
+          id: user.id
+        },
+        header: {
+          'token': token,
+          'user-id': user.id
+        },
+        success: (res) => {
+          const data = JSON.parse(res.data);
+          resolve(data)
+        },
+        fail: (err) => {
+          console.error('上传失败:', err);
+          reject(err)
+        }
+      })
+    })}
+  )
 
+  return Promise.all(uploadPromises);
+}
+
+module.exports = {
+  http,
+  uploadImg
+}

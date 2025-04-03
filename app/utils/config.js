@@ -86,25 +86,7 @@ export const staff = [{
     value: 0,
   }
 ]
-export const workRecords = [{
-    key: 'attendance_date',
-    prop: 'datepicker',
-    label: '记录日期',
-    value: '',
-  },
-  {
-    key: 'staff',
-    prop: 'staffPicker',
-    label: '出席人员',
-    value: '',
-  },
-  {
-    key: 'remark',
-    prop: 'input',
-    label: '细节备注',
-    value: '',
-  },
-]
+
 export const atTimePlace = [{
     key: 'attendanceDate',
     prop: 'datepicker',

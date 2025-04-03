@@ -1,11 +1,5 @@
-import {
-  http
-} from '../../server/api';
-import {
-  atTimePlace,
-  atWorkRecord,
-  ataccount
-} from '../../utils/config.js';
+import { http } from '../../server/api';
+import { atTimePlace, atWorkRecord, ataccount } from '../../utils/config.js';
 
 Page({
   data: {
@@ -14,7 +8,7 @@ Page({
     atWorkRecord: atWorkRecord,
     ataccount: ataccount,
     mode: 'worker',
-    selected:[]
+    selected: []
   },
 
   sumbitPlaceInfo() {
@@ -40,15 +34,15 @@ Page({
     let params
     if (type === 0) {
       params = {
+        remark: data2.remark,
+        recordImg: data2.recordImg.path,
         workingHours: data2.workingHours,
         salary: data2.salary,
-        remark: data2.remark,
-        recordImg: data2.recordImg,
       }
     } else {
       params = {
         remark: data2.remark,
-        recordImg: data3.recordImg,
+        recordImg: data3.recordImg.path,
         costName: data3.costName,
         cost: data3.cost,
       }

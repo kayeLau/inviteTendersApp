@@ -1,3 +1,5 @@
+import { uploadImg } from '../../server/api'
+
 Component({
   options: {
     styleIsolation: 'shared'
@@ -19,13 +21,18 @@ Component({
     test: false,
     visibleComponentMap: {
       'datepicker': true,
-      'picker': true
+      'picker': true,
     },
     gridConfig: {
       column: 4,
       width: 160,
       height: 160,
     },
+    uploadConfig: {
+      count: 5,
+      sizeType: 'compressed',
+      sourceType: ['album', 'camera'],
+    }
   },
 
   methods: {
@@ -41,12 +48,12 @@ Component({
       })
     },
 
-    bindChange(e) {
+    async bindChange(e) {
       console.log('发送选择改变，携带值为', e);
       const params = this.data.params
       const pickerVisible = this.data.pickerVisible
       const key = e.currentTarget.dataset.key
-      const param = this.paramsFormatter(e)
+      const param = await this.paramsFormatter(e)
       params[key] = param.value;
       console.log(params)
       if (pickerVisible[key]) {
@@ -61,7 +68,7 @@ Component({
       });
     },
 
-    paramsFormatter(e) {
+    async paramsFormatter(e) {
       const key = e.currentTarget.dataset.key
       const target = this.properties.column.find(item => item.key === key)
       if (target.prop === 'datepicker') {
@@ -74,16 +81,19 @@ Component({
           value: e.detail.value.join(','),
           label: e.detail.label.join(' ')
         }
-      } else if(target.prop === 'upload'){
-        return { value: e.detail.files }
+      } else if (target.prop === 'upload') {
+        const res = await uploadImg(e.detail.files)
+        return {
+          value: {
+            preview: e.detail.files,
+            path: res.map(item => item.data.path)
+          }
+        }
       } else {
         return { value: e.detail.value }
       }
     },
 
-    showStaffPenal() {
-      this.triggerEvent('showStaffPenal')
-    },
     showPicker(e) {
       let key = e.currentTarget.dataset.key
       const pickerVisible = this.data.pickerVisible
@@ -91,8 +101,9 @@ Component({
       this.setData({
         pickerVisible
       })
-    }
+    },
   },
+
   lifetimes: {
     attached: function () {
       const pickerVisible = {}

@@ -7,7 +7,7 @@
       <t-button theme="primary" bind:tap="jumpto" variant="outline">添加</t-button>
     </view>
     <view class="card avatar-list" hidden="{{!selected.length}}">
-      <view class="flex column" wx:for="{{selected}}" wx:key="{{item.value}}">
+      <view class="flex column" wx:for="{{selected}}" wx:key="unique">
         <image class="avatar" src="/assert/worker.png" />
         <view>{{ item.label }}</view>
       </view>

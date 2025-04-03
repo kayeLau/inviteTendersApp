@@ -1,6 +1,4 @@
-import {
-  http
-} from '../../server/api'
+import { http } from '../../server/api'
 
 
 Page({
@@ -49,7 +47,7 @@ Page({
 
   sumbit() {
     console.log(this.data.list)
-    const select = this.data.list.filter(item => 
+    const select = this.data.list.filter(item =>
       this.data.selected.includes(item.value)
     )
     wx.navigateTo({

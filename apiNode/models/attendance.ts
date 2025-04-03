@@ -1,13 +1,15 @@
 import AppDataSource from '../data-source';
 import { Attendance } from '../entity/attendance';
-import { AcPlace } from '../entity/acPlace';
 import { optionsGenerater } from './module/base_model';
 const AttendanceRepository = AppDataSource.getRepository(Attendance);
 
-export function createAttendance(list) {
-    return AttendanceRepository.save(list).then(() => {
+export async function createAttendance(data) {
+    try {
+        await AttendanceRepository.save(data)
         return { success: true }
-    })
+    }catch(err){
+        return { success: false, message: err.message }
+    }
 }
 
 export function updateAttendance(id, data) {

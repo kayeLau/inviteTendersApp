@@ -25,17 +25,10 @@
           <t-picker-item options="{{item.options}}"></t-picker-item>
         </t-picker>
       </block>
-      <!-- stuff-picker -->
-      <view wx:if="{{item.prop === 'staffPicker'}}" bind:tap="showStaffPenal" id="staff-picker">
-        <view class="btn-icon btn-warning">选择人员</view>
-        <view class="selected-list">
-          <view class="selected-item" wx:for="{{params[item.key]}}" wx:key="unique">{{item.user_name}}</view>
-        </view>
-      </view>
       <!-- upload -->
       <view wx:if="{{item.prop === 'upload'}}" class="cell">
         <view>{{item.label}}</view>
-        <t-upload media-type="{{['image']}}" files="{{params[item.key]}}" gridConfig="{{gridConfig}}" bind:add="bindChange" data-key="{{item.key}}" />
+        <t-upload accept="image/jpg,image/jpeg,image/png" media-type="{{['image']}}" files="{{params[item.key].preview}}" gridConfig="{{gridConfig}}" config="{{uploadConfig}}" bind:add="bindChange" data-key="{{item.key}}" :request-method="uploadImage"/>
       </view>
     </view>
 

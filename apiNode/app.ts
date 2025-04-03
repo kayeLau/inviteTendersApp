@@ -31,6 +31,7 @@ const bidsRouter = require('./routes/bid')
 const accountingPlaceRouter = require('./routes/acPlace')
 const accountingPlaceMemberRouter = require('./routes/acMember')
 const attendance = require('./routes/attendance')
+const file = require('./routes/file')
 
 
 app.use('/users', usersRouter);
@@ -38,6 +39,7 @@ app.use('/bids',bidsRouter)
 app.use('/accountingPlace',accountingPlaceRouter)
 app.use('/accountingPlaceMember',accountingPlaceMemberRouter)
 app.use('/attendance',attendance)
+app.use('/file',file)
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {

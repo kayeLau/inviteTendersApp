@@ -3,54 +3,54 @@ Component({
   options: {
     styleIsolation: 'shared'
   },
-  data:{
-    roleVisible:false,
-    placeVisible:false,
+  data: {
+    roleVisible: false,
+    placeVisible: false,
     currentPlace: '',
-    siteList:[],
+    siteList: [],
     currentRole: 1,
-    currentRoleImage:'../../assert/worker.png',
+    currentRoleImage: '../../assert/worker.png',
     roleMap: {
-      1:'工人',
-      2:'工头',
-      3:'老板'
+      1: '工人',
+      2: '工头',
+      3: '老板'
     },
-    role:[
+    role: [
       {
-        name:'工人记账',
-        id:1,
-        icon:'../../assert/worker.png'
+        name: '工人记账',
+        id: 1,
+        icon: '../../assert/worker.png'
       },
       {
-        name:'带班记账',
-        id:2,
-        icon:'../../assert/engineer.png'
+        name: '带班记账',
+        id: 2,
+        icon: '../../assert/engineer.png'
       },
       {
-        name:'老板记账',
-        id:3,
-        icon:'../../assert/boss.png'
+        name: '老板记账',
+        id: 3,
+        icon: '../../assert/boss.png'
       }
     ]
   },
-  
-  methods:{
-    setRole(e){
+
+  methods: {
+    setRole(e) {
       const id = e ? e.currentTarget.dataset.id : this.data.currentRole
-      const currentRoleId = this.wxStorage(id,'roleId')
+      const currentRoleId = this.wxStorage(id, 'roleId')
       const currentRoleImage = this.data.role.find(item => item.id === currentRoleId)
       this.setData({
-        currentRole:currentRoleId,
-        roleVisible:false,
-        currentRoleImage:currentRoleImage.icon,
+        currentRole: currentRoleId,
+        roleVisible: false,
+        currentRoleImage: currentRoleImage.icon,
       })
     },
-  
+
     async openSiteSelector() {
       await this.getPlaceInfo()
       this.setData({ placeVisible: true })
     },
-  
+
     async getPlaceInfo() {
       let params = {
         size: 999,
@@ -59,30 +59,30 @@ Component({
       await http.post('/accountingPlace/getPlaces', params).then(res => {
         if (res.data.success) {
           let siteList = res.data.data.filter(item => item.state === 0)
-          this.setData({siteList})
+          this.setData({ siteList })
         }
       })
     },
-  
+
     setPlace(e) {
       const id = e ? e.currentTarget.dataset.id : null
-      const currentPlaceId = this.wxStorage(id,'placeId')
+      const currentPlaceId = this.wxStorage(id, 'placeId')
       const currentPlace = this.data.siteList.find(item => item.id === currentPlaceId)
       this.setData({
         currentPlace: currentPlace ? currentPlace.name : '工地',
         placeVisible: false
       })
     },
-  
-    showRoleChange(){
+
+    showRoleChange() {
       this.setData({ roleVisible: true })
     },
 
-    wxStorage(value, key){
-      if(value){
+    wxStorage(value, key) {
+      if (value) {
         wx.setStorageSync(key, value)
         return value
-      }else{
+      } else {
         return wx.getStorageSync(key)
       }
     }
