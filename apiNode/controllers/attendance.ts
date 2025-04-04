@@ -26,6 +26,7 @@ module.exports = class Attendance {
             createUserId: userInfo.id,
             placeId: req.body.placeId,
             type:req.body.type,
+            salary:req.body.salary,
             staffId: mode === 'worker' ? userInfo.id : req.body.staffId,
             remark: req.body.remark,
             attendanceDate: req.body.attendanceDate,

@@ -86,7 +86,7 @@ Component({
         return {
           value: {
             preview: e.detail.files,
-            path: res.map(item => item.data.path)
+            path: res.map(item => item.data.path).join(',')
           }
         }
       } else {

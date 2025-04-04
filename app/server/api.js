@@ -4,13 +4,12 @@ const baseURL = 'http://localhost:3000'
 
 http.init({
   baseURL, // 定义 baseURL, 用于本地测试
-  wx // 标记是微信小程序用
+  wx, // 标记是微信小程序用
+  timeout: 1000 * 20
 })
 
 http.interceptors.response.use(response => {
-  var {
-    headers
-  } = response
+  var { headers } = response
   var token = headers['set-token'] || ''
   if (token) {
     wx.setStorageSync('token', token)
@@ -21,19 +20,17 @@ http.interceptors.response.use(response => {
 http.interceptors.request.use(config => {
   // 给请求带上 cookie
   if (config.url === baseURL + '/users/login') return config;
-  return promisify(wx.getStorage)({
-    key: 'token'
-  }).then(res => {
-    if (res && res.data) {
-      Object.assign(config.headers, {
-        token: res.data
-      })
-    }
-    return config
-  }).catch((err) => {
-    console.log(err)
-    return err
-  })
+  return promisify(wx.getStorage)({ key: 'token' })
+    .then(res => {
+      if (res && res.data) {
+        Object.assign(config.headers, { token: res.data })
+      }
+      console.log(config)
+      return config
+    }).catch((err) => {
+      console.log(err)
+      return err
+    })
 })
 
 function uploadImg(files) {
@@ -61,13 +58,34 @@ function uploadImg(files) {
           reject(err)
         }
       })
-    })}
-  )
-
+    })
+  })
   return Promise.all(uploadPromises);
+}
+
+function downloadImg(paths) {
+  const token = wx.getStorageSync('token')
+  const downloadPromise = paths.map(path => {
+    return new Promise((resolve, reject) => {
+      wx.downloadFile({
+        url: 'http://localhost:3000/file/' + path,
+        header: {
+          'token': token,
+        },
+        success: (res) => {
+          resolve(res.tempFilePath)
+        },
+        fail: (error) => {
+          console.error('Download failed:', error);
+        }
+      });
+    })
+  })
+  return Promise.all(downloadPromise);
 }
 
 module.exports = {
   http,
-  uploadImg
+  uploadImg,
+  downloadImg
 }

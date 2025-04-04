@@ -1,17 +1,40 @@
+import { http , downloadImg } from '../../server/api';
 const app = getApp()
 
 Page({
   data: {
-    stDetail: {}
+    filePath: 'http://localhost:3000/',
+    stDetail: {},
+    stImgs: [],
+    visible:false,
+    preViewImgs:""
   },
 
   getDetail() {
-    let stDetail = app.globalData.workRecordDetail
-    stDetail.dateString = new Date(parseInt(stDetail.attendanceDate)).toLocaleDateString()
-    this.setData({
-      stDetail
+    const stDetail = app.globalData.workRecordDetail
+    stDetail.dateString = new Date(parseInt(stDetail.attendanceDate)).toLocaleDateString();
+    const stImgs = stDetail.recordImg.split(',')
+    this.getImg(stImgs)
+    this.setData({ stDetail })
+  },
+
+  getImg(imgs) {
+    downloadImg(imgs).then(stImgs => {
+      this.setData({ stImgs })
     })
-    console.log(this.data.stDetail)
+  },
+
+  showPreview(e) {
+    console.log(e)
+    this.setData({
+      visible: true,
+    });
+  },
+
+  closePreview() {
+    this.setData({
+      visible: false,
+    });
   },
 
   onLoad() {

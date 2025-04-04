@@ -12,3 +12,17 @@
   padding: 40rpx 0;
   margin-bottom: 10rpx;
 }
+.st-img{
+  background-color: #ffffff;
+  width: 100%;
+  padding: 30rpx;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 200rpx;
+  gap:20rpx;
+}
+.img{
+  box-shadow: 0 0 10rpx #CCC ;
+  border-radius: 10rpx;
+}

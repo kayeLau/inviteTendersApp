@@ -41,6 +41,7 @@ app.use('/accountingPlaceMember',accountingPlaceMemberRouter)
 app.use('/attendance',attendance)
 app.use('/file',file)
 
+
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
 //   next(createError(404));
