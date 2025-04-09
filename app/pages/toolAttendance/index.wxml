@@ -18,11 +18,14 @@
     </view>
     <!-- 记工记帐 -->
     <t-tabs defaultValue="{{0}}" bind:change="onTabsChange">
-      <t-tab-panel label="记工" value="0">
+      <t-tab-panel label="记整工" value="0">
         <xl-form column="{{atWorkRecord}}" id='xl-form-2'></xl-form>
       </t-tab-panel>
-      <t-tab-panel label="记帐" value="1">
-        <xl-form column="{{ataccount}}" id='xl-form-3'></xl-form>
+      <t-tab-panel label="记时工" value="1">
+        <xl-form column="{{atWorkRecordHour}}" id='xl-form-3'></xl-form>
+      </t-tab-panel>
+      <t-tab-panel label="记帐" value="2">
+        <xl-form column="{{ataccount}}" id='xl-form-4'></xl-form>
       </t-tab-panel>
     </t-tabs>
     <view class="footer">

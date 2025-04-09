@@ -86,7 +86,6 @@ export const staff = [{
     value: 0,
   }
 ]
-
 export const atTimePlace = [{
     key: 'attendanceDate',
     prop: 'datepicker',
@@ -104,6 +103,39 @@ export const atTimePlace = [{
   },
 ]
 export const atWorkRecord = [{
+  key: 'workingHours',
+  prop: 'picker',
+  label: '工时',
+  value: '',
+  options:[
+    {
+      label:'半天',
+      value:0.5
+    },
+    {
+      label:'一天',
+      value:1
+    }
+  ]
+}, 
+{
+  key: 'salary',
+  prop: 'input',
+  label: '工资',
+  value: '',
+  suffix:'天'
+}, {
+  key: 'remark',
+  prop: 'input',
+  label: '备注',
+  value: '',
+}, {
+  key: 'recordImg',
+  prop: 'upload',
+  label: '上传图片',
+  value: [],
+}]
+export const atWorkRecordHour = [{
   key: 'workingHours',
   prop: 'input',
   label: '工时',
@@ -125,7 +157,6 @@ export const atWorkRecord = [{
   label: '上传图片',
   value: [],
 }]
-
 export const ataccount = [{
   key: 'costName',
   prop: 'input',

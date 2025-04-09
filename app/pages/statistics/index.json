@@ -1,9 +1,8 @@
 {
-  "styleIsolation": "apply-shared",
   "usingComponents": {
     "t-calendar": "tdesign-miniprogram/calendar/calendar",
-    "role-change": "../../components/role-change",
-    "t-button": "tdesign-miniprogram/button/button",
-    "t-fab": "tdesign-miniprogram/fab/fab"
+    "t-icon": "tdesign-miniprogram/icon/icon",
+    "t-cell": "tdesign-miniprogram/cell/cell",
+    "t-cell-group": "tdesign-miniprogram/cell-group/cell-group"
   }
 }

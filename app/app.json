@@ -8,9 +8,10 @@
     "pages/toolStaff/index",
     "pages/toolAttendance/index",
     "pages/toolRecord/index",
-    "pages/statistics/index",
+    "pages/calendar/index",
     "pages/stDetail/index",
-    "pages/staffPenal/index"
+    "pages/staffPenal/index",
+    "pages/statistics/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -25,12 +26,16 @@
         "text": "招标"
       },
       {
+        "pagePath": "pages/statistics/index",
+        "text": "统计"
+      },
+      {
         "pagePath": "pages/tools/index",
         "text": "记帐"
       },
       {
-        "pagePath": "pages/statistics/index",
-        "text": "统计"
+        "pagePath": "pages/calendar/index",
+        "text": "日历"
       },
       {
         "pagePath": "pages/my/index",

@@ -1,22 +1,29 @@
-<view class="container st">
-  <role-change></role-change>
-  <!-- 日历 -->
-  <t-calendar title="记工记帐记录" use-popup="{{false}}" bind:select="handleSelect" switch-mode="month" format="{{singleFormat}}" value="{{value}}" minDate="{{minDate}}" maxDate="{{maxDate}}" bind:panel-change="handlePanelChange" />
-  <!-- 详情 -->
-  <view class="st-detail">
-    <view class="st-detail-title font-bold">{{ currentDate }}</view>
-    <view wx:for="{{workingRecordMap[currentDate]}}" wx:key="unique" class="st-detail-item" bind:tap="toDetail" data-detail="{{item}}">
-      <view>
-        <view class="font-big font-bold">{{recordType[item.type]}}</view>
-        <view>{{item.explain}}</view>
+<view class="container">
+  <view>
+    <view class="attendance-header">
+      <view bind:tap="handleCalendar">
+        <view>{{dateLabel[0]}}</view>
+        <t-icon class="icon" name="swap-right" size="40rpx" />
+        <view>{{dateLabel[1]}}</view>
       </view>
+      <view bind:tap="showStaffPenal">选择項目</view>
+    </view>
+    <view>
       <view>
-        <view class="st-detail-price">
-          {{ (item.cost + (item.workingHours * item.salary)) }}¥
-        </view>
+        <t-cell-group>
+          <t-cell wx:for="{{summary}}" wx:key="unique" 
+          t-class="card" t-class-title="card-title"
+          title="{{recordType[item.type]}}"
+          note="{{ item.total }}¥"
+          />
+          <t-cell
+          t-class="card-total" t-class-title="card-title"
+          title="未结"
+          note="{{ totalAmount }}¥"
+          />
+        </t-cell-group>
       </view>
     </view>
   </view>
-  <!-- 新增 -->
-  <t-fab style="right:50%;transform: translateX(50%);bottom:10px" bind:click="addRecords" text="记工记帐" />
+  <t-calendar visible="{{dateVisible}}" value="{{value}}" type="range" bind:confirm="handleConfirm" bind:close="onClose" />
 </view>

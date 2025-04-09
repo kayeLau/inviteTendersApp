@@ -1,11 +1,12 @@
 import { http } from '../../server/api';
-import { atTimePlace, atWorkRecord, ataccount } from '../../utils/config.js';
+import { atTimePlace, atWorkRecordHour, atWorkRecord, ataccount } from '../../utils/config.js';
 
 Page({
   data: {
     tab: 0,
     atTimePlace: atTimePlace,
     atWorkRecord: atWorkRecord,
+    atWorkRecordHour: atWorkRecordHour,
     ataccount: ataccount,
     mode: 'worker',
     selected: []
@@ -30,6 +31,7 @@ Page({
     let data1 = this.selectComponent("#xl-form-1").getData()
     let data2 = this.selectComponent("#xl-form-2").getData()
     let data3 = this.selectComponent("#xl-form-3").getData()
+    let data4 = this.selectComponent("#xl-form-4").getData()
     const type = this.data.tab
     let params
     if (type === 0) {
@@ -39,12 +41,19 @@ Page({
         workingHours: data2.workingHours,
         salary: data2.salary,
       }
+    } else if (type === 1) {
+      params = {
+        remark: data3.remark,
+        recordImg: data3.recordImg.path,
+        workingHours: data3.workingHours,
+        salary: data3.salary,
+      }
     } else {
       params = {
-        remark: data2.remark,
-        recordImg: data3.recordImg.path,
-        costName: data3.costName,
-        cost: data3.cost,
+        remark: data4.remark,
+        recordImg: data4.recordImg.path,
+        costName: data4.costName,
+        cost: data4.cost,
       }
     }
     return {

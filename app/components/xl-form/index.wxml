@@ -5,7 +5,7 @@
       <!-- slider -->
       <slider wx:if="{{item.prop === 'slider'}}" bindchange="bindChange" data-key="{{item.key}}" value="{{params[item.key]}}" />
       <!-- input -->
-      <t-input wx:if="{{item.prop === 'input'}}" type="{{item.type}}" label="{{item.label}}" placeholder="请输入文字" bindchange="bindChange" data-key="{{item.key}}" value="{{params[item.key]}}" />
+      <t-input wx:if="{{item.prop === 'input'}}" type="{{item.type}}" label="{{item.label}}" placeholder="请输入文字" bindchange="bindChange" data-key="{{item.key}}" value="{{params[item.key]}}" suffix="{{item.suffix}}" />
       <!-- radio -->
       <view wx:if="{{item.prop === 'radio'}}" class="cell radio">
       <view>{{item.label}}</view>

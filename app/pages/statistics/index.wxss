@@ -1,36 +1,46 @@
-/* pages/records/index.wxss */
-.st{
+.attendance-header{
+  position: relative;
+  height: 100rpx;
+  background-color: var(--main-color);
   display: flex;
-  flex-direction: column;
+  align-items: center;
 }
-.t-calendar__title{
-  display: none !important;
+
+.attendance-header > view{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.t-calendar__dates-item{
-  margin-top:5rpx !important;
-  height: 80rpx !important;
-  align-items: flex-start !important;
+
+.icon{
+  padding: 0 15rpx;
 }
-.t-calendar__months {
-  height: 500rpx !important;
-  padding: 0 20rpx 10rpx !important;
+
+.attendance-header > view:nth-child(1){
+  border-right: 1px solid #cccccc;
+  flex: 2;
 }
-.st-detail{
-  overflow: scroll;
+
+.attendance-header > view:nth-child(2){
+  border-right: 1px solid #cccccc;
   flex: 1;
 }
-.t-calendar {
-  z-index: 99;
+.card,.card-total{
+  --td-cell-note-font-size:40rpx;
+  padding-left: 10rpx !important;
+  margin-left: 22rpx;
 }
-.st-detail-title{
-  padding-left: 20rpx;
-  background-color: #fff;
-  margin-top: 10rpx;
+.card{
+  --td-cell-note-color:#3b82f6;
+  border-left: 2px solid #3b82f6;
 }
-.st-detail-item{
-  padding: 20rpx 20rpx;
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px #cfcfcf solid;
-  background-color: #fff;
+.card-total{
+  --td-cell-note-color:#e6a23c;
+  border-left: 2px solid #e6a23c;
+  --td-cell-note-font-size:40rpx;
+}
+
+.card-title{
+  color: #000 !important;
+  font-weight: 600 !important;
 }

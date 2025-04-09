@@ -1,93 +1,75 @@
-// pages/records/index.js
-const app = getApp()
-import { http } from '../../server/api';
-import { recordType } from '../../utils/dict';
+import { recordType } from '../../utils/dict.js';
+import { http } from '../../server/api'
 
 Page({
   data: {
-    currentDate:new Date().toLocaleDateString(),
-    currentYear:new Date().getFullYear(),
-    currentMonth:new Date().getMonth(),
-    value:new Date().getTime(),
-    minDate: new Date(2020, 1, 1).getTime(),
-    maxDate: new Date().getTime(),
-    workingRecordMap:{},
-    singleFormat(day) {
-      return day;
-    },
+    record:{},
+    summary:{},
+    totalAmount:0,
+    //search
+    dateValue: [],
+    dateLabel: [],
+    dateVisible:false,
+    searchDate:'2024-01-27',
+    // dict
     recordType:recordType
   },
 
-  getWorkingRecord(){
-    const data = {
-      size:999,
-      page:1
-    }
-    http.post('/attendance/getAttendance', data).then(res => {
-      if (res.data.success) {
-        const workingRecordMap = {}
-        res.data.data.forEach(item => {
-          let date = new Date(parseInt(item.attendanceDate)).toLocaleDateString();
-          if(workingRecordMap[date]){
-            workingRecordMap[date].push({
-              ...item,
-              explain:this.generateExplainText(item)
-            })
-          }else{
-            workingRecordMap[date] = [{
-              ...item,
-              explain:this.generateExplainText(item)
-            }]
-          }
-        })
+  handleCalendar() {
+    this.setData({ dateVisible: true });
+  },
 
-        const singleFormat = (day) => {
-          const date = day.date.toLocaleDateString()
-          if(workingRecordMap[date]){
-            day.suffix = workingRecordMap[date].reduce((acc,cur) => {
-              let amount = cur.cost + (cur.workingHours * cur.salary)
-              return acc + amount
-            }, 0) + '¥'
+  handleConfirm(e) {
+    console.log(e)
+    const dateValue = e.detail.value;
+    const dateLabel = new Date(dateValue).toLocaleDateString()
+    this.setData({
+      dateValue,
+      dateLabel
+    });
+  },
+
+  setDefaultSearchDate(){
+    const end = new Date()
+    const start = end.getTime() - (60 * 60 * 60 * 24 * 1000)
+    const dateValue = [start,end]
+    const dateLabel = dateValue.map(item => new Date(item).toLocaleDateString())
+    this.setData({ dateValue , dateLabel })
+  },
+
+  getAttendance() {
+    let params = {
+      size: 999,
+      page: 1,
+    }
+    http.post('/attendance/getAttendance', params).then(res => {
+      const record = {}
+      const summary = {}
+      let totalAmount = 0
+      if (res.data.success) {
+        res.data.data.forEach(item => {
+          let amount = item.cost + (item.workingHours * item.salary)
+          totalAmount += amount
+          if(record[item.type]){
+            record[item.type].push(item)
+            summary[item.type].count++
+            summary[item.type].total += amount
+          }else{
+            record[item.type] = [item]
+            summary[item.type] = {
+              type:item.type,
+              count:1,
+              total:amount
+            }
           }
-          return day
-        }
-        this.setData({workingRecordMap , singleFormat })
+        });
+        this.setData({record, summary, totalAmount})
       }
     })
   },
 
-  generateExplainText(item){
-    if(item.type === 0){
-      return `上班${item.workingHours}个小时`
-    }else if(item.type === 1){
-      return item.costName
-    }else{
-      return ''
-    }
-  },
-
-  addRecords(){
-    wx.navigateTo({
-      url: '/pages/toolAttendance/index',
-    })
-  },
-
-  toDetail(e){
-    app.globalData.workRecordDetail = e.currentTarget.dataset.detail;
-    wx.navigateTo({url: '/pages/stDetail/index'})
-  },
-
-  handleSelect(e){
-    const currentDate = new Date(e.detail.value).toLocaleDateString()
-    this.setData({currentDate})
-  },
-
-  handlePanelChange(e){
-    // this.getWorkingRecord()
-  },
-
-  onShow : function () {
-    this.getWorkingRecord()
+  onLoad(){
+    this.setDefaultSearchDate()
+    this.getAttendance()
   }
-
-})
+});

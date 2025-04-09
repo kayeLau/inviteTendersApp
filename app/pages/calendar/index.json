@@ -1,0 +1,9 @@
+{
+  "styleIsolation": "apply-shared",
+  "usingComponents": {
+    "t-calendar": "tdesign-miniprogram/calendar/calendar",
+    "role-change": "../../components/role-change",
+    "t-button": "tdesign-miniprogram/button/button",
+    "t-fab": "tdesign-miniprogram/fab/fab"
+  }
+}

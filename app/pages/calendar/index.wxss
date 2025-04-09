@@ -1,0 +1,36 @@
+/* pages/records/index.wxss */
+.st{
+  display: flex;
+  flex-direction: column;
+}
+.t-calendar__title{
+  display: none !important;
+}
+.t-calendar__dates-item{
+  margin-top:5rpx !important;
+  height: 80rpx !important;
+  align-items: flex-start !important;
+}
+.t-calendar__months {
+  height: 500rpx !important;
+  padding: 0 20rpx 10rpx !important;
+}
+.st-detail{
+  overflow: scroll;
+  flex: 1;
+}
+.t-calendar {
+  z-index: 99;
+}
+.st-detail-title{
+  padding-left: 20rpx;
+  background-color: #fff;
+  margin-top: 10rpx;
+}
+.st-detail-item{
+  padding: 20rpx 20rpx;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px #cfcfcf solid;
+  background-color: #fff;
+}
