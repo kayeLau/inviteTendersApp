@@ -1,7 +1,7 @@
-import { getAttendance, createAttendance, updateAttendance } from '../models/attendance'
+import { getSettlement, createSettlement, updateSettlement } from '../models/settlement'
 
-module.exports = class Attendance {
-    getAttendance(req, res, next) {
+module.exports = class Settlement {
+    getSettlement(req, res, next) {
         const userInfo = req.userInfo
         const options = {
             createUserId: userInfo.createUserId,
@@ -10,14 +10,14 @@ module.exports = class Attendance {
         const page = req.body.page
 
 
-        getAttendance(options, size, page).then(result => {
+        getSettlement(options, size, page).then(result => {
             res.json(result)
         }).catch(err => {
             next(err)
         })
     }
 
-    createAttendance(req, res, next) {
+    createSettlement(req, res, next) {
         const userInfo = req.userInfo
 
         const data = {
@@ -27,7 +27,7 @@ module.exports = class Attendance {
             salary:req.body.salary,
             staffId: req.body.staffId,
             remark: req.body.remark,
-            attendanceDate: req.body.attendanceDate,
+            settlementDate: req.body.settlementDate,
             workingHours: req.body.workingHours,
             costName: req.body.costName,
             cost: req.body.cost,
@@ -35,7 +35,7 @@ module.exports = class Attendance {
             mode:req.body.mode
         }
 
-        createAttendance(data).then(result => {
+        createSettlement(data).then(result => {
             res.json(result)
         }).catch(err => {
             next(err)
@@ -43,7 +43,7 @@ module.exports = class Attendance {
 
     }
 
-    updateAttendance(req, res, next) {
+    updateSettlement(req, res, next) {
         const userInfo = req.userInfo
         const id = req.body.id
         const data = {
@@ -51,14 +51,14 @@ module.exports = class Attendance {
             placeId: req.body.placeId,
             staffId: req.body.staffId,
             remark: req.body.remark,
-            attendanceDate: req.body.attendanceDate,
+            settlementDate: req.body.settlementDate,
             workingHours: req.body.workingHours,
             costName: req.body.costName,
             cost: req.body.cost,
         }
 
 
-        updateAttendance(id, data).then(result => {
+        updateSettlement(id, data).then(result => {
             res.json(result)
         }).catch(err => {
             next(err)

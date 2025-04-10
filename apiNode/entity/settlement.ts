@@ -1,9 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column , ManyToOne , JoinColumn } from "typeorm"
-import { Max } from 'class-validator';
 import { AcPlace } from "./acPlace"
 
 @Entity()
-export class Attendance {
+export class Settlement {
 
     @PrimaryGeneratedColumn()
     id: number
@@ -14,27 +13,11 @@ export class Attendance {
     @Column()
     createUserId: number
 
-    @Column({comment:"员工号", nullable:true })
-    staffId: string
-
-    @Column({comment:"0:记整工 1:记點工 2:记帐"})
-    type: number
-
     @Column({comment:"0:工人 1:帶班 2:老闆"})
     mode: number
 
     @Column({ nullable: true, length: 13 , comment:"记录日期" })
-    attendanceDate: string
-
-    @Column({ default:0 })
-    @Max(24)
-    workingHours: number
-
-    @Column({ default:0 , comment:"时薪"})
-    salary: number
-
-    @Column({ nullable: true, length: 50 , comment:"费用名" })
-    costName: string
+    settlementDate: string
 
     @Column({ default:0 })
     cost: number

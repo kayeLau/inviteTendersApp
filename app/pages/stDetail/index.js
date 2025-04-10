@@ -13,12 +13,13 @@ Page({
   getDetail() {
     const stDetail = app.globalData.workRecordDetail
     stDetail.dateString = new Date(parseInt(stDetail.attendanceDate)).toLocaleDateString();
-    const stImgs = stDetail.recordImg.split(',')
+    const stImgs = stDetail.recordImg ? stDetail.recordImg.split(',') : []
     this.getImg(stImgs)
     this.setData({ stDetail })
   },
 
   getImg(imgs) {
+    if(!imgs.length)return;
     downloadImg(imgs).then(stImgs => {
       this.setData({ stImgs })
     })

@@ -11,7 +11,8 @@
     "pages/calendar/index",
     "pages/stDetail/index",
     "pages/staffPenal/index",
-    "pages/statistics/index"
+    "pages/statistics/index",
+    "pages/settlement/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

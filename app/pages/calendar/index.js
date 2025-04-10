@@ -5,88 +5,96 @@ import { recordType } from '../../utils/dict';
 
 Page({
   data: {
-    currentDate:new Date().toLocaleDateString(),
-    currentYear:new Date().getFullYear(),
-    currentMonth:new Date().getMonth(),
-    value:new Date().getTime(),
+    currentDate: new Date().toLocaleDateString(),
+    currentYear: new Date().getFullYear(),
+    currentMonth: new Date().getMonth(),
+    value: new Date().getTime(),
     minDate: new Date(2020, 1, 1).getTime(),
     maxDate: new Date().getTime(),
-    workingRecordMap:{},
+    workingRecordMap: {},
     singleFormat(day) {
       return day;
     },
-    recordType:recordType
+    recordType: recordType
   },
 
-  getWorkingRecord(){
+  getWorkingRecord() {
     const data = {
-      size:999,
-      page:1
+      size: 999,
+      page: 1
     }
     http.post('/attendance/getAttendance', data).then(res => {
       if (res.data.success) {
         const workingRecordMap = {}
         res.data.data.forEach(item => {
           let date = new Date(parseInt(item.attendanceDate)).toLocaleDateString();
-          if(workingRecordMap[date]){
+          if (workingRecordMap[date]) {
             workingRecordMap[date].push({
               ...item,
-              explain:this.generateExplainText(item)
+              explain: this.generateExplainText(item)
             })
-          }else{
+          } else {
             workingRecordMap[date] = [{
               ...item,
-              explain:this.generateExplainText(item)
+              explain: this.generateExplainText(item)
             }]
           }
         })
 
         const singleFormat = (day) => {
           const date = day.date.toLocaleDateString()
-          if(workingRecordMap[date]){
-            day.suffix = workingRecordMap[date].reduce((acc,cur) => {
+          if (workingRecordMap[date]) {
+            day.suffix = workingRecordMap[date].reduce((acc, cur) => {
               let amount = cur.cost + (cur.workingHours * cur.salary)
               return acc + amount
             }, 0) + '¥'
           }
           return day
         }
-        this.setData({workingRecordMap , singleFormat })
+        this.setData({ workingRecordMap, singleFormat })
       }
     })
   },
 
-  generateExplainText(item){
-    if(item.type === 0){
+  generateExplainText(item) {
+    if (item.type === 0) {
+      return `上班${item.workingHours}天`
+    } else if (item.type === 1) {
       return `上班${item.workingHours}个小时`
-    }else if(item.type === 1){
+    } else if (item.type === 2) {
       return item.costName
-    }else{
+    } else {
       return ''
     }
   },
 
-  addRecords(){
+  addRecords() {
     wx.navigateTo({
       url: '/pages/toolAttendance/index',
     })
   },
 
-  toDetail(e){
+  addSettlement() {
+    wx.navigateTo({
+      url: '/pages/settlement/index',
+    })
+  },
+
+  toDetail(e) {
     app.globalData.workRecordDetail = e.currentTarget.dataset.detail;
-    wx.navigateTo({url: '/pages/stDetail/index'})
+    wx.navigateTo({ url: '/pages/stDetail/index' })
   },
 
-  handleSelect(e){
+  handleSelect(e) {
     const currentDate = new Date(e.detail.value).toLocaleDateString()
-    this.setData({currentDate})
+    this.setData({ currentDate })
   },
 
-  handlePanelChange(e){
+  handlePanelChange(e) {
     // this.getWorkingRecord()
   },
 
-  onShow : function () {
+  onShow: function () {
     this.getWorkingRecord()
   }
 
