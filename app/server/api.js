@@ -25,7 +25,6 @@ http.interceptors.request.use(config => {
       if (res && res.data) {
         Object.assign(config.headers, { token: res.data })
       }
-      console.log(config)
       return config
     }).catch((err) => {
       console.log(err)

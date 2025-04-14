@@ -7,10 +7,15 @@ Page({
     summary:{},
     totalAmount:0,
     //search
+    placeName:'全部项目',
+    placeId:[''],
     dateValue: [],
     dateLabel: [],
     dateVisible:false,
-    searchDate:'2024-01-27',
+    maxDate:new Date().getTime(),
+    minDate:new Date(2022, 1, 1).getTime(),
+    placeVisible:false,
+    places:[],
     // dict
     recordType:recordType
   },
@@ -19,28 +24,43 @@ Page({
     this.setData({ dateVisible: true });
   },
 
-  handleConfirm(e) {
-    console.log(e)
+  handlePlace() {
+    this.setData({ placeVisible: true });
+  },
+
+  handleDateConfirm(e) {
     const dateValue = e.detail.value;
-    const dateLabel = new Date(dateValue).toLocaleDateString()
+    const dateLabel = dateValue.map(item => new Date(item).toLocaleDateString())
     this.setData({
       dateValue,
       dateLabel
     });
+    this.getAttendance()
+  },
+
+  handlePlaceConfirm(e){
+    const placeId = e.detail.value;
+    const placeName = e.detail.label
+    this.setData({ placeId, placeName });
+    this.getAttendance()
   },
 
   setDefaultSearchDate(){
-    const end = new Date()
-    const start = end.getTime() - (60 * 60 * 60 * 24 * 1000)
+    const end = new Date().getTime()
+    const start = end - (60 * 60 * 60 * 12 * 1000)
     const dateValue = [start,end]
     const dateLabel = dateValue.map(item => new Date(item).toLocaleDateString())
     this.setData({ dateValue , dateLabel })
   },
 
   getAttendance() {
+    const attendanceDate = this.data.dateValue
+    const placeId = this.data.placeId[0]
     let params = {
       size: 999,
       page: 1,
+      attendanceDate,
+      placeId
     }
     http.post('/attendance/getAttendance', params).then(res => {
       const record = {}
@@ -68,8 +88,30 @@ Page({
     })
   },
 
+  getPlaces() {
+    let params = {
+      size: 999,
+      page: 1,
+      state: 0
+    }
+    http.post('/accountingPlace/getPlaces', params).then(res => {
+      if (res.data.success) {
+        const siteList = res.data.data
+        const places = siteList.map(item => {
+          return {
+            value: item.id,
+            label: item.name
+          }
+        })
+        places.push({value: '', label: '全部项目'})
+        this.setData({ places })
+      }
+    })
+  },
+
   onLoad(){
     this.setDefaultSearchDate()
     this.getAttendance()
+    this.getPlaces()
   }
 });

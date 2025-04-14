@@ -6,24 +6,20 @@
         <t-icon class="icon" name="swap-right" size="40rpx" />
         <view>{{dateLabel[1]}}</view>
       </view>
-      <view bind:tap="showStaffPenal">选择項目</view>
+      <view bind:tap="handlePlace">{{placeName}}</view>
     </view>
     <view>
       <view>
         <t-cell-group>
-          <t-cell wx:for="{{summary}}" wx:key="unique" 
-          t-class="card" t-class-title="card-title"
-          title="{{recordType[item.type]}}"
-          note="{{ item.total }}¥"
-          />
-          <t-cell
-          t-class="card-total" t-class-title="card-title"
-          title="未结"
-          note="{{ totalAmount }}¥"
-          />
+          <t-cell wx:for="{{summary}}" wx:key="unique" t-class="card" t-class-title="card-title" title="{{recordType[item.type]}}" note="{{ item.total }}¥" />
+          <t-cell t-class="card-total" t-class-title="card-title" title="未结" note="{{ totalAmount }}¥" />
         </t-cell-group>
       </view>
     </view>
   </view>
-  <t-calendar visible="{{dateVisible}}" value="{{value}}" type="range" bind:confirm="handleConfirm" bind:close="onClose" />
+  <t-calendar visible="{{dateVisible}}" value="{{dateValue}}" type="range" bind:confirm="handleDateConfirm" bind:close="onClose" maxDate="{{maxDate}}" minDate="{{minDate}}" />
+
+  <t-picker visible="{{placeVisible}}" value="{{placeId}}" bind:change="handlePlaceConfirm" cancelBtn="取消" confirmBtn="确认">
+    <t-picker-item options="{{places}}"></t-picker-item>
+  </t-picker>
 </view>

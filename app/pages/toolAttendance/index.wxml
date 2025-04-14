@@ -19,7 +19,7 @@
     </view>
     </block>
     <!-- 记工记帐 -->
-    <t-tabs defaultValue="{{0}}" bind:change="onTabsChange">
+    <t-tabs defaultValue="0" bind:change="onTabsChange">
       <t-tab-panel label="点工" value="0">
         <xl-form column="{{atWorkRecord}}" id='xl-form-2'></xl-form>
       </t-tab-panel>

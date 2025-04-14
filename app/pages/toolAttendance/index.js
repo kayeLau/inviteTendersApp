@@ -37,17 +37,17 @@ Page({
     const staffId = this.data.selected.map(item => item.value).join(',')
     const type = this.data.tab
     let params
-    if (type === '0') {
+    if (type === 0) {
       params = {
         workingHours: data2.workingHours,
         salary: data2.salary,
       }
-    } else if (type === '1') {
+    } else if (type === 1) {
       params = {
         workingHours: data3.workingHours,
         salary: data3.salary,
       }
-    } else if(type === '2') {
+    } else if(type === 2) {
       params = {
         costName: data4.costName,
         cost: data4.cost,
@@ -96,7 +96,7 @@ Page({
 
   onTabsChange(e) {
     this.setData({
-      tab: e.detail.value
+      tab: Number(e.detail.value)
     })
   },
 

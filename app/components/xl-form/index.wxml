@@ -3,9 +3,9 @@
   <form onSubmit="onSubmit" onReset="onReset">
     <view class="form-section" wx:for="{{column}}" wx:key="unique">
       <!-- slider -->
-      <slider wx:if="{{item.prop === 'slider'}}" bindchange="bindChange" data-key="{{item.key}}" value="{{params[item.key]}}" />
+      <slider wx:if="{{item.prop === 'slider'}}" bind:change="bindChange" data-key="{{item.key}}" value="{{params[item.key]}}" />
       <!-- input -->
-      <t-input wx:if="{{item.prop === 'input'}}" type="{{item.type}}" label="{{item.label}}" placeholder="请输入文字" bindchange="bindChange" data-key="{{item.key}}" value="{{params[item.key]}}" suffix="{{item.suffix}}" />
+      <t-input wx:if="{{item.prop === 'input'}}" type="{{item.type}}" label="{{item.label}}" placeholder="请输入文字" bind:change="bindChange" data-key="{{item.key}}" value="{{params[item.key]}}" suffix="{{item.suffix}}" />
       <!-- radio -->
       <view wx:if="{{item.prop === 'radio'}}" class="cell radio">
       <view>{{item.label}}</view>
@@ -16,12 +16,12 @@
       <!-- datePicker -->
       <block wx:if="{{item.prop === 'datepicker'}}">
         <t-cell arrow title="单个选择日历" note="{{pickerVisible[item.key].label}}" bind:tap="showPicker" data-key="{{item.key}}" />
-        <t-calendar visible="{{pickerVisible[item.key].visible}}" value="{{params[item.key]}}" bind:confirm="bindChange" data-key="{{item.key}}" />
+        <t-calendar visible="{{pickerVisible[item.key].visible}}" value="{{params[item.key]}}" bind:confirm="bindChange" data-key="{{item.key}}" maxDate="{{maxDate}}" minDate="{{minDate}}" defaultValue="{{defaultValue}}" bind:close="showPicker" />
       </block>
       <!-- picker -->
       <block wx:if="{{item.prop === 'picker'}}">
         <t-cell class="mb-16" title="{{item.label}}" arrow hover bind:click="showPicker" data-key="{{item.key}}" note="{{pickerVisible[item.key].label}}" />
-        <t-picker visible="{{pickerVisible[item.key].visible}}" value="{{params[item.key]}}" title="{{item.label}}" bindchange="bindChange" cancelBtn="取消" confirmBtn="确认" data-key="{{item.key}}">
+        <t-picker visible="{{pickerVisible[item.key].visible}}" value="{{params[item.key]}}" title="{{item.label}}" bindchange="bindChange" cancelBtn="取消" confirmBtn="确认" data-key="{{item.key}}" bind:close="showPicker">
           <t-picker-item options="{{item.options}}"></t-picker-item>
         </t-picker>
       </block>

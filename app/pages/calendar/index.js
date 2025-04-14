@@ -82,7 +82,7 @@ Page({
 
   toDetail(e) {
     app.globalData.workRecordDetail = e.currentTarget.dataset.detail;
-    wx.navigateTo({ url: '/pages/stDetail/index' })
+    wx.navigateTo({ url: '/pages/clDetail/index' })
   },
 
   handleSelect(e) {

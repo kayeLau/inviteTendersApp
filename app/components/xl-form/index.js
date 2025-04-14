@@ -18,7 +18,9 @@ Component({
   data: {
     params: {},
     pickerVisible: {},
-    test: false,
+    maxDate:new Date().getTime(),
+    minDate:new Date(2022, 1, 1).getTime(),
+    defaultValue:new Date().getTime(),
     visibleComponentMap: {
       'datepicker': true,
       'picker': true,
@@ -97,26 +99,35 @@ Component({
     showPicker(e) {
       let key = e.currentTarget.dataset.key
       const pickerVisible = this.data.pickerVisible
-      pickerVisible[key].visible = true
+      pickerVisible[key].visible = !pickerVisible[key].visible
       this.setData({
         pickerVisible
       })
     },
+
   },
 
   lifetimes: {
     attached: function () {
       const pickerVisible = {}
+      const params = {}
       this.properties.column.forEach(item => {
+        let label = '请选择'
+        if(item.prop === 'datepicker'){
+          const date = new Date()
+          params[item.key] = date.getTime()
+          label = date.toLocaleDateString()
+        }
         if (this.data.visibleComponentMap[item.prop]) {
           pickerVisible[item.key] = {
             visible: item.visible,
-            label: '请选择'
+            label
           }
         }
       });
       this.setData({
-        pickerVisible
+        pickerVisible,
+        params
       })
     },
   }

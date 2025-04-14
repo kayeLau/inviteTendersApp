@@ -4,11 +4,13 @@ module.exports = class Attendance {
     getAttendance(req, res, next) {
         const userInfo = req.userInfo
         const options = {
-            createUserId: userInfo.createUserId,
+            createUserId: userInfo.id,
+            attendanceDate: req.body.attendanceDate,
+            placeId: req.body.placeId,
+            staffId: req.body.staffId
         }
         const size = req.body.size
         const page = req.body.page
-
 
         getAttendance(options, size, page).then(result => {
             res.json(result)
@@ -23,8 +25,8 @@ module.exports = class Attendance {
         const data = {
             createUserId: userInfo.id,
             placeId: req.body.placeId,
-            type:req.body.type,
-            salary:req.body.salary,
+            type: req.body.type,
+            salary: req.body.salary,
             staffId: req.body.staffId,
             remark: req.body.remark,
             attendanceDate: req.body.attendanceDate,
@@ -32,7 +34,7 @@ module.exports = class Attendance {
             costName: req.body.costName,
             cost: req.body.cost,
             recordImg: req.body.recordImg,
-            mode:req.body.mode
+            mode: req.body.mode
         }
 
         createAttendance(data).then(result => {

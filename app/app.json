@@ -9,9 +9,10 @@
     "pages/toolAttendance/index",
     "pages/toolRecord/index",
     "pages/calendar/index",
-    "pages/stDetail/index",
+    "pages/clDetail/index",
     "pages/staffPenal/index",
     "pages/statistics/index",
+    "pages/stDetail/index",
     "pages/settlement/index"
   ],
   "window": {
