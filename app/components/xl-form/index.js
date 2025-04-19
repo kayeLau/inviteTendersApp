@@ -1,4 +1,5 @@
 import { uploadImg } from '../../server/api'
+import { formatTime } from '../../utils/util';
 
 Component({
   options: {
@@ -76,7 +77,7 @@ Component({
       if (target.prop === 'datepicker') {
         return {
           value: e.detail.value,
-          label: new Date(e.detail.value).toLocaleDateString()
+          label: formatTime(new Date(e.detail.value))
         }
       } else if (target.prop === 'picker') {
         return {
@@ -116,7 +117,7 @@ Component({
         if(item.prop === 'datepicker'){
           const date = new Date()
           params[item.key] = date.getTime()
-          label = date.toLocaleDateString()
+          label = formatTime(date)
         }
         if (this.data.visibleComponentMap[item.prop]) {
           pickerVisible[item.key] = {

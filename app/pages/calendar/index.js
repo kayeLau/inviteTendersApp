@@ -2,10 +2,11 @@
 const app = getApp()
 import { http } from '../../server/api';
 import { recordType } from '../../utils/dict';
+import { formatTime } from '../../utils/util';
 
 Page({
   data: {
-    currentDate: new Date().toLocaleDateString(),
+    currentDate: formatTime(new Date()),
     currentYear: new Date().getFullYear(),
     currentMonth: new Date().getMonth(),
     value: new Date().getTime(),
@@ -27,7 +28,7 @@ Page({
       if (res.data.success) {
         const workingRecordMap = {}
         res.data.data.forEach(item => {
-          let date = new Date(parseInt(item.attendanceDate)).toLocaleDateString();
+          let date = formatTime(new Date(parseInt(item.attendanceDate)));
           if (workingRecordMap[date]) {
             workingRecordMap[date].push({
               ...item,
@@ -42,7 +43,7 @@ Page({
         })
 
         const singleFormat = (day) => {
-          const date = day.date.toLocaleDateString()
+          const date = formatTime(day.date)
           if (workingRecordMap[date]) {
             day.suffix = workingRecordMap[date].reduce((acc, cur) => {
               let amount = cur.cost + (cur.workingHours * cur.salary)
@@ -86,7 +87,7 @@ Page({
   },
 
   handleSelect(e) {
-    const currentDate = new Date(e.detail.value).toLocaleDateString()
+    const currentDate = formatTime(new Date(e.detail.value))
     this.setData({ currentDate })
   },
 

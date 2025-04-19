@@ -1,4 +1,5 @@
-import { http , downloadImg } from '../../server/api';
+import { downloadImg } from '../../server/api';
+import { formatTime } from '../../utils/util';
 const app = getApp()
 
 Page({
@@ -12,7 +13,7 @@ Page({
 
   getDetail() {
     const stDetail = app.globalData.workRecordDetail
-    stDetail.dateString = new Date(parseInt(stDetail.attendanceDate)).toLocaleDateString();
+    stDetail.dateString = formatTime(new Date(parseInt(stDetail.attendanceDate)))
     const stImgs = stDetail.recordImg ? stDetail.recordImg.split(',') : []
     this.getImg(stImgs)
     this.setData({ stDetail })

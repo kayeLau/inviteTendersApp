@@ -1,4 +1,5 @@
-import { recordType } from '../../utils/dict.js';
+import { recordType } from '../../utils/dict';
+import { formatTime } from '../../utils/util';
 import { http } from '../../server/api'
 
 Page({
@@ -30,7 +31,7 @@ Page({
 
   handleDateConfirm(e) {
     const dateValue = e.detail.value;
-    const dateLabel = dateValue.map(item => new Date(item).toLocaleDateString())
+    const dateLabel = dateValue.map(item => formatTime(new Date(item)))
     this.setData({
       dateValue,
       dateLabel
@@ -49,7 +50,7 @@ Page({
     const end = new Date().getTime()
     const start = end - (60 * 60 * 60 * 12 * 1000)
     const dateValue = [start,end]
-    const dateLabel = dateValue.map(item => new Date(item).toLocaleDateString())
+    const dateLabel = dateValue.map(item => formatTime(new Date(item)))
     this.setData({ dateValue , dateLabel })
   },
 
