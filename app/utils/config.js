@@ -126,6 +126,7 @@ export const atWorkRecord = [{
 {
   key: 'salary',
   prop: 'input',
+  type:"number",
   label: '工资',
   value: '',
   suffix: '天'
@@ -134,13 +135,19 @@ export const atWorkRecord = [{
 export const atWorkRecordHour = [{
   key: 'workingHours',
   prop: 'input',
+  type:"number",
   label: '工时',
   value: '',
+  rule:[
+    { min:24 , msg:'不能大于24' },
+    { max:24 , msg:'不能大于24' }
+  ]
 },
 {
   key: 'salary',
   prop: 'input',
   label: '工资',
+  type:"number",
   value: '',
 }
 ]
@@ -153,6 +160,7 @@ export const ataccount = [{
   key: 'cost',
   prop: 'input',
   label: '金额',
+  type:"number",
   value: '',
 }
 ]
