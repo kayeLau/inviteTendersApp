@@ -34,6 +34,7 @@ Page({
     let data3 = this.selectComponent("#xl-form-3").getData()
     let data4 = this.selectComponent("#xl-form-4").getData()
     let data5 = this.selectComponent("#xl-form-5").getData()
+    if(!data1)return;
     const staffId = this.data.selected.map(item => item.value).join(',')
     const type = this.data.tab
     let params

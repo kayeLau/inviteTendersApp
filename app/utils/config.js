@@ -39,12 +39,14 @@ export const staff = [{
   prop: 'input',
   label: '手机号码',
   value: '',
+  nullable:true
 },
 {
   key: 'jobType',
   prop: 'input',
   label: '岗位工种',
   value: '',
+  nullable:true
 },
 {
   key: 'salary',
@@ -72,18 +74,21 @@ export const staff = [{
   prop: 'input',
   label: '身份证号',
   value: '',
+  nullable:true
 },
 {
   key: 'bankNumber',
   prop: 'input',
   label: '银行卡号',
-  value: 0,
+  value: '',
+  nullable:true
 },
 {
   key: 'bank',
   prop: 'input',
   label: '发卡银行',
-  value: 0,
+  value: '',
+  nullable:true
 }
 ]
 export const atTimePlace = [{
@@ -157,10 +162,12 @@ export const remarkAndImg = [
     prop: 'input',
     label: '备注',
     value: '',
+    nullable:true
   }, {
     key: 'recordImg',
     prop: 'upload',
     label: '上传图片',
     value: [],
+    nullable:true
   }
 ]

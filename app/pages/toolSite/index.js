@@ -47,6 +47,7 @@ Page({
 
   createPlaceInfo() {
     let data = this.selectComponent("#xl-form").getData()
+    if(!data)return;
     let params = {
       name: data.name,
       attendanceTime: data.attendanceTime,
@@ -64,6 +65,7 @@ Page({
 
   updatePlaceInfo(){
     let data = this.selectComponent("#xl-form").getData()
+    if(!data)return;
     let params = {
       id:data.id,
       name: data.name,

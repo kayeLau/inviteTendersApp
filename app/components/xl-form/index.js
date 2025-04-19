@@ -1,5 +1,9 @@
-import { uploadImg } from '../../server/api'
-import { formatTime } from '../../utils/util';
+import {
+  uploadImg
+} from '../../server/api'
+import {
+  formatTime
+} from '../../utils/util';
 
 Component({
   options: {
@@ -17,11 +21,12 @@ Component({
   },
 
   data: {
-    params: {},
-    pickerVisible: {},
-    maxDate:new Date().getTime(),
-    minDate:new Date(2022, 1, 1).getTime(),
-    defaultValue:new Date().getTime(),
+    params: {}, // 值map
+    rule: {}, // 校驗map
+    pickerVisible: {}, // picker顯示map
+    maxDate: new Date().getTime(),
+    minDate: new Date(2022, 1, 1).getTime(),
+    defaultValue: new Date().getTime(),
     visibleComponentMap: {
       'datepicker': true,
       'picker': true,
@@ -40,7 +45,12 @@ Component({
 
   methods: {
     getData() {
-      return this.data.params
+      const pass = this.verify()
+      if(pass){
+        return this.data.params
+      }else{
+        return false
+      }
     },
 
     textData(params) {
@@ -93,7 +103,9 @@ Component({
           }
         }
       } else {
-        return { value: e.detail.value }
+        return {
+          value: e.detail.value
+        }
       }
     },
 
@@ -106,6 +118,24 @@ Component({
       })
     },
 
+    verify() {
+      const params = this.data.params
+      const rule = this.data.rule
+      let pass = true
+      this.properties.column.forEach(item => {
+        if(!item.nullable){
+          if (params[item.key] === null || params[item] === undefined) {
+            const action = item.prop === 'input' ? '输入' : '选择'
+            rule[item.key] = '请' + action + item.label
+            pass = false
+          }
+        }
+      })
+      this.setData({
+        rule
+      })
+      return pass
+    }
   },
 
   lifetimes: {
@@ -114,7 +144,7 @@ Component({
       const params = {}
       this.properties.column.forEach(item => {
         let label = '请选择'
-        if(item.prop === 'datepicker'){
+        if (item.prop === 'datepicker') {
           const date = new Date()
           params[item.key] = date.getTime()
           label = formatTime(date)

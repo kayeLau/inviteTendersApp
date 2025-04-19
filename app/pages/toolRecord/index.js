@@ -45,6 +45,7 @@ Page({
 
   createAttendance() {
     let data = this.selectComponent("#xl-form").getData()
+    if(!data)return;
     let params = {
       attendance_date: data.attendance_date,
       staff: data.staff,
@@ -62,6 +63,7 @@ Page({
 
   updateAttendance(){
     let data = this.selectComponent("#xl-form").getData()
+    if(!data)return;
     let params = {
       id:data.id,
       name: data.name,

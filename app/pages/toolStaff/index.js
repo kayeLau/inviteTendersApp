@@ -50,7 +50,7 @@ Page({
 
   createMemberInfo() {
     let data = this.selectComponent("#xl-form").getData()
-    const userInfo = wx.getStorageSync('userInfo')
+    if(!data)return;
     let params = {
       name:data.name,
       phoneNumber: data.phoneNumber,
@@ -74,7 +74,7 @@ Page({
 
   updatePlaceMemberInfo(){
     let data = this.selectComponent("#xl-form").getData()
-    const userInfo = wx.getStorageSync('userInfo')
+    if(!data)return;
     let params = {
       id:data.id,
       name:data.name,
