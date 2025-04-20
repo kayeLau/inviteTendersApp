@@ -1,27 +1,18 @@
 <view class="container">
-  <view style="padding:15rpx 20rpx;">
+  <view>
     <view wx:if="{{!isEdit}}">
       <mp-tabs tabs="{{tabConfig}}" activeTab="{{activeTab}}" tab-class="mp-tabs" swiper-class='swiper-class'>
         <view wx:for="{{tabConfig}}" wx:key="unique" slot="tab-content-{{index}}">
           <view>
-            <view wx:for="{{index === 0 ? siteList : endSiteList}}" wx:key="unique" class="site-list" wx:for-index="subIndex">
+            <view wx:for="{{index === 0 ? siteList : endSiteList}}" wx:key="unique" class="card site-list" wx:for-index="subIndex">
               <view class="font-bold">{{item.name}}</view>
               <!-- btn-group -->
-              <view wx:if="{{index === 0 }}" class="flex">
-                <view class="btn-icon btn-primary" bind:tap="switchToEdit" data-current='{{item}}' data-mode='edit'>
-                  <image src="../../assert/icon/edit.png" class="icon" />
-                  <text>编辑</text>
-                </view>
-                <view class="btn-icon btn-warning" bind:tap="setPlaceInfoState" data-current='{{item}}' data-state='{{1}}'>
-                  <image src="../../assert/icon/finished.png" class="icon" />
-                  <text>结束</text>
-                </view>
+              <view wx:if="{{index === 0 }}" class="flex gap">
+                <t-button theme="light" bind:tap="switchToEdit" data-current='{{item}}' data-mode='edit'>编辑</t-button>
+                <t-button theme="light" bind:tap="setPlaceInfoState" data-current='{{item}}' data-state='{{1}}'>结束</t-button>
               </view>
               <view wx:else="{{index === 1 }}">
-                <view class="btn-icon btn-warning" bind:tap="setPlaceInfoState" data-current='{{item}}' data-state='{{0}}'>
-                  <image src="../../assert/icon/return.png" class="icon" />
-                  <text>返场</text>
-                </view>
+                <t-button theme="light" bind:tap="setPlaceInfoState" data-current='{{item}}' data-state='{{0}}'>结束</t-button>
               </view>
             </view>
             <view class="footer-btn" bind:tap="switchToEdit" style="background-color: var(--primary-color);" data-mode='create'>添加工地</view>
@@ -32,7 +23,7 @@
   </view>
   <!-- list -->
   <view wx:if="{{isEdit}}">
-    <xl-form column="{{config}}" title='添加工地' id='xl-form'>
+    <xl-form column="{{config}}" title='' id='xl-form'>
     </xl-form>
     <view class="footer">
       <view class="round-btn" bind:tap="switchToList" style="background-color: var(--gary-color);width: 30%;">返回</view>

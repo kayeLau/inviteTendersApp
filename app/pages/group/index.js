@@ -3,21 +3,9 @@ import { http } from '../../server/api'
 
 Page({
   data: {
-    formMode:'',
-    isEdit: false,
     staffList: [], // 人员列表
     endstaffList: [], // 离开的人员列表
     activeTab: 0,
-    tabConfig: [{
-        title: '在场',
-      },
-      {
-        title: '返场',
-      },
-    ],
-    id: '',
-    path: '',
-    config: staff,
   },
 
   getPlaceMemberInfo() {
@@ -38,6 +26,7 @@ Page({
   },
 
   sumbitMemberInfo(){
+
     if(this.data.formMode === 'create'){
       this.createMemberInfo()
     }else if(this.data.formMode === 'edit'){

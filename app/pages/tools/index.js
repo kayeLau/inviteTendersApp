@@ -2,36 +2,48 @@ Page({
   data: {
     currentPlace: '',
     currentRole: 1,
-    currentRoleImage:'../../assert/construction-worker.png',
+    currentRoleImage: '../../assert/construction-worker.png',
     roleMap: {
-      1:'工人',
-      2:'工头',
-      3:'老板'
+      1: '工人',
+      2: '工头',
+      3: '老板'
     },
     visible: false,
     roleVisible: false,
     siteList: [],
     triggered: false,
-    tools: [{
-      name: '设置工地',
+    pjManage: [{
+      name: '设置项目',
       icon: '../../assert/hook.png',
       path: 'toolSite'
     },
     {
       name: '人员管理',
-      icon: '../../assert/workers.png',
+      icon: '../../assert/worker.png',
       path: 'toolStaff'
     },
     {
-      name: '记工',
-      icon: '../../assert/note.png',
-      path: 'toolAttendance'
+      name: '班组管理',
+      icon: '../../assert/workers.png',
+      path: 'group'
     },
-    {
-      name: '考勤记录',
-      icon: '../../assert/under-construction.png',
-      path: 'toolRecord'
-    }
+    ],
+    rdManage: [
+      {
+        name: '记工记帐',
+        icon: '../../assert/note.png',
+        path: 'toolAttendance'
+      },
+      {
+        name: '结算',
+        icon: '../../assert/pay.png',
+        path: 'settlement'
+      },
+      {
+        name: '考勤记录',
+        icon: '../../assert/under-construction.png',
+        path: 'toolRecord'
+      }
     ]
   },
   jumpTo(event) {

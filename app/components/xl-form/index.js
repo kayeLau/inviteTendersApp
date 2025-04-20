@@ -46,9 +46,9 @@ Component({
   methods: {
     getData() {
       const pass = this.verify()
-      if(pass){
+      if (pass) {
         return this.data.params
-      }else{
+      } else {
         return false
       }
     },
@@ -123,8 +123,9 @@ Component({
       const rule = this.data.rule
       let pass = true
       this.properties.column.forEach(item => {
-        if(!item.nullable){
-          if (params[item.key] === null || params[item] === undefined) {
+        if (!item.nullable) {
+          if (params[item.key] === null || params[item.key] === undefined) {
+            console.log(params[item.key])
             const action = item.prop === 'input' ? '输入' : '选择'
             rule[item.key] = '请' + action + item.label
             pass = false

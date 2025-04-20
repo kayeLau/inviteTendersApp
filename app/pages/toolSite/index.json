@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "xl-form": "../../components/xl-form/index",
-    "mp-tabs": "@miniprogram-component-plus/tabs"
+    "mp-tabs": "@miniprogram-component-plus/tabs",
+    "t-button": "tdesign-miniprogram/button/button"
   }
 }

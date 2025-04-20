@@ -1,5 +1,11 @@
 import { http } from '../../server/api'
 Component({
+  properties:{
+    showPlace:{
+      type:Boolean,
+      value:false
+    }
+  },
   options: {
     styleIsolation: 'shared'
   },
@@ -69,7 +75,7 @@ Component({
       const currentPlaceId = this.wxStorage(id, 'placeId')
       const currentPlace = this.data.siteList.find(item => item.id === currentPlaceId)
       this.setData({
-        currentPlace: currentPlace ? currentPlace.name : '工地',
+        currentPlace: currentPlace ? currentPlace.name : '全部项目',
         placeVisible: false
       })
     },

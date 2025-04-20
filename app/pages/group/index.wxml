@@ -1,0 +1,15 @@
+<view class="container">
+  <view wx:for="{{index === 0 ? staffList : endstaffList}}" wx:key="unique" class="card site-list" wx:for-index="subIndex">
+    <view class="li-info">
+      <view class="font-bold font-big">{{item.name}}</view>
+    </view>
+    <!-- btn-group -->
+    <view wx:if="{{index === 0 }}" class="flex gap">
+      <t-button theme="light" bind:tap="switchToEdit" data-current='{{item}}' data-mode='edit'>编辑</t-button>
+      <t-button theme="light" bind:tap="setMemberState" data-current='{{item}}' data-state='{{1}}'>离场</t-button>
+    </view>
+    <view wx:else="{{index === 1 }}">
+      <t-button theme="light" bind:tap="setMemberState" data-current='{{item}}' data-state='{{0}}'>返场</t-button>
+    </view>
+  </view>
+</view>

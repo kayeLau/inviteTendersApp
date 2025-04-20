@@ -5,6 +5,7 @@
     "pages/detail/index",
     "pages/tools/index",
     "pages/toolSite/index",
+    "pages/group/index",
     "pages/toolStaff/index",
     "pages/toolAttendance/index",
     "pages/toolRecord/index",

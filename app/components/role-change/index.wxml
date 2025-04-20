@@ -8,7 +8,7 @@
         <view style="color: rgb(12, 131, 235);">点击切换角色</view>
       </view>
     </view>
-    <view bind:tap="openSiteSelector">{{currentPlace}}</view>
+    <view bind:tap="openSiteSelector" wx:if="{{showPlace}}">{{currentPlace}}</view>
   </view>
   <!-- role -->
   <view class="container role-gird popup-panel" wx:if="{{roleVisible}}">
