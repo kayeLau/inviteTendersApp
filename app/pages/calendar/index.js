@@ -17,6 +17,7 @@ Page({
     minDate: new Date(2020, 1, 1).getTime(),
     maxDate: new Date().getTime(),
     workingRecordMap: {},
+    singleFormat:()=>{},
     recordType: recordType
   },
 
@@ -33,10 +34,12 @@ Page({
           if (workingRecordMap[date]) {
             workingRecordMap[date].push({
               ...item,
+              explain: generateExplainText(item)
             })
           } else {
             workingRecordMap[date] = [{
               ...item,
+              explain: generateExplainText(item)
             }]
           }
         })
@@ -51,20 +54,10 @@ Page({
           }
           return day
         }
+        const value = new Date().getTime()
+        this.setData({ workingRecordMap, singleFormat , value })
       }
     })
-  },
-
-  generateExplainText(item) {
-    if (item.type === 0) {
-      return `上班${item.workingHours}天`
-    } else if (item.type === 1) {
-      return `上班${item.workingHours}个小时`
-    } else if (item.type === 2) {
-      return item.costName
-    } else {
-      return ''
-    }
   },
 
   addRecords() {

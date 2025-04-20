@@ -1,5 +1,8 @@
+<<<<<<< Updated upstream
 import { downloadImg } from '../../server/api';
 import { formatTime } from '../../utils/util';
+=======
+>>>>>>> Stashed changes
 const app = getApp()
 import { http } from '../../server/api';
 import { recordType } from '../../utils/dict';
