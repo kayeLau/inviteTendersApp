@@ -1,8 +1,5 @@
-<<<<<<< Updated upstream
 import { downloadImg } from '../../server/api';
 import { formatTime } from '../../utils/util';
-=======
->>>>>>> Stashed changes
 const app = getApp()
 import { http } from '../../server/api';
 import { recordType } from '../../utils/dict';
@@ -16,20 +13,6 @@ Page({
     recordType: recordType
   },
 
-<<<<<<< Updated upstream
-  getDetail() {
-    const stDetail = app.globalData.workRecordDetail
-    stDetail.dateString = formatTime(new Date(parseInt(stDetail.attendanceDate)));
-    const stImgs = stDetail.recordImg ? stDetail.recordImg.split(',') : []
-    this.getImg(stImgs)
-    this.setData({ stDetail })
-  },
-
-  getImg(imgs) {
-    if(!imgs.length)return;
-    downloadImg(imgs).then(stImgs => {
-      this.setData({ stImgs })
-=======
   getDetail(options) {
     const startDate = Number(options.startDate)
     const endDate = Number(options.endDate)
@@ -48,7 +31,7 @@ Page({
       if (res.data.success) {
         res.data.data.forEach(item => {
           let amount = item.cost + (item.workingHours * item.salary)
-          const date = new Date(Number(item.attendanceDate)).toLocaleDateString()
+          const date = formatTime(new Date(Number(item.attendanceDate)))
           totalAmount += amount
           item.explain = generateExplainText(item)
           if (record[date]) {
@@ -62,7 +45,13 @@ Page({
         });
         this.setData({ record, totalAmount })
       }
->>>>>>> Stashed changes
+    })
+  },
+
+  getImg(imgs) {
+    if(!imgs.length)return;
+    downloadImg(imgs).then(stImgs => {
+      this.setData({ stImgs })
     })
   },
 

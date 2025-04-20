@@ -42,11 +42,6 @@ const generateExplainText = item => {
 
 module.exports = {
   formatTime,
-<<<<<<< Updated upstream
-  promisify
-}
-=======
   promisify,
   generateExplainText
 }
->>>>>>> Stashed changes
