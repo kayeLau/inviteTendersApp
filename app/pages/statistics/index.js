@@ -4,7 +4,6 @@ import { http } from '../../server/api'
 
 Page({
   data: {
-    record:{},
     summary:{},
     totalAmount:0,
     //search
@@ -54,6 +53,16 @@ Page({
     this.setData({ dateValue , dateLabel })
   },
 
+  jumpTo(e){
+    const type = e.currentTarget.dataset.type
+    const startDate = this.data.dateValue[0]
+    const endDate = this.data.dateValue[1]
+    const placeId = this.data.placeId[0]
+    wx.navigateTo({
+      url: `/pages/stDetail/index?type=${type}&startDate=${startDate}&endDate=${endDate}&placeId=${placeId}`,
+    })
+  },
+
   getAttendance() {
     const attendanceDate = this.data.dateValue
     const placeId = this.data.placeId[0]
@@ -84,7 +93,7 @@ Page({
             }
           }
         });
-        this.setData({record, summary, totalAmount})
+        this.setData({ summary, totalAmount})
       }
     })
   },

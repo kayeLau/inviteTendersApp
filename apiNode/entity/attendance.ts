@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column , ManyToOne , JoinColumn } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm"
 import { Max } from 'class-validator';
 import { AcPlace } from "./acPlace"
 
@@ -14,29 +14,29 @@ export class Attendance {
     @Column()
     createUserId: number
 
-    @Column({comment:"员工号", nullable:true })
+    @Column({ comment: "员工号", nullable: true })
     staffId: string
 
-    @Column({comment:"0:记整工 1:记點工 2:记帐"})
+    @Column({ comment: "0:记整工 1:记點工 2:记帐" })
     type: number
 
-    @Column({comment:"0:工人 1:帶班 2:老闆"})
+    @Column({ comment: "0:工人 1:帶班 2:老闆" })
     mode: number
 
-    @Column({ nullable: true, length: 13 , comment:"记录日期" })
+    @Column({ comment: "记录日期", length: 13 })
     attendanceDate: string
 
-    @Column({ default:0 })
+    @Column({ default: 0 })
     @Max(24)
     workingHours: number
 
-    @Column({ default:0 , comment:"时薪"})
+    @Column({ default: 0, comment: "时薪" })
     salary: number
 
-    @Column({ nullable: true, length: 50 , comment:"费用名" })
+    @Column({ nullable: true, length: 50, comment: "费用名" })
     costName: string
 
-    @Column({ default:0 })
+    @Column({ default: 0 })
     cost: number
 
     @Column({ nullable: true, length: 100 })

@@ -1,24 +1,20 @@
-<view class="container st-detail">
+<view class="container">
   <view class="st-detail-price price-cell">
-    {{ stDetail.cost + (stDetail.workingHours * stDetail.salary)}}¥
+    {{ totalAmount }}¥
   </view>
-  <t-cell title="日期:" note="{{stDetail.dateString}}" />
-  <t-cell title="项目:" note="{{stDetail.placeName}}" />
-  <block wx:if="{{ stDetail.type === 0}}">
-    <t-cell title="工时:" note="{{stDetail.workingHours}}小时" />
-    <t-cell title="时薪:" note="{{stDetail.salary}}¥" />
-  </block>
-  <block wx:if="{{ stDetail.type === 1}}">
-    <t-cell title="费用名称:" note="{{stDetail.costName}}" />
-    <t-cell title="费用:" note="{{stDetail.cost}}" />
-  </block>
-  <t-cell title="备注:" note="{{stDetail.remark}}" />
-  <t-cell title="照片:" />
-  <view class="st-img">
-    <block wx:for="{{stImgs}}" wx:key="unique">
-      <t-image src="{{item}}" mode="aspectFill" width="100%" height="100%" aria-label="" data-index="{{index}}" bind:tap="showPreview" t-class="img"/>
-    </block>
-  </view>
+  <block wx:for="{{record}}" wx:key="unique">
+    <view class="st-detail-title font-bold">{{item.date}}</view>
 
-  <t-image-viewer closeBtn="{{true}}" visible="{{visible}}" images="{{stImgs}}" bind:close="closePreview"></t-image-viewer>
+    <view wx:for="{{item.children}}" wx:key="unique" class="st-detail-item" bind:tap="toDetail" data-detail="{{item}}">
+      <view>
+        <view class="font-big font-bold">{{recordType[item.type]}}</view>
+        <view>{{item.explain}}</view>
+      </view>
+      <view>
+        <view class="st-detail-price">
+          {{ (item.cost + (item.workingHours * item.salary)) }}¥
+        </view>
+      </view>
+    </view>
+  </block>
 </view>

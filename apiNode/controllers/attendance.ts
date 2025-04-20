@@ -7,7 +7,8 @@ module.exports = class Attendance {
             createUserId: userInfo.id,
             attendanceDate: req.body.attendanceDate,
             placeId: req.body.placeId,
-            staffId: req.body.staffId
+            staffId: req.body.staffId,
+            type: req.body.type
         }
         const size = req.body.size
         const page = req.body.page

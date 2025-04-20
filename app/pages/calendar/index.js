@@ -2,7 +2,11 @@
 const app = getApp()
 import { http } from '../../server/api';
 import { recordType } from '../../utils/dict';
+<<<<<<< Updated upstream
 import { formatTime } from '../../utils/util';
+=======
+import { generateExplainText } from '../../utils/util';
+>>>>>>> Stashed changes
 
 Page({
   data: {
@@ -13,9 +17,6 @@ Page({
     minDate: new Date(2020, 1, 1).getTime(),
     maxDate: new Date().getTime(),
     workingRecordMap: {},
-    singleFormat(day) {
-      return day;
-    },
     recordType: recordType
   },
 
@@ -32,12 +33,10 @@ Page({
           if (workingRecordMap[date]) {
             workingRecordMap[date].push({
               ...item,
-              explain: this.generateExplainText(item)
             })
           } else {
             workingRecordMap[date] = [{
               ...item,
-              explain: this.generateExplainText(item)
             }]
           }
         })
@@ -52,7 +51,6 @@ Page({
           }
           return day
         }
-        this.setData({ workingRecordMap, singleFormat })
       }
     })
   },

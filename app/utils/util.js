@@ -28,7 +28,25 @@ const promisify = original => {
   }
 }
 
+const generateExplainText = item => {
+  if (item.type === 0) {
+    return `上班${item.workingHours}天`
+  } else if (item.type === 1) {
+    return `上班${item.workingHours}个小时`
+  } else if (item.type === 2) {
+    return item.costName
+  } else {
+    return ''
+  }
+}
+
 module.exports = {
   formatTime,
+<<<<<<< Updated upstream
   promisify
 }
+=======
+  promisify,
+  generateExplainText
+}
+>>>>>>> Stashed changes

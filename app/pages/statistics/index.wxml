@@ -11,7 +11,7 @@
     <view>
       <view>
         <t-cell-group>
-          <t-cell wx:for="{{summary}}" wx:key="unique" t-class="card" t-class-title="card-title" title="{{recordType[item.type]}}" note="{{ item.total }}¥" />
+          <t-cell wx:for="{{summary}}" wx:key="unique" t-class="card" t-class-title="card-title" title="{{recordType[item.type]}}" note="{{ item.total }}¥" bind:tap="jumpTo" data-type="{{item.type}}"/>
           <t-cell t-class="card-total" t-class-title="card-title" title="未结" note="{{ totalAmount }}¥" />
         </t-cell-group>
       </view>
