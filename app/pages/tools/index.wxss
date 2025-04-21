@@ -1,4 +1,4 @@
-/* pages/accounting/index.wxss */
+/* pages/ac/index.wxss */
 .tool-gird{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;

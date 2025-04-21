@@ -13,7 +13,7 @@ Page({
       size: 999,
       page: 1
     }
-    http.post('/accountingPlaceMember/getMembers', params).then(res => {
+    http.post('/acMember/getMembers', params).then(res => {
       if (res.data.success) {
         let staffList = res.data.data.filter(item => item.state === 0)
         let endstaffList = res.data.data.filter(item => item.state === 1)
@@ -48,7 +48,7 @@ Page({
       bankNumber:data.bankNumber,
       remark:data.remark,
     }
-    http.post('/accountingPlaceMember/createMember', params).then(res => {
+    http.post('/acMember/createMember', params).then(res => {
       if (res.data.success) {
         this.getPlaceMemberInfo()
         this.setData({
@@ -74,7 +74,7 @@ Page({
       bankNumber:data.bankNumber,
       remark:data.remark,
     }
-    http.post('/accountingPlaceMember/updateMember', params).then(res => {
+    http.post('/acMember/updateMember', params).then(res => {
       if (res.data.success) {
         this.getPlaceMemberInfo()
         this.setData({
@@ -108,7 +108,7 @@ Page({
       currentItem,
       {state},
     )
-    http.post('/accountingPlaceMember/updateMember', params).then(res => {
+    http.post('/acMember/updateMember', params).then(res => {
       if (res.data.success) {
         this.getPlaceMemberInfo()
       }})

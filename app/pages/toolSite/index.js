@@ -25,7 +25,7 @@ Page({
       size: 999,
       page: 1
     }
-    http.post('/accountingPlace/getPlaces', params).then(res => {
+    http.post('/acPlace/getPlaces', params).then(res => {
       if (res.data.success) {
         let siteList = res.data.data.filter(item => item.state === 0)
         let endSiteList = res.data.data.filter(item => item.state === 1)
@@ -53,7 +53,7 @@ Page({
       attendanceTime: data.attendanceTime,
       attendanceUnit: data.attendanceUnit,
     }
-    http.post('/accountingPlace/createPlace', params).then(res => {
+    http.post('/acPlace/createPlace', params).then(res => {
       if (res.data.success) {
         this.getPlaceInfo()
         this.setData({
@@ -73,7 +73,7 @@ Page({
       attendanceUnit: data.attendanceUnit,
       state:0,
     }
-    http.post('/accountingPlace/updatePlace', params).then(res => {
+    http.post('/acPlace/updatePlace', params).then(res => {
       if (res.data.success) {
         this.getPlaceInfo()
         this.setData({
@@ -113,7 +113,7 @@ Page({
       currentItem,
       {state},
     )
-    http.post('/accountingPlace/updatePlace', params).then(res => {
+    http.post('/acPlace/updatePlace', params).then(res => {
       if (res.data.success) {
         this.getPlaceInfo()
       }})

@@ -1,38 +1,30 @@
-import { createMember , updateMember , deleteMember , getMembers } from '../models/acMember'
+import { createGroup , updateGroup , deleteGroup , getGroups } from '../models/acGroup'
 
-module.exports = class Member {
-    getMembers(req, res, next) {
+module.exports = class Group {
+    getGroups(req, res, next) {
         const userInfo = req.userInfo
         const options = { createUserId: userInfo.id , placeId: userInfo.current_placeId }
         const size = req.body.size
         const page = req.body.page
 
 
-        getMembers(options, size, page).then(result => {
+        getGroups(options, size, page).then(result => {
             res.json(result)
         }).catch(err => {
             next(err)
         })
     }
 
-    createMember(req, res, next) {
+    createGroup(req, res, next) {
         const userInfo = req.userInfo
         const data = {
             createUserId: userInfo.id,
             name: req.body.name,
             placeId: req.body.placeId,
-            phoneNumber: req.body.phoneNumber,
-            jobType: req.body.jobType,
-            salary: req.body.salary,
-            gender: req.body.gender,
-            idCardNumber: req.body.idCardNumber,
-            bank: req.body.bank,
-            bankNumber: req.body.bankNumber,
-            remark: req.body.remark,
-            state:0,
+            members:req.body.members
         }
 
-        createMember(data).then(result => {
+        createGroup(data).then(result => {
             res.json(result)
         }).catch(err => {
             next(err)
@@ -40,7 +32,7 @@ module.exports = class Member {
 
     }
 
-    updateMember(req, res, next) {
+    updateGroup(req, res, next) {
         const userInfo = req.userInfo
         const id = req.body.id
         const data = {
@@ -59,7 +51,7 @@ module.exports = class Member {
         }
 
 
-        updateMember(id, data).then(result => {
+        updateGroup(id, data).then(result => {
             res.json(result)
         }).catch(err => {
             next(err)
@@ -68,10 +60,10 @@ module.exports = class Member {
     }
 
 
-    deleteMember(req, res, next) {
+    deleteGroup(req, res, next) {
         const id = req.body.createUserId
 
-        deleteMember(id).then(result => {
+        deleteGroup(id).then(result => {
             res.json(result)
         }).catch(err => {
             next(err)

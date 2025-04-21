@@ -15,7 +15,7 @@ Page({
       page: 1,
       state: 0
     }
-    http.post('/accountingPlaceMember/getMembers', params).then(res => {
+    http.post('/acMember/getMembers', params).then(res => {
       if (res.data.success) {
         let list = res.data.data.map(item => {
           return {

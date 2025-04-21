@@ -26,18 +26,20 @@ app.use(helmet())
 app.use(rateLimiter)
 
 // router
-const usersRouter = require('./routes/users');
-const bidsRouter = require('./routes/bid')
-const accountingPlaceRouter = require('./routes/acPlace')
-const accountingPlaceMemberRouter = require('./routes/acMember')
+const user = require('./routes/users');
+const bid = require('./routes/bid')
+const acPlace = require('./routes/acPlace')
+const acMember = require('./routes/acMember')
+const acGroup = require('./routes/acGroup')
 const attendance = require('./routes/attendance')
 const file = require('./routes/file')
 
 
-app.use('/users', usersRouter);
-app.use('/bids',bidsRouter)
-app.use('/accountingPlace',accountingPlaceRouter)
-app.use('/accountingPlaceMember',accountingPlaceMemberRouter)
+app.use('/users', user);
+app.use('/bids',bid)
+app.use('/acPlace',acPlace)
+app.use('/acMember',acMember)
+app.use('/acGroup',acGroup)
 app.use('/attendance',attendance)
 app.use('/file',file)
 

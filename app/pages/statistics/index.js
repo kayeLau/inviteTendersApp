@@ -104,7 +104,7 @@ Page({
       page: 1,
       state: 0
     }
-    http.post('/accountingPlace/getPlaces', params).then(res => {
+    http.post('/acPlace/getPlaces', params).then(res => {
       if (res.data.success) {
         const siteList = res.data.data
         const places = siteList.map(item => {
