@@ -3,8 +3,8 @@
     <xl-form column="{{config}}" title='' id='xl-form'>
     </xl-form>
     <view class="footer">
-      <view class="round-btn" bind:tap="switchToList" style="background-color: var(--gary-color);width: 30%;">返回</view>
-      <view class="round-btn" bind:tap="sumbitMemberInfo" style="background-color: var(--success-color);width: 70%;">保存</view>
+      <view class="round-btn btn-info" bind:tap="switchToList" style="width: 30%;">返回</view>
+      <view class="round-btn btn-primary" bind:tap="sumbitMemberInfo" style="width: 70%;">保存</view>
     </view>
   </view>
   <!-- list -->
@@ -26,7 +26,7 @@
               <t-button theme="light" bind:tap="setMemberState" data-current='{{item}}' data-state='{{0}}'>返场</t-button>
             </view>
           </view>
-          <view class="footer-btn" bind:tap="switchToEdit" style="background-color: var(--primary-color);" data-mode='create'>添加人员</view>
+          <view class="footer-btn btn-primary" bind:tap="switchToEdit" data-mode='create'>添加人员</view>
         </view>
       </view>
     </mp-tabs>

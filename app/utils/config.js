@@ -179,3 +179,11 @@ export const remarkAndImg = [
     nullable:true
   }
 ]
+export const group = [
+  {
+    key: 'name',
+    prop: 'input',
+    label: '班组名称',
+    value: '',
+  }
+]

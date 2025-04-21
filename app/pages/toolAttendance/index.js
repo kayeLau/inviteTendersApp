@@ -103,16 +103,12 @@ Page({
 
   jumpto() {
     wx.navigateTo({
-      url: '/pages/staffPenal/index'
+      url: '/pages/staffPenal/index?path=toolAttendance'
     })
   },
 
   onLoad() {
     this.getPlaces()
-    const eventChannel = this.getOpenerEventChannel();
-    eventChannel.on('staffSelected', (data) => {
-      this.setData({ selected: data.selected })
-    });
   },
   onShow(){
     this.setUserInfo()

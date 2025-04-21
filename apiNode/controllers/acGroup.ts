@@ -38,16 +38,7 @@ module.exports = class Group {
         const data = {
             createUserId: userInfo.createUserId,
             name: req.body.name,
-            placeId: req.body.placeId,
-            phoneNumber: req.body.phoneNumber,
-            jobType: req.body.jobType,
-            salary: req.body.salary,
-            gender: req.body.gender,
-            idCardNumber: req.body.idCardNumber,
-            bank: req.body.bank,
-            bankNumber: req.body.bankNumber,
-            remark: req.body.remark,
-            state:req.body.state,
+            members:req.body.members
         }
 
 

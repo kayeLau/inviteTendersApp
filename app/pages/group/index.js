@@ -1,56 +1,52 @@
-import { staff } from '../../utils/config.js';
 import { http } from '../../server/api'
+import { group } from '../../utils/config'
 
 Page({
   data: {
-    staffList: [], // 人员列表
-    endstaffList: [], // 离开的人员列表
-    activeTab: 0,
+    formMode:'',
+    groupList: [], // 人员列表
+    isEdit: false,
+    selected:[],
+    group:group
   },
 
-  getPlaceMemberInfo() {
+  getGroups() {
     let params = {
       size: 999,
       page: 1
     }
-    http.post('/acMember/getMembers', params).then(res => {
+    http.post('/acGroup/getGroups', params).then(res => {
       if (res.data.success) {
-        let staffList = res.data.data.filter(item => item.state === 0)
-        let endstaffList = res.data.data.filter(item => item.state === 1)
+        let groupList = res.data.data.map(item => {
+          item.members = item.members ? item.members.split(',') : []
+          item.membersCount = item.members.length
+          return item
+        })
         this.setData({
-          staffList,
-          endstaffList
+          groupList
         })
       }
     })
   },
 
-  sumbitMemberInfo(){
-
+  sumbitGroup(){
     if(this.data.formMode === 'create'){
-      this.createMemberInfo()
+      this.createGroup()
     }else if(this.data.formMode === 'edit'){
-      this.updateMemberInfo()
+      this.updateGroup()
     }
   },
 
-  createMemberInfo() {
+  createGroup() {
     let data = this.selectComponent("#xl-form").getData()
     if(!data)return;
     let params = {
       name:data.name,
-      phoneNumber: data.phoneNumber,
-      salary: data.salary,
-      gender: data.gender,
-      jobType:data.jobType,
-      idCardNumber:data.idCardNumber,
-      bank:data.bank,
-      bankNumber:data.bankNumber,
-      remark:data.remark,
+      members:this.data.selected.map(item => item.value).join(',')
     }
-    http.post('/acMember/createMember', params).then(res => {
+    http.post('/acGroup/createGroup', params).then(res => {
       if (res.data.success) {
-        this.getPlaceMemberInfo()
+        this.getGroups()
         this.setData({
           isEdit: false
         })
@@ -58,25 +54,17 @@ Page({
     })
   },
 
-  updateMemberInfo(){
+  updateGroup(){
     let data = this.selectComponent("#xl-form").getData()
-    console.log(data)
     if(!data)return;
     let params = {
       id:data.id,
       name:data.name,
-      phoneNumber: data.phoneNumber,
-      salary: data.salary,
-      gender: data.gender,
-      jobType:data.jobType,
-      idCardNumber:data.idCardNumber,
-      bank:data.bank,
-      bankNumber:data.bankNumber,
-      remark:data.remark,
+      members:this.data.selected.map(item => item.value).join(',')
     }
-    http.post('/acMember/updateMember', params).then(res => {
+    http.post('/acGroup/updateGroup', params).then(res => {
       if (res.data.success) {
-        this.getPlaceMemberInfo()
+        this.getGroups()
         this.setData({
           isEdit: false
         })
@@ -91,37 +79,25 @@ Page({
     })
     const currentItem = e.currentTarget.dataset.current
     if(currentItem){
+      const selected = currentItem.members
+      this.setData({ selected })
       this.selectComponent("#xl-form").textData(currentItem)
     }
   },
 
-  switchToList(e) {
+  switchToList() {
     this.setData({
       isEdit: false,
     })
   },
 
-  setMemberState(e){
-    const currentItem = e.currentTarget.dataset.current
-    const state = e.currentTarget.dataset.state
-    let params = Object.assign(
-      currentItem,
-      {state},
-    )
-    http.post('/acMember/updateMember', params).then(res => {
-      if (res.data.success) {
-        this.getPlaceMemberInfo()
-      }})
-  },
-
-  showBottomBtn(){
-    this.selectComponent("#xl-bottom-btn").showFrame()
-  },
-
-  onLoad: function (option) {
-    this.setData({
-      'path': option.path,
+  jumpto() {
+    wx.navigateTo({
+      url: `/pages/staffPenal/index?path=group`
     })
-    this.getPlaceMemberInfo()
+  },
+
+  onLoad() {
+    this.getGroups()
   }
 });

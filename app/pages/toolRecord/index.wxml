@@ -24,7 +24,7 @@
         </view>
       </view>
     </scroll-view>
-    <view class="footer-btn" bind:tap="switchToEdit" style="background-color: var(--primary-color);" data-mode='create'>添加工地</view>
+    <view class="footer-btn btn-primary" bind:tap="switchToEdit" data-mode='create'>添加工地</view>
   </view>
   
   <xl-site-penal id="xl-site-penal" visible="{{siteVisible}}"></xl-site-penal>

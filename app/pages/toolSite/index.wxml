@@ -15,7 +15,7 @@
                 <t-button theme="light" bind:tap="setPlaceInfoState" data-current='{{item}}' data-state='{{0}}'>结束</t-button>
               </view>
             </view>
-            <view class="footer-btn" bind:tap="switchToEdit" style="background-color: var(--primary-color);" data-mode='create'>添加工地</view>
+            <view class="footer-btn btn-primary" bind:tap="switchToEdit" data-mode='create'>添加工地</view>
           </view>
         </view>
       </mp-tabs>

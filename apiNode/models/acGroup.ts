@@ -49,7 +49,7 @@ export async function getGroups(options, size, page) {
             "AcGroup.id AS id",
             "AcGroup.createUserId AS createUserId",
             "AcGroup.name AS name",
-            "AcGroup.members AS member",
+            "AcGroup.members AS members",
             "DATE_FORMAT(AcGroup.updateTime, '%Y-%m-%d %H:%i:%S') AS updateDate"
         ])
         .where(conditions.join(" AND "), parameters)

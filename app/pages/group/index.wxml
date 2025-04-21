@@ -1,15 +1,38 @@
 <view class="container">
-  <view wx:for="{{index === 0 ? staffList : endstaffList}}" wx:key="unique" class="card site-list" wx:for-index="subIndex">
-    <view class="li-info">
-      <view class="font-bold font-big">{{item.name}}</view>
+  <view wx:if="{{ !isEdit }}">
+    <view wx:for="{{groupList}}" wx:key="unique" class="card group-list" wx:for-index="subIndex">
+      <view class="li-info">
+        <view class="font-bold font-big">{{item.name}}</view>
+        <view>共{{item.membersCount}}个成员</view>
+      </view>
+      <!-- btn-group -->
+      <view class="flex gap">
+        <t-button theme="light" bind:tap="switchToEdit" data-current='{{item}}' data-mode='edit'>编辑</t-button>
+      </view>
     </view>
-    <!-- btn-group -->
-    <view wx:if="{{index === 0 }}" class="flex gap">
-      <t-button theme="light" bind:tap="switchToEdit" data-current='{{item}}' data-mode='edit'>编辑</t-button>
-      <t-button theme="light" bind:tap="setMemberState" data-current='{{item}}' data-state='{{1}}'>离场</t-button>
-    </view>
-    <view wx:else="{{index === 1 }}">
-      <t-button theme="light" bind:tap="setMemberState" data-current='{{item}}' data-state='{{0}}'>返场</t-button>
+    <view class="footer-btn btn-primary" bind:tap="switchToEdit" data-mode='create'>添加班组</view>
+  </view>
+  <view wx:if="{{ isEdit }}">
+    <xl-form column="{{group}}" id='xl-form'></xl-form>
+    <block>
+      <view class="card flex column" hidden="{{!!selected.length}}">
+        <span style="padding-bottom:30rpx">請先添加工友</span>
+        <t-button theme="primary" bind:tap="jumpto" variant="outline">添加</t-button>
+      </view>
+      <view class="card avatar-list" hidden="{{!selected.length}}">
+        <view class="flex column" wx:for="{{selected}}" wx:key="unique">
+          <image class="avatar" src="/assert/worker.png" />
+          <view>{{ item.label }}</view>
+        </view>
+        <view class="flex column">
+          <t-button theme="primary" icon="user-transmit" shape="square" size="large" aria-label="搜索" variant="outline" t-class="staff-add-btn"></t-button>
+          <view style="color: #ccc;">选择</view>
+        </view>
+      </view>
+    </block>
+    <view class="footer">
+      <view class="round-btn btn-info" bind:tap="switchToList" style="width: 30%;">返回</view>
+      <view class="round-btn btn-primary" bind:tap="sumbitGroup" style="width: 70%;">确定</view>
     </view>
   </view>
 </view>

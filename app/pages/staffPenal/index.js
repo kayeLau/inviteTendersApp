@@ -3,6 +3,7 @@ import { http } from '../../server/api'
 
 Page({
   data: {
+    path: '',
     list: [],
     curIndex: '',
     stickyOffset: 0,
@@ -46,23 +47,21 @@ Page({
   },
 
   sumbit() {
-    console.log(this.data.list)
     const select = this.data.list.filter(item =>
       this.data.selected.includes(item.value)
     )
-    wx.navigateTo({
-      url: '/pages/toolAttendance/index',
-      success: function (res) {
-        res.eventChannel.emit('staffSelected', {
-          selected: select
-        });
-      }
-    })
+    let pages = getCurrentPages();
+    let prevPage = pages[pages.length - 2];
+    prevPage.setData({
+      selected: select
+    });
+    wx.navigateBack();
   },
-
 
   onShow() {
     this.getList()
+  },
+  onLoad(options) {
+    this.setData({ path: options.path })
   }
-
 })
