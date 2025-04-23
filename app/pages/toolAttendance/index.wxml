@@ -32,7 +32,7 @@
     </t-tabs>
     <xl-form column="{{remarkAndImg}}" id='xl-form-5'></xl-form>
     <view class="footer">
-      <view class="round-btn-whole" bind:tap="sumbitPlaceInfo" style="background-color: var(--success-color);width: 100%;">保存</view>
+      <view class="round-btn-whole btn-primary" bind:tap="sumbitPlaceInfo" style="width: 100%;">保存</view>
     </view>
   </view>
 </view>

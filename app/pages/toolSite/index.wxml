@@ -26,8 +26,8 @@
     <xl-form column="{{config}}" title='' id='xl-form'>
     </xl-form>
     <view class="footer">
-      <view class="round-btn" bind:tap="switchToList" style="background-color: var(--gary-color);width: 30%;">返回</view>
-      <view class="round-btn" bind:tap="sumbitPlaceInfo" style="background-color: var(--success-color);width: 70%;">保存</view>
+      <view class="round-btn btn-info" bind:tap="switchToList" style="width: 30%;">返回</view>
+      <view class="round-btn btn-primary" bind:tap="sumbitPlaceInfo" style="width: 70%;">保存</view>
     </view>
   </view>
 </view>

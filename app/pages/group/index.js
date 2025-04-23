@@ -29,6 +29,20 @@ Page({
     })
   },
 
+  async getGroupMember(ids){
+    let params = {ids}
+    return await http.post('/acMember/getMembersByIds',params).then(res => {
+      if(res.data.success){
+        return res.data.data.map(item => {
+          return {
+            label: item.name,
+            id:item.id
+          }
+        })
+      }
+    })
+  },
+
   sumbitGroup(){
     if(this.data.formMode === 'create'){
       this.createGroup()
@@ -71,7 +85,7 @@ Page({
       }})
   },
 
-  switchToEdit(e) {
+  async switchToEdit(e) {
     const formMode = e.currentTarget.dataset.mode
     this.setData({
       isEdit: true,
@@ -79,7 +93,8 @@ Page({
     })
     const currentItem = e.currentTarget.dataset.current
     if(currentItem){
-      const selected = currentItem.members
+      const menber = await this.getGroupMember(currentItem.members)
+      const selected = menber
       this.setData({ selected })
       this.selectComponent("#xl-form").textData(currentItem)
     }

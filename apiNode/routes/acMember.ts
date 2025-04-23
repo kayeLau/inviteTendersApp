@@ -7,6 +7,8 @@ const acMemberModifyMethod = new AcMemberModifyMethod()
 
 router.post('/getMembers',acMemberModifyMethod.getMembers)
 
+router.post('/getMembersByIds',acMemberModifyMethod.getMembersByIds)
+
 router.post('/createMember',acMemberModifyMethod.createMember)
 
 router.post('/updateMember',acMemberModifyMethod.updateMember)

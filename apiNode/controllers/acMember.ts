@@ -1,14 +1,26 @@
-import { createMember , updateMember , deleteMember , getMembers } from '../models/acMember'
+import { createMember, updateMember, deleteMember, getMembers, getMembersByIds } from '../models/acMember'
 
 module.exports = class Member {
     getMembers(req, res, next) {
         const userInfo = req.userInfo
-        const options = { createUserId: userInfo.id , placeId: userInfo.current_placeId }
+        const options = { createUserId: userInfo.id }
         const size = req.body.size
         const page = req.body.page
 
 
         getMembers(options, size, page).then(result => {
+            res.json(result)
+        }).catch(err => {
+            next(err)
+        })
+    }
+
+    getMembersByIds(req, res, next) {
+        const userInfo = req.userInfo
+        const ids:Array<number> = req.body.ids
+        const createUserId = userInfo.id
+
+        getMembersByIds(ids, createUserId).then(result => {
             res.json(result)
         }).catch(err => {
             next(err)
@@ -29,7 +41,7 @@ module.exports = class Member {
             bank: req.body.bank,
             bankNumber: req.body.bankNumber,
             remark: req.body.remark,
-            state:0,
+            state: 0,
         }
 
         createMember(data).then(result => {
@@ -55,7 +67,7 @@ module.exports = class Member {
             bank: req.body.bank,
             bankNumber: req.body.bankNumber,
             remark: req.body.remark,
-            state:req.body.state,
+            state: req.body.state,
         }
 
 

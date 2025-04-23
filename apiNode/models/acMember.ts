@@ -75,3 +75,28 @@ export async function getMembers(options, size, page) {
             };
         })
 }
+
+export async function getMembersByIds(ids, createUserId) {
+    if(!ids.length){
+        return {
+            success: true,
+            data: []
+        }
+    }
+    
+    return AcMemberRepository
+        .createQueryBuilder("AcMember")
+        .select([
+            "AcMember.id AS id",
+            "AcMember.name AS name",
+            "AcMember.phoneNumber AS phoneNumber",
+        ])
+        .where("id IN (:...ids) AND createUserId = :createUserId", { ids, createUserId })
+        .getRawMany()
+        .then((result) => {
+            return {
+                success: true,
+                data: result
+            };
+        })
+}
