@@ -5,10 +5,10 @@
   <t-cell title="日期:" note="{{stDetail.dateString}}" />
   <t-cell title="项目:" note="{{stDetail.placeName}}" />
   <block wx:if="{{ stDetail.type === 0}}">
-    <t-cell title="工时:" note="{{stDetail.workingHours}}小时" />
+    <t-cell title="工时:" note="{{stDetail.workingHours + stDetail.suffix}}" />
     <t-cell title="时薪:" note="{{stDetail.salary}}¥" />
   </block>
-  <block wx:if="{{ stDetail.type === 1}}">
+  <block wx:if="{{ stDetail.type === 2}}">
     <t-cell title="费用名称:" note="{{stDetail.costName}}" />
     <t-cell title="费用:" note="{{stDetail.cost}}" />
   </block>

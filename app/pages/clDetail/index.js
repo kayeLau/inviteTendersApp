@@ -14,6 +14,7 @@ Page({
   getDetail() {
     const stDetail = app.globalData.workRecordDetail
     stDetail.dateString = formatTime(new Date(parseInt(stDetail.attendanceDate)))
+    stDetail.suffix = stDetail.type === 0 ? '天' : '小时'
     const stImgs = stDetail.recordImg ? stDetail.recordImg.split(',') : []
     this.getImg(stImgs)
     this.setData({ stDetail })

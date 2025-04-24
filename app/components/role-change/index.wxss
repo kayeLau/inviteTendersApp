@@ -37,7 +37,7 @@
 .location-bar{
   padding: 0 20rpx;
   background-color: #ffffff;
-  margin-bottom: 20rpx;
+  margin-bottom: 15rpx;
   height: 120rpx;
   display: flex;
   justify-content: space-between;
