@@ -1,6 +1,6 @@
 <view class="container popup-panel staff-panel">
   <t-sticky offset-top="0">
-    <t-tabs defaultValue="{{0}}" bind:change="onTabsChange" theme="card">
+    <t-tabs wx:if="{{showGroup}}" defaultValue="{{0}}" bind:change="onTabsChange" theme="card">
       <t-tab-panel label="工友" value="0" />
       <t-tab-panel label="班组" value="1" />
     </t-tabs>
@@ -10,7 +10,7 @@
       添加{{tabLabel}}
     </view>
     <view class="flex">
-      <view class="staff-add-item flex" bind:tap="jumptoStaff">
+      <view class="staff-add-item flex" bind:tap="jumpto">
         <t-icon name="user-add" size="48rpx" class="icon" />
         <view>手动添加</view>
       </view>

@@ -3,7 +3,9 @@ import { formatTime } from '../../utils/dict.js';
 
 Page({
   data: {
-    logs: []
+    logs: [],
+    image:'',
+    name:''
   },
   onLoad() {
     this.setData({

@@ -3,6 +3,7 @@ import { http } from '../../server/api'
 
 Page({
   data: {
+    showGroup:false,
     tab: 0,
     tabLabel: '工友',
     list: [],
@@ -58,9 +59,10 @@ Page({
     })
   },
 
-  jumptoStaff() {
+  jumpto() {
+    const path = this.data.tab === '1' ? 'group' : 'toolStaff';
     wx.navigateTo({
-      url: '/pages/toolStaff/index',
+      url: `/pages/${path}/index`,
     })
   },
 
@@ -103,9 +105,16 @@ Page({
   async onShow() {
     await this.getMembers()
     await this.getGroups()
-    this.setData({ list: this.data.memberList })
+    const tab = this.data.tab
+    if(tab === '1'){
+      this.setData({ list: this.data.groupList })
+    }else{
+      this.setData({ list: this.data.memberList })
+    }
   },
   onLoad(options) {
-
+    this.setData({
+      showGroup:options.showGroup || false
+    })
   }
 })

@@ -2,9 +2,7 @@ import { promisify } from '../utils/util'
 import { http } from './api'
 
 export function login () {
-  console.log('登录')
   return promisify(wx.login)().then(({code}) => {
-    console.log(`code: ${code}`)
     return http.post('/users/login', {
       code,
       type: 'wxapp'
