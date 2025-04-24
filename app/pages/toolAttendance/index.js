@@ -103,7 +103,7 @@ Page({
 
   jumpto() {
     wx.navigateTo({
-      url: '/pages/staffPenal/index?path=toolAttendance'
+      url: '/pages/staffPenal/index?showGroup=true'
     })
   },
 

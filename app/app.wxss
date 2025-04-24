@@ -142,13 +142,12 @@ page{
 .st-detail-title{
   padding-left: 20rpx;
   background-color: #fff;
-  margin-top: 10rpx;
+  border-top: 3px solid var(--background-color);
 }
 .st-detail-item{
   padding: 20rpx 20rpx;
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px #cfcfcf solid;
   background-color: #fff;
 }
 /* popup */

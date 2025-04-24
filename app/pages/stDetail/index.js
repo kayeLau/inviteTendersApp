@@ -32,24 +32,36 @@ Page({
         res.data.data.forEach(item => {
           let amount = item.cost + (item.workingHours * item.salary)
           const date = formatTime(new Date(Number(item.attendanceDate)))
+          const timeStamp = item.attendanceDate
           totalAmount += amount
           item.explain = generateExplainText(item)
-          if (record[date]) {
-            record[date].children.push(item)
+          if (record[timeStamp]) {
+            record[timeStamp].children.push(item)
           } else {
-            record[date] = {
+            record[timeStamp] = {
+              timeStamp,
               date,
               children: [item]
             }
           }
         });
-        this.setData({ record, totalAmount })
+        this.setData({
+          record: this.sortObjectByKey(record, true), totalAmount
+        })
       }
     })
   },
 
+  sortObjectByKey(obj, descending = false) {
+    return Object.values(obj)
+      .sort((a, b) => {
+        return descending ? b.timeStamp - a.timeStamp
+          : a.timeStamp - b.timeStamp;
+      });
+  },
+
   getImg(imgs) {
-    if(!imgs.length)return;
+    if (!imgs.length) return;
     downloadImg(imgs).then(stImgs => {
       this.setData({ stImgs })
     })

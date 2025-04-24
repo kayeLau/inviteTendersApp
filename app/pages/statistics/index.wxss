@@ -32,11 +32,11 @@
 }
 .card{
   --td-cell-note-color:#3b82f6;
-  border-left: 2px solid #3b82f6;
+  border-left: 5px solid #3b82f6;
 }
 .card-total{
   --td-cell-note-color:#e6a23c;
-  border-left: 2px solid #e6a23c;
+  border-left: 5px solid #e6a23c;
   --td-cell-note-font-size:40rpx;
 }
 
