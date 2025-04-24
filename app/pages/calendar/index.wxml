@@ -1,7 +1,7 @@
 <view class="container st">
   <role-change></role-change>
   <!-- 日历 -->
-  <t-calendar title="记工记帐记录" use-popup="{{false}}" bind:select="handleSelect" switch-mode="none" format="{{singleFormat}}" value="{{value}}" minDate="{{minDate}}" maxDate="{{maxDate}}" bind:panel-change="handlePanelChange" />
+  <t-calendar id="calendar" title="记工记帐记录" use-popup="{{false}}" bind:select="handleSelect" switch-mode="month" format="{{singleFormat}}" value="{{value}}" minDate="{{minDate}}" maxDate="{{maxDate}}" bind:panel-change="handlePanelChange" />
   <!-- 详情 -->
   <view class="st-detail">
     <view class="st-detail-title font-bold">{{ currentDate }}</view>

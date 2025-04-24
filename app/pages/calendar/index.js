@@ -12,17 +12,21 @@ Page({
     currentYear: new Date().getFullYear(),
     currentMonth: new Date().getMonth(),
     value: new Date().getTime(),
-    minDate: new Date(2020, 1, 1).getTime(),
+    minDate: new Date(2023, 1, 1).getTime(),
     maxDate: new Date().getTime(),
     workingRecordMap: {},
-    singleFormat:()=>{},
+    singleFormat: (day) => day,
     recordType: recordType
   },
 
   getWorkingRecord() {
+    const { currentYear, currentMonth} = this.data
+    const firstDay = new Date(currentYear, currentMonth, 1).getTime();
+    const lastDay = new Date(currentYear, currentMonth + 1, 0).getTime();
     const data = {
       size: 999,
-      page: 1
+      page: 1,
+      attendanceDate: [firstDay, lastDay]
     }
     http.post('/attendance/getAttendance', data).then(res => {
       if (res.data.success) {
@@ -53,9 +57,16 @@ Page({
           return day
         }
         const value = new Date().getTime()
-        this.setData({ workingRecordMap, singleFormat , value })
+        this.setData({ workingRecordMap, singleFormat, value })
+        this.renew()
       }
     })
+  },
+
+  renew() {
+    const calendar = this.selectComponent("#calendar")
+    const date = calendar.getCurrentDate()
+    calendar.calcCurrentMonth(date)
   },
 
   addRecords() {
@@ -81,7 +92,9 @@ Page({
   },
 
   handlePanelChange(e) {
-    // this.getWorkingRecord()
+    const { year, month } = e.detail
+    this.setData({ currentMonth: month - 1, currentYear: year })
+    this.getWorkingRecord()
   },
 
   onShow: function () {
