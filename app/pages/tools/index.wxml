@@ -5,7 +5,7 @@
     <view class="tool-gird">
       <view class="tool-box" wx:for="{{pjManage}}" wx:key="unique" bind:tap="jumpTo" data-id='{{ item.id }}' data-path='{{ item.path }}'>
         <image src="{{item.icon}}" class="tool-box-icon" />
-        <view>{{ item.name }}</view>
+        <view class="font-bold">{{ item.name }}</view>
       </view>
     </view>
   </view>
@@ -14,7 +14,7 @@
     <view class="tool-gird">
       <view class="tool-box" wx:for="{{rdManage}}" wx:key="unique" bind:tap="jumpTo" data-id='{{ item.id }}' data-path='{{ item.path }}'>
         <image src="{{item.icon}}" class="tool-box-icon" />
-        <view>{{ item.name }}</view>
+        <view class="font-bold">{{ item.name }}</view>
       </view>
     </view>
   </view>

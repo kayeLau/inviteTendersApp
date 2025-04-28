@@ -206,3 +206,29 @@ export const group = [
     value: '',
   }
 ]
+export const material = [
+  {
+    key: 'name',
+    prop: 'input',
+    label: '材料名称',
+    value: '',
+  },
+  {
+    key: 'standard',
+    prop: 'input',
+    label: '规格',
+    value: '',
+  },
+  {
+    key: 'unit',
+    prop: 'input',
+    label: '採購单位',
+    value: '',
+  },
+  {
+    key: 'rentUnit',
+    prop: 'input',
+    label: '租赁单位',
+    value: '',
+  },
+]

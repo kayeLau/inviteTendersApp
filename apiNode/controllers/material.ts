@@ -20,8 +20,9 @@ module.exports = class Material {
         const data = {
             createUserId: userInfo.id,
             name: req.body.name,
-            placeId: req.body.placeId,
-            members:req.body.members
+            standard: req.body.standard,
+            unit:req.body.unit,
+            rentUnit:req.body.rentUnit
         }
 
         createMaterial(data).then(result => {
@@ -33,12 +34,12 @@ module.exports = class Material {
     }
 
     updateMaterial(req, res, next) {
-        const userInfo = req.userInfo
         const id = req.body.id
         const data = {
-            createUserId: userInfo.createUserId,
             name: req.body.name,
-            members:req.body.members
+            standard: req.body.standard,
+            unit:req.body.unit,
+            rentUnit:req.body.rentUnit
         }
 
 
