@@ -39,6 +39,9 @@ export class Attendance {
     @Column({ default: 0 })
     cost: number
 
+    @Column({ default: 0, comment: "0:工地拨款 1:费用支出 2:个人支出" })
+    costType: number
+
     @Column({ nullable: true, length: 100 })
     remark: string
 

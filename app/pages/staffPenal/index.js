@@ -3,7 +3,6 @@ import { http } from '../../server/api'
 
 Page({
   data: {
-    showGroup:false,
     tab: 0,
     tabLabel: '工友',
     list: [],
@@ -12,6 +11,11 @@ Page({
     curIndex: '',
     stickyOffset: 0,
     selected: [],
+    // config
+    showGroup:false,
+    showAdd:true,
+    mutiSelect:true,
+    callback:''
   },
 
   async getMembers() {
@@ -72,9 +76,18 @@ Page({
   },
 
   getSelected() {
-    let res = this.data.list.filter(item =>
-      this.data.selected.includes(item.value)
-    )
+    const selected = this.data.selected
+    let res = []
+    if(Array.isArray(selected)){
+      res = this.data.list.filter(item =>
+        selected.includes(item.value)
+      )
+    }else{
+      res = this.data.list.filter(item =>
+        selected === item.value
+      )
+    }
+
     if (this.data.tab === '1') {
       let members = []
       res.forEach(item => {
@@ -90,9 +103,13 @@ Page({
 
   sumbit() {
     const selected = this.getSelected()
+    const callback = this.data.callback
     let pages = getCurrentPages();
     let prevPage = pages[pages.length - 2];
     prevPage.setData({ selected });
+    if(prevPage[callback]){
+      prevPage[callback](selected)
+    }
     wx.navigateBack();
   },
 
@@ -114,7 +131,10 @@ Page({
   },
   onLoad(options) {
     this.setData({
-      showGroup:options.showGroup || false
+      showGroup:options.showGroup === 'true' ? true : false,
+      showAdd:options.showAdd === 'false' ? false : true,
+      mutiSelect:options.mutiSelect === 'true' ? true : false,
+      callback:options.callback
     })
   }
 })

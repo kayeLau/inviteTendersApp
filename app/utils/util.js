@@ -6,9 +6,11 @@ const formatTime = (date, type = 'date') => {
   const minute = date.getMinutes()
 
   const _time = `${formatNumber(hour)}:${formatNumber(minute)}`
+  const _monthDate = `${formatNumber(day)}/${formatNumber(month)}`
   const _date = `${formatNumber(day)}/${formatNumber(month)}/${formatNumber(year)}`
 
-  return type === 'dateTime' ? _date + ' ' + _time : _date
+  return type === 'dateTime' ? _date + ' ' + _time :
+  type === 'monthDate' ? _monthDate : _date
 }
 
 const formatNumber = n => {

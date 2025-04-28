@@ -42,8 +42,9 @@ Component({
 
   methods: {
     setRole(e) {
-      const id = e ? e.currentTarget.dataset.id : this.data.currentRole
-      const currentRoleId = this.wxStorage(id, 'roleId')
+      const id = e ? e.currentTarget.dataset.id : null
+      const roleId = this.wxStorage(id, 'roleId')
+      const currentRoleId = roleId ? roleId : 1
       const currentRoleImage = this.data.role.find(item => item.id === currentRoleId)
       this.setData({
         currentRole: currentRoleId,
@@ -98,8 +99,12 @@ Component({
     attached: async function () {
       await this.getPlaceInfo()
       this.setPlace()
-      this.setRole()
     },
+  },
+  pageLifetimes:{
+    show:function(){
+      this.setRole()
+    }
   }
 
 });

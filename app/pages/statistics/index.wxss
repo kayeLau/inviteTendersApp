@@ -18,12 +18,16 @@
 
 .attendance-header > view:nth-child(1){
   border-right: 1px solid #cccccc;
-  flex: 2;
+  flex: 3;
 }
 
 .attendance-header > view:nth-child(2){
   border-right: 1px solid #cccccc;
-  flex: 1;
+  flex: 2;
+}
+.attendance-header > view:nth-child(3){
+  border-right: 1px solid #cccccc;
+  flex: 2;
 }
 .card,.card-total{
   --td-cell-note-font-size:40rpx;

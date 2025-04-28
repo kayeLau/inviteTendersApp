@@ -50,11 +50,11 @@ Page({
       }
     } else if(type === 2) {
       params = {
+        costType:data4.costType,
         costName: data4.costName,
         cost: data4.cost,
       }
     }
-    console.log(params)
     return {
       attendanceDate: data1.attendanceDate,
       placeId: data1.placeId,

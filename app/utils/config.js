@@ -152,6 +152,25 @@ export const atWorkRecordHour = [{
 }
 ]
 export const ataccount = [{
+  key: 'costType',
+  prop: 'picker',
+  label: '记帐类型',
+  value: '',
+  options: [
+    {
+      label: '工地拨款',
+      value: 0
+    },
+    {
+      label: '费用支出',
+      value: 1
+    },
+    {
+      label: '个人支出',
+      value: 2
+    }
+  ]
+},{
   key: 'costName',
   prop: 'input',
   label: '费用名称',

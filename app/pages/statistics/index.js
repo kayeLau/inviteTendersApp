@@ -7,6 +7,8 @@ Page({
     summary:{},
     totalAmount:0,
     //search
+    selected:[],
+    member:'全部人员',
     placeName:'全部项目',
     placeId:[''],
     dateValue: [],
@@ -30,7 +32,7 @@ Page({
 
   handleDateConfirm(e) {
     const dateValue = e.detail.value;
-    const dateLabel = dateValue.map(item => formatTime(new Date(item)))
+    const dateLabel = dateValue.map(item => formatTime(new Date(item),'monthDate'))
     this.setData({
       dateValue,
       dateLabel
@@ -49,11 +51,11 @@ Page({
     const end = new Date().getTime()
     const start = end - (60 * 60 * 60 * 12 * 1000)
     const dateValue = [start,end]
-    const dateLabel = dateValue.map(item => formatTime(new Date(item)))
+    const dateLabel = dateValue.map(item => formatTime(new Date(item),'monthDate'))
     this.setData({ dateValue , dateLabel })
   },
 
-  jumpTo(e){
+  jumpToDetail(e){
     const type = e.currentTarget.dataset.type
     const startDate = this.data.dateValue[0]
     const endDate = this.data.dateValue[1]
@@ -61,6 +63,18 @@ Page({
     wx.navigateTo({
       url: `/pages/stDetail/index?type=${type}&startDate=${startDate}&endDate=${endDate}&placeId=${placeId}`,
     })
+  },
+
+  jumpToMember(){
+    wx.navigateTo({
+      url: '/pages/staffPenal/index?showAdd=false&mutiSelect=false&callback=setMember'
+    })
+  },
+
+  setMember(selected){
+    const member = selected[0].label
+    this.setData({member})
+    this.getAttendance()
   },
 
   getAttendance() {

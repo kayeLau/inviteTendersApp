@@ -31,15 +31,16 @@ const bid = require('./routes/bid')
 const acPlace = require('./routes/acPlace')
 const acMember = require('./routes/acMember')
 const acGroup = require('./routes/acGroup')
+const material = require('./routes/material')
 const attendance = require('./routes/attendance')
 const file = require('./routes/file')
-
 
 app.use('/users', user);
 app.use('/bids',bid)
 app.use('/acPlace',acPlace)
 app.use('/acMember',acMember)
 app.use('/acGroup',acGroup)
+app.use('/material',material)
 app.use('/attendance',attendance)
 app.use('/file',file)
 

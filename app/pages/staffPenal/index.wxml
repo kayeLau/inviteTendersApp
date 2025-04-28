@@ -5,7 +5,7 @@
       <t-tab-panel label="班组" value="1" />
     </t-tabs>
   </t-sticky>
-  <view class="staff-add">
+  <view class="staff-add" wx:if="{{showAdd}}">
     <view style="padding-left:32rpx;font-weight: 700;">
       添加{{tabLabel}}
     </view>
@@ -19,7 +19,8 @@
 
   <t-input label="" placeholder="请输入姓名或手机号" prefixIcon="search" />
   <view class="staff-panel-list">
-    <t-checkbox-group value="{{selected}}" bind:change="handleGroupChange" options="{{list}}" />
+    <t-checkbox-group wx:if="{{mutiSelect}}" value="{{selected}}" bind:change="handleGroupChange" options="{{list}}" />
+    <t-radio-group wx:if="{{!mutiSelect}}" bind:change="handleGroupChange" value="{{selected}}" options="{{list}}" />
   </view>
   <view class="float-btn-group staff-panel-btn">
     <view style="flex: 1;">

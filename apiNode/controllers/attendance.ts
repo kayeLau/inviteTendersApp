@@ -32,6 +32,7 @@ module.exports = class Attendance {
             remark: req.body.remark,
             attendanceDate: req.body.attendanceDate,
             workingHours: req.body.workingHours,
+            costType: req.body.costType,
             costName: req.body.costName,
             cost: req.body.cost,
             recordImg: req.body.recordImg,
@@ -56,6 +57,7 @@ module.exports = class Attendance {
             remark: req.body.remark,
             attendanceDate: req.body.attendanceDate,
             workingHours: req.body.workingHours,
+            costType: req.body.costType,
             costName: req.body.costName,
             cost: req.body.cost,
         }

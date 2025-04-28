@@ -10,7 +10,7 @@
     </view>
   </view>
   <view class="card" style="margin: 20rpx 20rpx;">
-    <view class="font-bold">记录管理</view>
+    <view class="font-bold">收支管理</view>
     <view class="tool-gird">
       <view class="tool-box" wx:for="{{rdManage}}" wx:key="unique" bind:tap="jumpTo" data-id='{{ item.id }}' data-path='{{ item.path }}'>
         <image src="{{item.icon}}" class="tool-box-icon" />
