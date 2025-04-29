@@ -37,7 +37,3 @@
   gap: 45rpx;
   background-color: var(--td-bg-color-container, #fff);
 }
-.tips{
-  color: #D54941;
-  padding-left: 100rpx;
-}

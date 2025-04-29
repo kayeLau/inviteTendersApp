@@ -35,7 +35,7 @@ Page({
     {
       name: '采购',
       icon: '../../assert/procurement.png',
-      path: 'material'
+      path: 'procurement'
     },
     ],
     rdManage: [

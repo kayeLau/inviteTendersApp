@@ -7,6 +7,7 @@ import { AcMember } from "./entity/acMember"
 import { AcPlace } from "./entity/acPlace"
 import { AcGroup } from "./entity/acGroup"
 import { Material } from "./entity/material"
+import { Procurement } from "./entity/procurement"
 const config = require('./config/development_config')
 
 const AppDataSource = new DataSource({
@@ -18,7 +19,7 @@ const AppDataSource = new DataSource({
     database: config.mysql.database,
     synchronize: true,
     logging: false,
-    entities: [Bid, User, Attendance, AcMember, AcPlace, AcGroup, Material],
+    entities: [Bid, User, Attendance, AcMember, AcPlace, AcGroup, Material, Procurement],
     migrations: [],
     subscribers: [],
 })

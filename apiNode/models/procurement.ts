@@ -1,19 +1,19 @@
 import AppDataSource from '../data-source';
-import { Material } from '../entity/material';
+import { Procurement } from '../entity/procurement';
 import { optionsGenerater } from './module/base_model';
-const MaterialRepository = AppDataSource.getRepository(Material);
+const ProcurementRepository = AppDataSource.getRepository(Procurement);
 
-export async function createMaterial(data) {
-    const newItem = MaterialRepository.create({ ...data });
-    await MaterialRepository.save(newItem);
+export async function createProcurement(data) {
+    const newItem = ProcurementRepository.create({ ...data });
+    await ProcurementRepository.save(newItem);
     return { success: true };
 }
 
 
-export function updateMaterial(id: number, data) {
-    return MaterialRepository
+export function updateProcurement(id: number, data) {
+    return ProcurementRepository
         .createQueryBuilder()
-        .update(Material)
+        .update(Procurement)
         .set({ ...data })
         .where("id = :id", { id })
         .execute()
@@ -23,11 +23,11 @@ export function updateMaterial(id: number, data) {
         })
 }
 
-export async function deleteMaterial(id: number) {
-    return MaterialRepository
+export async function deleteProcurement(id: number) {
+    return ProcurementRepository
         .createQueryBuilder()
         .delete()
-        .from(Material)
+        .from(Procurement)
         .where("id = :id", { id })
         .execute()
         .then(() => { return { success: true } })
@@ -36,23 +36,28 @@ export async function deleteMaterial(id: number) {
         })
 }
 
-export async function getMaterials(options, size, page) {
-    const { conditions, parameters } = optionsGenerater(options, "Material")
-    const total = await MaterialRepository
-        .createQueryBuilder("Material")
+export async function getProcurements(options, size, page) {
+    const { conditions, parameters } = optionsGenerater(options, "Procurement")
+    const total = await ProcurementRepository
+        .createQueryBuilder("Procurement")
         .where(conditions.join(" AND "), parameters)
         .getCount();
 
-    return MaterialRepository
-        .createQueryBuilder("Material")
+    return ProcurementRepository
+        .createQueryBuilder("Procurement")
         .select([
-            "Material.id AS id",
-            "Material.createUserId AS createUserId",
-            "Material.name AS name",
-            "Material.standard AS standard",
-            "Material.unit AS unit",
-            "Material.rentUnit AS rentUnit",
-            "DATE_FORMAT(Material.updateTime, '%Y-%m-%d %H:%i:%S') AS updateDate"
+            "Procurement.id AS id",
+            "Procurement.createUserId AS createUserId",
+            "Procurement.name AS name",
+            "Procurement.type AS type",
+            "Procurement.standard AS standard",
+            "Procurement.unit AS unit",
+            "Procurement.rentUnit AS rentUnit",
+            "Procurement.price AS price ",
+            "Procurement.quantity AS quantity ",
+            "Procurement.remark AS remark ",
+            "Procurement.recordImg AS recordImg ",
+            "DATE_FORMAT(Procurement.updateTime, '%Y-%m-%d %H:%i:%S') AS updateDate"
         ])
         .where(conditions.join(" AND "), parameters)
         .offset((page - 1) * size)

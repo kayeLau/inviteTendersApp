@@ -1,0 +1,15 @@
+{
+  "component": true,
+  "usingComponents": {
+    "t-badge": "tdesign-miniprogram/badge/badge",
+    "t-button": "tdesign-miniprogram/button/button",
+    "t-input": "tdesign-miniprogram/input/input",
+    "t-cell": "tdesign-miniprogram/cell/cell",
+    "t-checkbox-group": "tdesign-miniprogram/checkbox-group/checkbox-group",
+    "t-radio-group": "tdesign-miniprogram/radio-group/radio-group",
+    "t-icon": "tdesign-miniprogram/icon/icon",
+    "t-sticky": "tdesign-miniprogram/sticky/sticky",
+    "t-tabs": "tdesign-miniprogram/tabs/tabs",
+    "t-tab-panel": "tdesign-miniprogram/tab-panel/tab-panel"
+  }
+}

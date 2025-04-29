@@ -1,12 +1,14 @@
 import { http } from '../../server/api'
-import { material } from '../../utils/config'
+import { procurement } from '../../utils/config'
 
 Page({
   data: {
     formMode:'',
     list: [],
     isEdit: false,
-    material:material
+    procurement:procurement,
+    selected:{},
+    description:''
   },
 
   getGroups() {
@@ -14,7 +16,7 @@ Page({
       size: 999,
       page: 1
     }
-    http.post('/material/getMaterials', params).then(res => {
+    http.post('/procurement/getProcurements', params).then(res => {
       if (res.data.success) {
         let list = res.data.data
         this.setData({
@@ -33,15 +35,24 @@ Page({
   },
 
   createGroup() {
-    let data = this.selectComponent("#xl-form").getData()
+    const data = this.selectComponent("#xl-form").getData()
+    const material = this.data.selected.value
+    if(!material){
+      this.setData({description:'请选择材料'})
+      return
+    }
     if(!data)return;
     let params = {
+      material,
       name:data.name,
-      standard:data.standard,
+      type: data.type,
       unit:data.unit,
-      rentUnit:data.rentUnit
+      price:data.price,
+      quantity:data.quantity,
+      remark:data.remark,
+      recordImg:data.recordImg
     }
-    http.post('/material/createMaterial', params).then(res => {
+    http.post('/procurement/createProcurement', params).then(res => {
       if (res.data.success) {
         this.getGroups()
         this.setData({
@@ -57,8 +68,14 @@ Page({
     let params = {
       id:data.id,
       name:data.name,
+      type: data.type,
+      unit:data.unit,
+      price:data.price,
+      quantity:data.quantity,
+      remark:data.remark,
+      recordImg:data.recordImg
     }
-    http.post('/material/updateMaterial', params).then(res => {
+    http.post('/procurement/updateProcurement', params).then(res => {
       if (res.data.success) {
         this.getGroups()
         this.setData({
@@ -82,6 +99,12 @@ Page({
   switchToList() {
     this.setData({
       isEdit: false,
+    })
+  },
+
+  jumpto() {
+    wx.navigateTo({
+      url: `/pages/materialPenal/index`
     })
   },
 

@@ -171,6 +171,10 @@ page{
   border-radius: 12rpx;
   background-color: var(--primary-color-light);
 }
+.tips{
+  color: #D54941 !important;
+  padding-left: 100rpx;
+}
 
 
 

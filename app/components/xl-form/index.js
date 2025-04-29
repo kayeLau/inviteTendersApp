@@ -1,9 +1,5 @@
-import {
-  uploadImg
-} from '../../server/api'
-import {
-  formatTime
-} from '../../utils/util';
+import { uploadImg } from '../../server/api'
+import { formatTime } from '../../utils/util';
 
 Component({
   options: {
@@ -24,6 +20,7 @@ Component({
     params: {}, // 值map
     rule: {}, // 校驗map
     pickerVisible: {}, // picker顯示map
+    materialSelected:{ label:'请选择' },
     maxDate: new Date().getTime(),
     minDate: new Date(2022, 1, 1).getTime(),
     defaultValue: new Date().getTime(),
@@ -115,6 +112,12 @@ Component({
       pickerVisible[key].visible = !pickerVisible[key].visible
       this.setData({
         pickerVisible
+      })
+    },
+
+    jumptoMaterial() {
+      wx.navigateTo({
+        url: `/pages/materialPenal/index`
       })
     },
 

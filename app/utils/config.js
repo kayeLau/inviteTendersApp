@@ -222,7 +222,7 @@ export const material = [
   {
     key: 'unit',
     prop: 'input',
-    label: '採購单位',
+    label: '採购单位',
     value: '',
   },
   {
@@ -231,4 +231,69 @@ export const material = [
     label: '租赁单位',
     value: '',
   },
+]
+export const procurement = [
+  {
+    key: 'name',
+    prop: 'input',
+    label: '採购名称',
+    value: '',
+  },
+  {
+    key: 'material',
+    prop: 'material',
+    label: '材料',
+    value: '',
+  },
+  {
+    key: 'type',
+    prop: 'picker',
+    label: '採购类型',
+    value: 0,
+    options: [
+      {
+        label: '采购',
+        value: 0
+      },
+      {
+        label: '租赁',
+        value: 1
+      }
+    ]
+  },
+  {
+    key: 'unit',
+    prop: 'input',
+    type:'number',
+    label: '单位',
+    value: '',
+  },
+  {
+    key: 'price',
+    prop: 'input',
+    type:'number',
+    label: '单价',
+    value: '',
+  },
+  {
+    key: 'quantity',
+    prop: 'input',
+    type:'number',
+    label: '採购数量',
+    value: '',
+  },
+  {
+    key: 'remark',
+    prop: 'input',
+    label: '备注',
+    value: '',
+    nullable:true
+  }, 
+  {
+    key: 'recordImg',
+    prop: 'upload',
+    label: '上传图片',
+    value: [],
+    nullable:true
+  }
 ]

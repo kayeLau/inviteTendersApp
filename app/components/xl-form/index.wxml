@@ -30,6 +30,8 @@
         <view style="padding-bottom: 10rpx;">{{item.label}}</view>
         <t-upload accept="image/jpg,image/jpeg,image/png" media-type="{{['image']}}" files="{{params[item.key].preview}}" gridConfig="{{gridConfig}}" config="{{uploadConfig}}" bind:add="bindChange" data-key="{{item.key}}" :request-method="uploadImage" />
       </view>
+      <!-- material-panel -->
+      <t-cell wx:if="{{item.prop === 'material'}}" class="mb-16" title="{{item.label}}" arrow hover bind:click="jumptoMaterial" data-key="{{item.key}}" note="{{materialSelected.label}}" description="{{rule[item.key]}}" t-class-description='tips' />
     </view>
 
     <view class="form-section-btns">
