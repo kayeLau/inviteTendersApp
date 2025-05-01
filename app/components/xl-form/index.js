@@ -52,22 +52,25 @@ Component({
     textData(params) {
       let oldValue = this.data.params
       let newValue = Object.assign(oldValue, params)
-      this.initPicker(newValue)
+      this.initValue(newValue)
       this.setData({
         params: newValue
       })
     },
 
-    initPicker(parmas) {
+    initValue(params) {
       const pickerVisible = {}
       this.properties.column.forEach(item => {
         if (item.prop === 'picker') {
           pickerVisible[item.key] = {
             visible: false,
             label: item.options.find(op => {
-              return op.value === Number(parmas[item.key])
+              return op.value === Number(params[item.key])
             }).label
           }
+        }
+        if(item.callback){
+          item.callback(params)
         }
       });
       this.setData({
@@ -80,8 +83,12 @@ Component({
       const params = this.data.params
       const pickerVisible = this.data.pickerVisible
       const key = e.currentTarget.dataset.key
-      const param = await this.paramsFormatter(e)
+      const target = this.properties.column.find(item => item.key === key)
+      const param = await this.paramsFormatter(e,target)
       params[key] = param.value;
+      if(target.callback){
+        target.callback(params)
+      }
       console.log(params)
       if (pickerVisible[key]) {
         pickerVisible[key] = {
@@ -95,9 +102,7 @@ Component({
       });
     },
 
-    async paramsFormatter(e) {
-      const key = e.currentTarget.dataset.key
-      const target = this.properties.column.find(item => item.key === key)
+    async paramsFormatter(e,target) {
       if (target.prop === 'datepicker') {
         return {
           value: e.detail.value,
@@ -159,6 +164,7 @@ Component({
       const params = {}
       this.properties.column.forEach(item => {
         let label = '请选择'
+        params[item.key] = item.value
         if (item.prop === 'datepicker') {
           const date = new Date()
           params[item.key] = date.getTime()
@@ -166,7 +172,7 @@ Component({
         }
         if (this.data.visibleComponentMap[item.prop]) {
           pickerVisible[item.key] = {
-            visible: item.visible,
+            visible: false,
             label
           }
         }

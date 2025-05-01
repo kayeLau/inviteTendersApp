@@ -15,7 +15,6 @@ export const site = [{
   key: 'attendanceUnit',
   prop: 'picker',
   label: '考勤单位',
-  visible: false,
   value: '',
   options: [{
     label: '分钟',
@@ -96,13 +95,11 @@ export const atTimePlace = [{
   prop: 'datepicker',
   label: '记录日期',
   value: '',
-  visible: false
 },
 {
   key: 'placeId',
   prop: 'picker',
   label: '项目',
-  visible: false,
   value: '',
   options: []
 },
@@ -264,6 +261,10 @@ export const procurement = [
   },
   {
     key: 'price',
+    callback:(params)=>{
+      params.amount = params.price * params.quantity
+      return params
+    },
     prop: 'input',
     type:'number',
     label: '单价',
@@ -271,10 +272,22 @@ export const procurement = [
   },
   {
     key: 'quantity',
+    callback:(params)=>{
+      params.amount = params.price * params.quantity
+      return params
+    },
     prop: 'input',
     type:'number',
     label: '採购数量',
     value: '',
+  },
+  {
+    key: 'amount',
+    prop: 'input',
+    type:'number',
+    label: '採购金额',
+    value: 0,
+    disabled:true
   },
   {
     key: 'remark',
