@@ -20,7 +20,6 @@ Component({
     params: {}, // 值map
     rule: {}, // 校驗map
     pickerVisible: {}, // picker顯示map
-    materialSelected:{ label:'请选择' },
     maxDate: new Date().getTime(),
     minDate: new Date(2022, 1, 1).getTime(),
     defaultValue: new Date().getTime(),
@@ -53,8 +52,26 @@ Component({
     textData(params) {
       let oldValue = this.data.params
       let newValue = Object.assign(oldValue, params)
+      this.initPicker(newValue)
       this.setData({
         params: newValue
+      })
+    },
+
+    initPicker(parmas) {
+      const pickerVisible = {}
+      this.properties.column.forEach(item => {
+        if (item.prop === 'picker') {
+          pickerVisible[item.key] = {
+            visible: false,
+            label: item.options.find(op => {
+              return op.value === Number(parmas[item.key])
+            }).label
+          }
+        }
+      });
+      this.setData({
+        pickerVisible
       })
     },
 
@@ -112,12 +129,6 @@ Component({
       pickerVisible[key].visible = !pickerVisible[key].visible
       this.setData({
         pickerVisible
-      })
-    },
-
-    jumptoMaterial() {
-      wx.navigateTo({
-        url: `/pages/materialPenal/index`
       })
     },
 

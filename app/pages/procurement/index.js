@@ -7,11 +7,13 @@ Page({
     list: [],
     isEdit: false,
     procurement:procurement,
-    selected:{},
+    selected:{
+      label:'请选择'
+    },
     description:''
   },
 
-  getGroups() {
+  getProcurements() {
     let params = {
       size: 999,
       page: 1
@@ -26,15 +28,15 @@ Page({
     })
   },
 
-  sumbitGroup(){
+  sumbitProcurement(){
     if(this.data.formMode === 'create'){
-      this.createGroup()
+      this.createProcurement()
     }else if(this.data.formMode === 'edit'){
-      this.updateGroup()
+      this.updateProcurement()
     }
   },
 
-  createGroup() {
+  createProcurement() {
     const data = this.selectComponent("#xl-form").getData()
     const material = this.data.selected.value
     if(!material){
@@ -54,7 +56,7 @@ Page({
     }
     http.post('/procurement/createProcurement', params).then(res => {
       if (res.data.success) {
-        this.getGroups()
+        this.getProcurements()
         this.setData({
           isEdit: false
         })
@@ -62,7 +64,7 @@ Page({
     })
   },
 
-  updateGroup(){
+  updateProcurement(){
     let data = this.selectComponent("#xl-form").getData()
     if(!data)return;
     let params = {
@@ -77,7 +79,7 @@ Page({
     }
     http.post('/procurement/updateProcurement', params).then(res => {
       if (res.data.success) {
-        this.getGroups()
+        this.getProcurements()
         this.setData({
           isEdit: false
         })
@@ -109,6 +111,6 @@ Page({
   },
 
   onLoad() {
-    this.getGroups()
+    this.getProcurements()
   }
 });

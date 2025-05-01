@@ -240,12 +240,6 @@ export const procurement = [
     value: '',
   },
   {
-    key: 'material',
-    prop: 'material',
-    label: '材料',
-    value: '',
-  },
-  {
     key: 'type',
     prop: 'picker',
     label: '採购类型',

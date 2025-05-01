@@ -24,6 +24,7 @@ module.exports = class Procurement {
             unit:req.body.unit,
             price:req.body.price,
             quantity:req.body.quantity,
+            material:req.body.material,
             remark:req.body.remark,
             recordImg:req.body.recordImg
         }
@@ -46,6 +47,7 @@ module.exports = class Procurement {
             unit:req.body.unit,
             price:req.body.price,
             quantity:req.body.quantity,
+            material:req.body.material,
             remark:req.body.remark,
             recordImg:req.body.recordImg
         }
