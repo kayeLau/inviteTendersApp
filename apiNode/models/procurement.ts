@@ -45,6 +45,7 @@ export async function getProcurements(options, size, page) {
 
     return ProcurementRepository
         .createQueryBuilder("Procurement")
+        .leftJoinAndSelect("Procurement.material", "Material")
         .select([
             "Procurement.id AS id",
             "Procurement.createUserId AS createUserId",
@@ -55,6 +56,8 @@ export async function getProcurements(options, size, page) {
             "Procurement.quantity AS quantity ",
             "Procurement.remark AS remark ",
             "Procurement.recordImg AS recordImg ",
+            "Procurement.materialId AS materialId ",
+            "Material.name AS materialName ",
             "DATE_FORMAT(Procurement.updateTime, '%Y-%m-%d %H:%i:%S') AS updateDate"
         ])
         .where(conditions.join(" AND "), parameters)

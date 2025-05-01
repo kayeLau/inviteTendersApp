@@ -34,7 +34,7 @@ Page({
   },
 
   jumpto() {
-    const path = this.data.tab === '1' ? 'group' : 'toolStaff';
+    const path = this.data.tab === '1' ? 'group' : 'member';
     wx.navigateTo({
       url: `/pages/${path}/index`,
     })

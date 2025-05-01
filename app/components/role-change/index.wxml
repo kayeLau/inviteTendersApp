@@ -1,4 +1,3 @@
-<!--pages/tool/index.wxml-->
 <view>
   <view class="location-bar">
     <view bind:tap="showRoleChange" class="role-avatar">

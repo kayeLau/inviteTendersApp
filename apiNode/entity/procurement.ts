@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn} from "typeorm"
+import { Material } from "./material"
 
 @Entity()
 export class Procurement {
@@ -8,14 +9,14 @@ export class Procurement {
     @Column()
     createUserId: number
 
-    @Column({length: 50, nullable:true})
+    @Column({length: 50 })
     name: string
 
     @Column({ comment:'0:采购 1:租'})
-    type: string
+    type: number
 
     @Column({ comment:'材料'})
-    material: number
+    materialId: number
 
     @Column({ comment:'单位' })
     unit: string
@@ -34,4 +35,8 @@ export class Procurement {
 
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
     updateTime: Date
+
+    @ManyToOne(() => Material, material => material.name)
+    @JoinColumn({ name: "materialId" })
+    material: Material;
 }

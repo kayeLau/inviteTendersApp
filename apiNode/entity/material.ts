@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column , OneToMany } from "typeorm"
-import { Attendance } from "./attendance"
+import { Procurement } from "./procurement"
 
 @Entity()
 export class Material {
@@ -24,4 +24,7 @@ export class Material {
 
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
     updateTime: Date
+
+    @OneToMany(() => Procurement, procurement => procurement.material)
+    Procurement: Procurement[];
 }

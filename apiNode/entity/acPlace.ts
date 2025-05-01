@@ -25,6 +25,6 @@ export class AcPlace {
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
     updateTime: Date
 
-    @OneToMany(() => Attendance, attendance => attendance.AcPlace)
+    @OneToMany(() => Attendance, attendance => attendance.acPlace)
     attendances: Attendance[];
 }

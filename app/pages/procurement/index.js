@@ -38,21 +38,21 @@ Page({
 
   createProcurement() {
     const data = this.selectComponent("#xl-form").getData()
-    const material = this.data.selected.value
-    if(!material){
+    const materialId = this.data.selected.value
+    if(!materialId){
       this.setData({description:'请选择材料'})
       return
     }
     if(!data)return;
     let params = {
-      material,
+      materialId,
       name:data.name,
-      type: data.type,
+      type: Number(data.type),
       unit:data.unit,
-      price:data.price,
-      quantity:data.quantity,
+      price:Number(data.price),
+      quantity:Number(data.quantity),
       remark:data.remark,
-      recordImg:data.recordImg
+      recordImg:data.recordImg.length ? data.recordImg.path : '',
     }
     http.post('/procurement/createProcurement', params).then(res => {
       if (res.data.success) {
@@ -75,7 +75,7 @@ Page({
       price:data.price,
       quantity:data.quantity,
       remark:data.remark,
-      recordImg:data.recordImg
+      recordImg:data.recordImg.length ? data.recordImg.path : '',
     }
     http.post('/procurement/updateProcurement', params).then(res => {
       if (res.data.success) {

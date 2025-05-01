@@ -1,30 +1,21 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
 
 @Entity()
-export class Procurement {
+export class procurementPay {
     @PrimaryGeneratedColumn()
     id: number
 
     @Column()
     createUserId: number
 
-    @Column({length: 50, nullable:true})
-    name: string
+    @Column({ comment:'0:工头 1:老板'})
+    type: number
 
-    @Column({ comment:'0:采购 1:租'})
-    type: string
+    @Column({ comment:'采购'})
+    procurement: number
 
-    @Column({ comment:'材料'})
-    material: number
-
-    @Column({ comment:'单位' })
-    unit: string
-
-    @Column({ comment:'单价' })
-    price: number
-
-    @Column({ comment:'採购数量' })
-    quantity: number
+    @Column({ comment:'已付' })
+    paid: number
 
     @Column({ nullable: true, length: 100 })
     remark: string

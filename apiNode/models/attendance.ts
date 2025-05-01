@@ -34,7 +34,7 @@ export async function getAttendance(options, size, page) {
 
     return AttendanceRepository
         .createQueryBuilder("Attendance")
-        .leftJoinAndSelect("Attendance.AcPlace", "AcPlace")
+        .leftJoinAndSelect("Attendance.acPlace", "AcPlace")
         .select([
             "Attendance.id AS id",
             "Attendance.placeId AS placeId",

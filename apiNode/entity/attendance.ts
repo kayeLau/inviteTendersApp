@@ -53,5 +53,5 @@ export class Attendance {
 
     @ManyToOne(() => AcPlace, place => place.name)
     @JoinColumn({ name: "placeId" })
-    AcPlace: AcPlace;
+    acPlace: AcPlace;
 }

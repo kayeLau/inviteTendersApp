@@ -71,7 +71,7 @@ Page({
 
   addRecords() {
     wx.navigateTo({
-      url: '/pages/toolAttendance/index',
+      url: '/pages/attendance/index',
     })
   },
 
