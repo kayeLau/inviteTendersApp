@@ -15,12 +15,12 @@ Page({
     pjManage: [{
       name: '设置项目',
       icon: '../../assert/hook.png',
-      path: 'toolSite'
+      path: 'place'
     },
     {
       name: '人员管理',
       icon: '../../assert/worker.png',
-      path: 'toolStaff'
+      path: 'member'
     },
     {
       name: '班组管理',
@@ -49,7 +49,7 @@ Page({
       {
         name: '记工记帐',
         icon: '../../assert/note.png',
-        path: 'toolAttendance'
+        path: 'attendance'
       },
       {
         name: '结算',
@@ -59,7 +59,7 @@ Page({
       {
         name: '考勤记录',
         icon: '../../assert/under-construction.png',
-        path: 'toolRecord'
+        path: 'atRecord'
       }
     ]
   },

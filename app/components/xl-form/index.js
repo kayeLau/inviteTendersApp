@@ -49,6 +49,7 @@ Component({
       }
     },
 
+    // 回显资料
     textData(params) {
       let oldValue = this.data.params
       let newValue = Object.assign(oldValue, params)
@@ -58,6 +59,7 @@ Component({
       })
     },
 
+    // 计算不能直接回显的资料
     initValue(params) {
       const pickerVisible = {}
       this.properties.column.forEach(item => {
@@ -78,6 +80,7 @@ Component({
       })
     },
 
+   // 值改变时
     async bindChange(e) {
       console.log('发送选择改变，携带值为', e);
       const params = this.data.params
@@ -102,6 +105,7 @@ Component({
       });
     },
 
+    // 格形化改变值
     async paramsFormatter(e,target) {
       if (target.prop === 'datepicker') {
         return {
@@ -137,6 +141,7 @@ Component({
       })
     },
 
+    // 表单规则验算
     verify() {
       const params = this.data.params
       const rule = this.data.rule
