@@ -27,16 +27,23 @@ Page({
       icon: '../../assert/workers.png',
       path: 'group'
     },
-    {
-      name: '材料管理',
-      icon: '../../assert/material.png',
-      path: 'material'
-    },
-    {
-      name: '采购',
-      icon: '../../assert/procurement.png',
-      path: 'procurement'
-    },
+    ],
+    mtManage:[
+      {
+        name: '材料管理',
+        icon: '../../assert/material.png',
+        path: 'material'
+      },
+      {
+        name: '材料采购',
+        icon: '../../assert/procurement.png',
+        path: 'procurement'
+      },
+      {
+        name: '采购记帐',
+        icon: '../../assert/procurement.png',
+        path: 'procurement'
+      },
     ],
     rdManage: [
       {

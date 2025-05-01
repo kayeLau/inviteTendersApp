@@ -10,14 +10,15 @@
         <t-button theme="light" bind:tap="switchToEdit" data-current='{{item}}' data-mode='edit'>编辑</t-button>
       </view>
     </view>
-    <view class="footer-btn btn-primary" bind:tap="switchToEdit" data-mode='create'>添加材料</view>
+    <view class="footer-btn btn-primary" bind:tap="switchToEdit" data-mode='create'>添加采购</view>
   </view>
   <view wx:if="{{ isEdit }}">
     <!-- 选材料 -->
+    <t-cell class="mb-16" title="材料" arrow hover bind:click="jumpto" note="{{selected.label}}" description="{{description}}" t-class-description='tips' />
     <xl-form column="{{procurement}}" id='xl-form'></xl-form>
     <view class="footer">
       <view class="round-btn btn-info" bind:tap="switchToList" style="width: 30%;">返回</view>
-      <view class="round-btn btn-primary" bind:tap="sumbitGroup" style="width: 70%;">确定</view>
+      <view class="round-btn btn-primary" bind:tap="sumbitProcurement" style="width: 70%;">确定</view>
     </view>
   </view>
 </view>

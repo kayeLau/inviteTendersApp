@@ -1,4 +1,7 @@
 /* pages/ac/index.wxss */
+.card{
+  border-radius: 8px;
+}
 .tool-gird{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;

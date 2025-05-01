@@ -1,6 +1,6 @@
 <view class="container">
   <role-change></role-change>
-  <view class="card" style="margin: 0 20rpx;">
+  <view class="card" style="margin:10rpx 20rpx;">
     <view class="font-bold">项目管理</view>
     <view class="tool-gird">
       <view class="tool-box" wx:for="{{pjManage}}" wx:key="unique" bind:tap="jumpTo" data-id='{{ item.id }}' data-path='{{ item.path }}'>
@@ -9,7 +9,16 @@
       </view>
     </view>
   </view>
-  <view class="card" style="margin: 20rpx 20rpx;">
+  <view class="card" style="margin:10rpx 20rpx;">
+    <view class="font-bold">材料管理</view>
+    <view class="tool-gird">
+      <view class="tool-box" wx:for="{{mtManage}}" wx:key="unique" bind:tap="jumpTo" data-id='{{ item.id }}' data-path='{{ item.path }}'>
+        <image src="{{item.icon}}" class="tool-box-icon" />
+        <view class="font-bold">{{ item.name }}</view>
+      </view>
+    </view>
+  </view>
+  <view class="card" style="margin:10rpx 20rpx;">
     <view class="font-bold">收支管理</view>
     <view class="tool-gird">
       <view class="tool-box" wx:for="{{rdManage}}" wx:key="unique" bind:tap="jumpTo" data-id='{{ item.id }}' data-path='{{ item.path }}'>
