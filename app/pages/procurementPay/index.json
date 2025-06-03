@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "t-button": "tdesign-miniprogram/button/button",
+    "xl-form": "../../components/xl-form/index",
+    "t-checkbox-group": "tdesign-miniprogram/checkbox-group/checkbox-group",
+    "t-cell": "tdesign-miniprogram/cell/cell"
+  }
+}

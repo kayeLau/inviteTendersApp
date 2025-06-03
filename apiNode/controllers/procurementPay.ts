@@ -1,31 +1,33 @@
-import { createProcurement , updateProcurement , deleteProcurement , getProcurements } from '../models/procurement'
+import { createProcurementPay , updateProcurementPay , deleteProcurementPay , getProcurementPays } from '../models/procurementPay'
 
-module.exports = class Procurement {
-    getProcurements(req, res, next) {
+module.exports = class ProcurementPay {
+    getProcurementPays(req, res, next) {
         const userInfo = req.userInfo
         const options = { createUserId: userInfo.id , placeId: userInfo.current_placeId }
         const size = req.body.size
         const page = req.body.page
 
 
-        getProcurements(options, size, page).then(result => {
+        getProcurementPays(options, size, page).then(result => {
             res.json(result)
         }).catch(err => {
             next(err)
         })
     }
 
-    createProcurement(req, res, next) {
+    createProcurementPay(req, res, next) {
         const userInfo = req.userInfo
         const data = {
             createUserId: userInfo.id,
-            type: userInfo.type,
-
+            type: req.body.type,
+            procurementId:req.body.procurementId,
+            paid:req.body.paid,
             remark:req.body.remark,
             recordImg:req.body.recordImg
         }
+        console.log(data)
 
-        createProcurement(data).then(result => {
+        createProcurementPay(data).then(result => {
             res.json(result)
         }).catch(err => {
             next(err)
@@ -33,23 +35,20 @@ module.exports = class Procurement {
 
     }
 
-    updateProcurement(req, res, next) {
+    updateProcurementPay(req, res, next) {
         const userInfo = req.userInfo
         const id = req.body.id
         const data = {
             createUserId: userInfo.id,
-            name: req.body.name,
             type: req.body.type,
-            unit:req.body.unit,
-            price:req.body.price,
-            quantity:req.body.quantity,
-            materialId:req.body.materialId,
+            procurementId:req.body.procurementId,
+            paid:req.body.paid,
             remark:req.body.remark,
             recordImg:req.body.recordImg
         }
 
 
-        updateProcurement(id, data).then(result => {
+        updateProcurementPay(id, data).then(result => {
             res.json(result)
         }).catch(err => {
             next(err)
@@ -58,10 +57,10 @@ module.exports = class Procurement {
     }
 
 
-    deleteProcurement(req, res, next) {
+    deleteProcurementPay(req, res, next) {
         const id = req.body.createUserId
 
-        deleteProcurement(id).then(result => {
+        deleteProcurementPay(id).then(result => {
             res.json(result)
         }).catch(err => {
             next(err)

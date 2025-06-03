@@ -1,6 +1,5 @@
 import { http } from '../../server/api'
 
-
 Page({
   data: {
     tab: 0,
@@ -9,15 +8,17 @@ Page({
     curIndex: '',
     selected: [],
     // config
+    path:'/material/getMaterials'
   },
 
   async getList() {
+    const path = this.data.path
     let params = {
       size: 999,
       page: 1,
       state: 0
     }
-    await http.post('/material/getMaterials', params).then(res => {
+    await http.post(path, params).then(res => {
       if (res.data.success) {
         let list = res.data.data.map(item => {
           return {
@@ -61,7 +62,8 @@ Page({
     wx.navigateBack();
   },
 
-  async onShow() {
-    await this.getList()
-  },
+  onLoad(options){
+    this.setData({ path:options.path })
+    this.getList()
+  }
 })

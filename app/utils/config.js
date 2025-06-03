@@ -304,3 +304,32 @@ export const procurement = [
     nullable:true
   }
 ]
+export const procurementPay = [
+  {
+    key: 'payDate',
+    prop: 'datepicker',
+    label: '记录日期',
+    value: '',
+  },
+  {
+    key: 'paid',
+    type:'number',
+    prop: 'input',
+    label: '本次付款',
+    value: '',
+  },
+  {
+    key: 'remark',
+    prop: 'input',
+    label: '备注',
+    value: '',
+    nullable:true
+  }, 
+  {
+    key: 'recordImg',
+    prop: 'upload',
+    label: '上传图片',
+    value: [],
+    nullable:true
+  }
+]

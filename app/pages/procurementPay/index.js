@@ -1,24 +1,23 @@
 import { http } from '../../server/api'
-import { procurement } from '../../utils/config'
+import { procurementPay } from '../../utils/config'
 
 Page({
   data: {
-    formMode:'',
+    procurementId:null,
     list: [],
-    isEdit: false,
-    procurement:procurement,
-    selected:{
-      label:'请选择'
-    },
-    description:''
+    isEdit: true,
+    procurementPay:procurementPay,
+    total:0,
+    unPay:0
   },
 
   getProcurements() {
     let params = {
       size: 999,
-      page: 1
+      page: 1,
+      procurementId:this.data.procurementId
     }
-    http.post('/procurement/getProcurements', params).then(res => {
+    http.post('/procurementPay/getProcurementPays', params).then(res => {
       if (res.data.success) {
         let list = res.data.data
         this.setData({
@@ -29,32 +28,21 @@ Page({
   },
 
   sumbitProcurement(){
-    if(this.data.formMode === 'create'){
-      this.createProcurement()
-    }else if(this.data.formMode === 'edit'){
-      this.updateProcurement()
-    }
+    this.createProcurement()
   },
 
   createProcurement() {
     const data = this.selectComponent("#xl-form").getData()
-    const materialId = this.data.selected.value
-    if(!materialId){
-      this.setData({description:'请选择材料'})
-      return
-    }
+    const type = wx.getStorage("roleId")
     if(!data)return;
     let params = {
-      materialId,
-      name:data.name,
-      type: Number(data.type),
-      unit:data.unit,
-      price:Number(data.price),
-      quantity:Number(data.quantity),
+      payDate:data.payDate,
+      paid:data.paid,
       remark:data.remark,
+      type,
       recordImg:data.recordImg.length ? data.recordImg.path : '',
     }
-    http.post('/procurement/createProcurement', params).then(res => {
+    http.post('/procurementPay/createProcurementPay', params).then(res => {
       if (res.data.success) {
         this.getProcurements()
         this.setData({
@@ -77,7 +65,7 @@ Page({
       remark:data.remark,
       recordImg:data.recordImg.length ? data.recordImg.path : '',
     }
-    http.post('/procurement/updateProcurement', params).then(res => {
+    http.post('/procurementPay/updateProcurementPay', params).then(res => {
       if (res.data.success) {
         this.getProcurements()
         this.setData({
@@ -104,21 +92,11 @@ Page({
     })
   },
 
-  jumpto() {
-    wx.navigateTo({
-      url: `/pages/selectPenal/index?path=/material/getMaterials`
+  onLoad(options) {
+    this.setData({ 
+      procurementId:Number(options.id),
+      total:Number(options.total),
     })
-  },
-
-  jumptoPay(e) {
-    const item = e.currentTarget.dataset.current
-    const total = item.quantity * item.price
-    wx.navigateTo({
-      url: `/pages/procurementPay/index?id=${item.id}&total=${total}`
-    })
-  },
-
-  onLoad() {
     this.getProcurements()
   }
 });

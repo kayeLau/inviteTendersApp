@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn} from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm"
 import { Material } from "./material"
 
 @Entity()
@@ -9,22 +9,22 @@ export class Procurement {
     @Column()
     createUserId: number
 
-    @Column({length: 50 })
+    @Column({ length: 50 })
     name: string
 
-    @Column({ comment:'0:采购 1:租'})
+    @Column({ comment: '0:采购 1:租' })
     type: number
 
-    @Column({ comment:'材料'})
+    @Column({ comment: '材料' })
     materialId: number
 
-    @Column({ comment:'单位' })
+    @Column({ comment: '单位' })
     unit: string
 
-    @Column({ comment:'单价' })
+    @Column('float', { comment: '单价' })
     price: number
 
-    @Column({ comment:'採购数量' })
+    @Column({ comment: '採购数量' })
     quantity: number
 
     @Column({ nullable: true, length: 100 })

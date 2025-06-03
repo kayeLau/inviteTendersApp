@@ -7,8 +7,6 @@
       </view>
       <!-- btn-group -->
       <view class="flex gap">
-        <t-button theme="light" bind:tap="jumptoPay" 
-        data-current='{{item}}'>记录支出</t-button>
         <t-button theme="light" bind:tap="switchToEdit" data-current='{{item}}' data-mode='edit'>编辑</t-button>
       </view>
     </view>
@@ -16,8 +14,9 @@
   </view>
   <view wx:if="{{ isEdit }}">
     <!-- 选材料 -->
-    <t-cell class="mb-16" title="材料" arrow hover bind:click="jumpto" note="{{selected.label}}" description="{{description}}" t-class-description='tips' />
-    <xl-form column="{{procurement}}" id='xl-form'></xl-form>
+    <t-cell title="总额" note="{{total}}¥"/>
+    <t-cell title="未付" note="{{unPay}}¥"/>
+    <xl-form column="{{procurementPay}}" id='xl-form'></xl-form>
     <view class="footer">
       <view class="round-btn btn-info" bind:tap="switchToList" style="width: 30%;">返回</view>
       <view class="round-btn btn-primary" bind:tap="sumbitProcurement" style="width: 70%;">确定</view>

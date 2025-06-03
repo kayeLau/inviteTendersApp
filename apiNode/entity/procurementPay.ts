@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
 
 @Entity()
-export class procurementPay {
+export class ProcurementPay {
     @PrimaryGeneratedColumn()
     id: number
 
@@ -12,9 +12,9 @@ export class procurementPay {
     type: number
 
     @Column({ comment:'采购'})
-    procurement: number
+    procurementId: number
 
-    @Column({ comment:'已付' })
+    @Column('float', { comment:'已付' })
     paid: number
 
     @Column({ nullable: true, length: 100 })
