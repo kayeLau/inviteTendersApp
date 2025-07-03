@@ -11,29 +11,13 @@ Page({
     unPay:0
   },
 
-  getProcurements() {
-    let params = {
-      size: 999,
-      page: 1,
-      procurementId:this.data.procurementId
-    }
-    http.post('/procurementPay/getProcurementPays', params).then(res => {
-      if (res.data.success) {
-        let list = res.data.data
-        this.setData({
-          list
-        })
-      }
-    })
-  },
-
   sumbitProcurement(){
     this.createProcurement()
   },
 
   createProcurement() {
     const data = this.selectComponent("#xl-form").getData()
-    const type = wx.getStorage("roleId")
+    const type = wx.getStorageSync('roleId')
     if(!data)return;
     let params = {
       payDate:data.payDate,
@@ -44,51 +28,7 @@ Page({
     }
     http.post('/procurementPay/createProcurementPay', params).then(res => {
       if (res.data.success) {
-        this.getProcurements()
-        this.setData({
-          isEdit: false
-        })
       }
-    })
-  },
-
-  updateProcurement(){
-    let data = this.selectComponent("#xl-form").getData()
-    if(!data)return;
-    let params = {
-      id:data.id,
-      name:data.name,
-      type: data.type,
-      unit:data.unit,
-      price:data.price,
-      quantity:data.quantity,
-      remark:data.remark,
-      recordImg:data.recordImg.length ? data.recordImg.path : '',
-    }
-    http.post('/procurementPay/updateProcurementPay', params).then(res => {
-      if (res.data.success) {
-        this.getProcurements()
-        this.setData({
-          isEdit: false
-        })
-      }})
-  },
-
-  async switchToEdit(e) {
-    const formMode = e.currentTarget.dataset.mode
-    this.setData({
-      isEdit: true,
-      formMode
-    })
-    const currentItem = e.currentTarget.dataset.current
-    if(currentItem){
-      this.selectComponent("#xl-form").textData(currentItem)
-    }
-  },
-
-  switchToList() {
-    this.setData({
-      isEdit: false,
     })
   },
 
@@ -97,6 +37,5 @@ Page({
       procurementId:Number(options.id),
       total:Number(options.total),
     })
-    this.getProcurements()
   }
 });

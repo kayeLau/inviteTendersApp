@@ -10,6 +10,7 @@
     "pages/selectPenal/index",
     "pages/procurement/index",
     "pages/procurementPay/index",
+    "pages/procurementRecord/index",
     "pages/member/index",
     "pages/attendance/index",
     "pages/atRecord/index",

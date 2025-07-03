@@ -1,9 +1,8 @@
-import { createProcurement , updateProcurement , deleteProcurement , getProcurements } from '../models/procurement'
+import { createProcurement, updateProcurement, deleteProcurement, getProcurements , getProcurementUnpay } from '../models/procurement'
 
 module.exports = class Procurement {
     getProcurements(req, res, next) {
-        const userInfo = req.userInfo
-        const options = { createUserId: userInfo.id , placeId: userInfo.current_placeId }
+        const options = {}
         const size = req.body.size
         const page = req.body.page
 
@@ -19,10 +18,14 @@ module.exports = class Procurement {
         const userInfo = req.userInfo
         const data = {
             createUserId: userInfo.id,
-            type: userInfo.type,
-
-            remark:req.body.remark,
-            recordImg:req.body.recordImg
+            name: req.body.name,
+            type: req.body.type,
+            price: req.body.price,
+            quantity: req.body.quantity,
+            materialId: req.body.materialId,
+            remark: req.body.remark,
+            recordImg: req.body.recordImg,
+            unpay: req.body.price * req.body.quantity
         }
 
         createProcurement(data).then(result => {
@@ -33,28 +36,30 @@ module.exports = class Procurement {
 
     }
 
-    updateProcurement(req, res, next) {
-        const userInfo = req.userInfo
-        const id = req.body.id
-        const data = {
-            createUserId: userInfo.id,
-            name: req.body.name,
-            type: req.body.type,
-            unit:req.body.unit,
-            price:req.body.price,
-            quantity:req.body.quantity,
-            materialId:req.body.materialId,
-            remark:req.body.remark,
-            recordImg:req.body.recordImg
-        }
+    async updateProcurement(req, res, next) {
+        try {
+            const userInfo = req.userInfo
+            const id = req.body.id
+            const unpay = await getProcurementUnpay(id)
 
+            const data = {
+                createUserId: userInfo.id,
+                name: req.body.name,
+                type: req.body.type,
+                price: req.body.price,
+                quantity: req.body.quantity,
+                materialId: req.body.materialId,
+                remark: req.body.remark,
+                recordImg: req.body.recordImg,
+                unpay
+            }
+            updateProcurement(id, data).then(result => {
+                res.json(result)
+            })
 
-        updateProcurement(id, data).then(result => {
-            res.json(result)
-        }).catch(err => {
+        } catch (err) {
             next(err)
-        })
-
+        }
     }
 
 

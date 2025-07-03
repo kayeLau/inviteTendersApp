@@ -39,11 +39,6 @@ Page({
         icon: '../../assert/procurement.png',
         path: 'procurement'
       },
-      {
-        name: '采购记帐',
-        icon: '../../assert/procurement.png',
-        path: 'procurementPay'
-      },
     ],
     rdManage: [
       {

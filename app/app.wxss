@@ -175,6 +175,12 @@ page{
   color: #D54941 !important;
   padding-left: 100rpx;
 }
+.group-list{
+    margin: 10rpx 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
 
 

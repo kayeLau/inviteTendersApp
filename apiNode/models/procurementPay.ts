@@ -45,6 +45,7 @@ export async function getProcurementPays(options, size, page) {
 
     return ProcurementPayRepository
         .createQueryBuilder("ProcurementPay")
+        .leftJoinAndSelect("ProcurementPay.procurement", "Procurement")
         .select([
             "ProcurementPay.id AS id",
             "ProcurementPay.createUserId AS createUserId",
@@ -53,6 +54,10 @@ export async function getProcurementPays(options, size, page) {
             "ProcurementPay.paid AS paid",
             "ProcurementPay.remark AS remark ",
             "ProcurementPay.recordImg AS recordImg ",
+            "Procurement.name AS procurementName ",
+            "Procurement.quantity AS quantity",
+            "Procurement.price AS price ",
+            "Procurement.name AS procurementName ",
             "DATE_FORMAT(ProcurementPay.updateTime, '%Y-%m-%d %H:%i:%S') AS updateDate"
         ])
         .where(conditions.join(" AND "), parameters)

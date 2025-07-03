@@ -253,13 +253,6 @@ export const procurement = [
     ]
   },
   {
-    key: 'unit',
-    prop: 'input',
-    type:'number',
-    label: '单位',
-    value: '',
-  },
-  {
     key: 'price',
     callback:(params)=>{
       params.amount = params.price * params.quantity

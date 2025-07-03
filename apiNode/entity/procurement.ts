@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm"
 import { Material } from "./material"
 
 @Entity()
@@ -18,9 +18,6 @@ export class Procurement {
     @Column({ comment: '材料' })
     materialId: number
 
-    @Column({ comment: '单位' })
-    unit: string
-
     @Column('float', { comment: '单价' })
     price: number
 
@@ -36,7 +33,9 @@ export class Procurement {
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
     updateTime: Date
 
+    @Column({ comment: '未付'})
+    unpay: number
+
     @ManyToOne(() => Material, material => material.name)
-    @JoinColumn({ name: "materialId" })
     material: Material;
 }

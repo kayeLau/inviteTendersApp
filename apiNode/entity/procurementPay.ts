@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column , ManyToOne } from "typeorm"
+import { Procurement } from "./procurement"
 
 @Entity()
 export class ProcurementPay {
@@ -25,4 +26,7 @@ export class ProcurementPay {
 
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
     updateTime: Date
+
+    @ManyToOne(() => Procurement, procurement => procurement.name)
+    procurement: Procurement;
 }

@@ -1,6 +1,7 @@
 import AppDataSource from '../data-source';
 import { Procurement } from '../entity/procurement';
 import { optionsGenerater } from './module/base_model';
+import { getProcurementPays } from './procurementPay'
 const ProcurementRepository = AppDataSource.getRepository(Procurement);
 
 export async function createProcurement(data) {
@@ -21,6 +22,35 @@ export function updateProcurement(id: number, data) {
         .catch((err) => {
             return Promise.reject({ success: false, message: err.message })
         })
+}
+
+export async function getProcurementUnpay(id: number) {
+    try {
+        const procurement = await ProcurementRepository
+            .createQueryBuilder("Procurement")
+            .select([
+                "Procurement.price AS price ",
+                "Procurement.quantity AS quantity "
+            ])
+            .where("id = :id", { id })
+            .getRawOne()
+
+        let unpay = (procurement.price * procurement.quantity)
+
+        const options = { procurementId: id }
+        const procurementPays = await getProcurementPays(options, 999, 1)
+        if (procurementPays.success && procurementPays.data.length) {
+            const payed = procurementPays.data.reduce((acc, curr) => {
+                return acc + curr.paid
+            }, 0)
+            unpay = unpay - payed
+        }
+
+        return unpay
+    } catch (err) {
+        return Promise.reject({ success: false, message: err.message })
+    }
+
 }
 
 export async function deleteProcurement(id: number) {
@@ -51,13 +81,14 @@ export async function getProcurements(options, size, page) {
             "Procurement.createUserId AS createUserId",
             "Procurement.name AS name",
             "Procurement.type AS type",
-            "Procurement.unit AS unit",
+            "Procurement.unpay AS unpay ",
             "Procurement.price AS price ",
             "Procurement.quantity AS quantity ",
             "Procurement.remark AS remark ",
             "Procurement.recordImg AS recordImg ",
             "Procurement.materialId AS materialId ",
             "Material.name AS materialName ",
+            "Material.unit AS unit ",
             "DATE_FORMAT(Procurement.updateTime, '%Y-%m-%d %H:%i:%S') AS updateDate"
         ])
         .where(conditions.join(" AND "), parameters)

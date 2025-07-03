@@ -1,12 +1,12 @@
-import { createProcurementPay , updateProcurementPay , deleteProcurementPay , getProcurementPays } from '../models/procurementPay'
+import { createProcurementPay, updateProcurementPay, deleteProcurementPay, getProcurementPays } from '../models/procurementPay'
+import { getProcurementUnpay, updateProcurement } from '../models/procurement'
+
 
 module.exports = class ProcurementPay {
     getProcurementPays(req, res, next) {
-        const userInfo = req.userInfo
-        const options = { createUserId: userInfo.id , placeId: userInfo.current_placeId }
+        const options = { procurementId: req.body.procurementId }
         const size = req.body.size
         const page = req.body.page
-
 
         getProcurementPays(options, size, page).then(result => {
             res.json(result)
@@ -15,45 +15,52 @@ module.exports = class ProcurementPay {
         })
     }
 
-    createProcurementPay(req, res, next) {
-        const userInfo = req.userInfo
-        const data = {
-            createUserId: userInfo.id,
-            type: req.body.type,
-            procurementId:req.body.procurementId,
-            paid:req.body.paid,
-            remark:req.body.remark,
-            recordImg:req.body.recordImg
-        }
-        console.log(data)
+    async createProcurementPay(req, res, next) {
+        try {
+            const userInfo = req.userInfo
+            const procurementId = req.body.procurementId
+            const data = {
+                createUserId: userInfo.id,
+                type: req.body.type,
+                procurementId,
+                paid: req.body.paid,
+                remark: req.body.remark,
+                recordImg: req.body.recordImg
+            }
 
-        createProcurementPay(data).then(result => {
-            res.json(result)
-        }).catch(err => {
+            await createProcurementPay(data)
+            const unpay = await getProcurementUnpay(procurementId)
+            await updateProcurement(procurementId, { unpay }).then(result => {
+                res.json(result)
+            })
+        } catch (err) {
             next(err)
-        })
-
+        }
     }
 
-    updateProcurementPay(req, res, next) {
-        const userInfo = req.userInfo
-        const id = req.body.id
-        const data = {
-            createUserId: userInfo.id,
-            type: req.body.type,
-            procurementId:req.body.procurementId,
-            paid:req.body.paid,
-            remark:req.body.remark,
-            recordImg:req.body.recordImg
-        }
+    async updateProcurementPay(req, res, next) {
+        try {
+            const procurementId = req.body.procurementId
+            const id = req.body.id
+            const userInfo = req.userInfo
 
+            const data = {
+                createUserId: userInfo.id,
+                type: req.body.type,
+                procurementId,
+                paid: req.body.paid,
+                remark: req.body.remark,
+                recordImg: req.body.recordImg
+            }
 
-        updateProcurementPay(id, data).then(result => {
-            res.json(result)
-        }).catch(err => {
+            await updateProcurementPay(id, data)
+            const unpay = await getProcurementUnpay(procurementId)
+            await updateProcurement(procurementId, { unpay }).then(result => {
+                res.json(result)
+            })
+        } catch (err) {
             next(err)
-        })
-
+        }
     }
 
 

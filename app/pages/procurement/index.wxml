@@ -3,12 +3,19 @@
     <view wx:for="{{list}}" wx:key="unique" class="card group-list" wx:for-index="subIndex">
       <view class="li-info">
         <view class="font-bold font-big">{{item.name}}</view>
-        <view>{{item.standard}}</view>
+        <view>尚欠 {{item.unpay}} ￥</view>
+      </view>
+      <view class="li-info">
+        <view>
+        {{item.materialName}}{{item.quantity}}{{item.unit}}
+        </view>
       </view>
       <!-- btn-group -->
       <view class="flex gap">
-        <t-button theme="light" bind:tap="jumptoPay" 
-        data-current='{{item}}'>记录支出</t-button>
+        <t-button theme="light" bind:tap="jumptoPayRecord" 
+        data-current='{{item}}'>查记录</t-button>
+        <!-- <t-button theme="light" bind:tap="jumptoPay" 
+        data-current='{{item}}'>記支出</t-button> -->
         <t-button theme="light" bind:tap="switchToEdit" data-current='{{item}}' data-mode='edit'>编辑</t-button>
       </view>
     </view>
