@@ -2,7 +2,7 @@
   <view wx:if="{{ !isEdit }}">
     <view wx:for="{{list}}" wx:key="unique" class="card group-list" wx:for-index="subIndex">
       <view class="li-info">
-        <view class="font-bold font-big">{{item.procurementName}}</view>
+        <view>{{item.updateDate}}</view>
         <view class="font-bold font-big">{{item.paid}}￥</view>
       </view>
       <!-- btn-group -->

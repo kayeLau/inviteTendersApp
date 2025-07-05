@@ -3,6 +3,7 @@ import { procurementPay } from '../../utils/config'
 
 Page({
   data: {
+    formMode:null,
     procurementId:null,
     list: [],
     isEdit: false,
@@ -28,7 +29,12 @@ Page({
   },
 
   sumbitProcurement(){
-    this.createProcurement()
+      const formMode = this.data.formMode
+      if(formMode === 'create'){
+        this.createProcurement()
+      }else if(formMode === 'edit'){
+        this.updateProcurement()
+      }
   },
 
   createProcurement() {
@@ -56,13 +62,13 @@ Page({
 
   updateProcurement(){
     let data = this.selectComponent("#xl-form").getData()
+    const procurementId = this.data.procurementId
     if(!data)return;
     let params = {
+      procurementId,
       id:data.id,
-      name:data.name,
-      type: data.type,
-      price:data.price,
-      quantity:data.quantity,
+      payDate:data.payDate,
+      paid:data.paid,
       remark:data.remark,
       recordImg:data.recordImg.length ? data.recordImg.path : '',
     }
