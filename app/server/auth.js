@@ -23,19 +23,13 @@ function getUserInfo () {
   })
 }
 
-export function checkSession() {
-  promisify(wx.checkSession)().then(() => {
-    console.log('session 生效')
-    return getUserInfo()
-  }).then(userInfo => {
-    if(!userInfo.success){
-      return login()
-    }
-    console.log('登录成功', userInfo)
-  }).catch(err => {
-    console.log('自动登录失败, 重新登录', err)
-    return login()
-  }).catch(err => {
-    console.log('手动登录失败', err)
-  })
+export async function checkSession() {
+  const session = await promisify(wx.checkSession)()
+  if(session.errMsg === "checkSession:ok"){
+      const userinfo = await getUserInfo()
+      if(!userinfo.success){
+        await login()
+      }
+  }
+
 }
