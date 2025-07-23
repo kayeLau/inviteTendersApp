@@ -64,15 +64,19 @@ module.exports = class ProcurementPay {
     }
 
 
-    deleteProcurementPay(req, res, next) {
+    async deleteProcurementPay(req, res, next) {
         const id = req.body.id
         const userId = req.userInfo.id
+        const procurementId = req.body.procurementId
 
-        deleteProcurementPay(id, userId).then(result => {
-            res.json(result)
-        }).catch(err => {
+        try{
+            await deleteProcurementPay(id, userId)
+            const unpay = await getProcurementUnpay(procurementId)
+            await updateProcurement(procurementId, { unpay }).then(result => {
+                res.json(result)
+            })
+        }catch(err){
             next(err)
-        })
-
+        }
     }
 }

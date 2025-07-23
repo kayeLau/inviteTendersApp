@@ -1,0 +1,11 @@
+<view>
+    <t-popup visible="{{visible}}" bind:visible-change="onVisibleChange" placement="center">
+        <view class="confirm-popup">
+            确定删除？
+            <view class="btn-group">
+                <t-button theme="light" bind:tap="onConfirm">删除</t-button>
+                <t-button theme="light" bind:tap="onVisibleChange">取消</t-button>
+            </view>
+        </view>
+    </t-popup>
+</view>

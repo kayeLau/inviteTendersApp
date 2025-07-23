@@ -24,13 +24,15 @@ export function updateProcurementPay(id: number, data) {
 }
 
 export async function deleteProcurementPay(id: number, userId:number) {
-    const createUserId = await ProcurementPayRepository
+    const { createUserId } = await ProcurementPayRepository
     .createQueryBuilder("ProcurementPay")
     .select("ProcurementPay.createUserId AS createUserId")
     .where("id = :id", { id })
-    .getOne()
+    .getRawOne()
 
-    console.log(createUserId)
+    if(createUserId !== userId){
+        return Promise.reject({ success: false, message: '没有删除此记录的权限' })
+    }
 
     return ProcurementPayRepository
         .createQueryBuilder()

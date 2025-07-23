@@ -1,0 +1,17 @@
+.confirm-popup{
+    padding: 30rpx;
+    width: 50vw;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-weight: 700;
+    font-size: large;
+}
+
+.btn-group{
+    padding-top: 15px;
+    display: flex;
+    gap: 20rpx;
+}

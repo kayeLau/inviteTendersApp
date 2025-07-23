@@ -1,12 +1,9 @@
-import {
-    http
-} from '../../server/api'
-import {
-    procurementPay
-} from '../../utils/config'
+import { http } from '../../server/api'
+import { procurementPay } from '../../utils/config'
 
 Page({
     data: {
+        currentTargetId:null,
         formMode: null,
         procurementId: null,
         list: [],
@@ -86,11 +83,14 @@ Page({
         })
     },
 
-    deleteProcurement(e) {
-        const id = e.currentTarget.dataset.id
+    deleteProcurement() {
+        console.log(446)
+        const id = this.data.currentTargetId
+        const procurementId = this.data.procurementId
         if (!id) return;
-        http.post('/procurementPay/deleteProcurementPay', {id}).then(res => {
+        http.post('/procurementPay/deleteProcurementPay', { id, procurementId }).then(res => {
             if (res.data.success) {
+                this.selectComponent("#confirm-popup").onVisibleChange()
                 this.getProcurements()
             }
         })
@@ -112,6 +112,12 @@ Page({
         this.setData({
             isEdit: false,
         })
+    },
+
+    switchToDelete(e) {
+        const currentTargetId = e.currentTarget.dataset.id
+        this.setData({currentTargetId})
+        this.selectComponent("#confirm-popup").onVisibleChange()
     },
 
     onLoad(options) {
