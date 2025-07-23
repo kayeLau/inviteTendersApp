@@ -24,4 +24,7 @@ export class User {
     @Column({ nullable:true })
     defaultPlaceId: number
 
+    @Column({ comment:'0:未登录用户 1:登錄用戶 2:付費用戶' })
+    auth: number
+
 }

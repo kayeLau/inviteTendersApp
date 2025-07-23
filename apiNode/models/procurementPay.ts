@@ -23,7 +23,15 @@ export function updateProcurementPay(id: number, data) {
         })
 }
 
-export async function deleteProcurementPay(id: number) {
+export async function deleteProcurementPay(id: number, userId:number) {
+    const createUserId = await ProcurementPayRepository
+    .createQueryBuilder("ProcurementPay")
+    .select("ProcurementPay.createUserId AS createUserId")
+    .where("id = :id", { id })
+    .getOne()
+
+    console.log(createUserId)
+
     return ProcurementPayRepository
         .createQueryBuilder()
         .delete()

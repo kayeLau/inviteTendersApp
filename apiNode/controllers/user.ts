@@ -56,7 +56,8 @@ module.exports = class Member {
         if (user.data === null) {
           const registerResult = await registerUser({
             openId: openid,
-            sessionKey: session_key
+            sessionKey: session_key,
+            auth:1
           });
           if (registerResult.success) {
             console.log('新用户', user);

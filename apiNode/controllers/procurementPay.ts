@@ -65,9 +65,10 @@ module.exports = class ProcurementPay {
 
 
     deleteProcurementPay(req, res, next) {
-        const id = req.body.createUserId
+        const id = req.body.id
+        const userId = req.userInfo.id
 
-        deleteProcurementPay(id).then(result => {
+        deleteProcurementPay(id, userId).then(result => {
             res.json(result)
         }).catch(err => {
             next(err)

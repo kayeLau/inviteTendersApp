@@ -1,6 +1,8 @@
 {
   "navigationBarTitleText": "查看启动日志",
   "usingComponents": {
-    "role-change": "../../components/role-change"
+    "t-cell": "tdesign-miniprogram/cell/cell",
+    "t-avatar": "tdesign-miniprogram/avatar/avatar",
+    "t-popup": "tdesign-miniprogram/popup/popup"
   }
 }

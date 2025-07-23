@@ -1,20 +1,18 @@
-// logs.js
-import { formatTime } from '../../utils/dict.js';
-
 Page({
   data: {
-    logs: [],
-    image:'',
-    name:''
+    name:'点击登录',
+    image: 'https://tdesign.gtimg.com/mobile/demos/avatar1.png',
+    visible:false
   },
   onLoad() {
+
+  },
+  onVisibleChange() {
+    const visible = !this.data.visible
     this.setData({
-      logs: (wx.getStorageSync('logs') || []).map(log => {
-        return {
-          date: formatTime(new Date(log),'dateTime'),
-          timeStamp: log
-        }
-      })
-    })
-  }
+      visible: visible,
+    });
+  },
+
+
 })

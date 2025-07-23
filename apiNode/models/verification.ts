@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken')
 const config = require('../config/development_config')
 import { User } from '../entity/user';
 import AppDataSource from '../data-source';
+import { readApiByPath } from '../models/api'
 const memberRepository = AppDataSource.getRepository(User);
 
 interface UserInfo {
@@ -15,7 +16,7 @@ interface verifyTokenResult {
     success: Boolean
     userInfo?: UserInfo
 }
-// @ params
+
 // getUser 是否需要取得用戶資料
 export async function verifyToken(token, getUser = false): Promise<verifyTokenResult> {
     const time = Math.floor(Date.now() / 1000);
@@ -51,4 +52,30 @@ export async function verifyToken(token, getUser = false): Promise<verifyTokenRe
             success: false
         }
     }
+}
+
+// 驗證用戶權限
+export function verifyaAuth(url: String, auth:Number): Promise<verifyTokenResult> {
+    return readApiByPath(url).then(res => {
+        if (res && res.success && res.data) {
+            const accessList = res.data.access.split(',')
+            const passAuth = accessList.includes(String(auth)) || accessList.includes('*') || auth === -1
+            if (passAuth) {
+                return {
+                    msg: "auth verify success",
+                    success: true,
+                }
+            }
+        }
+        
+        return {
+            msg: "沒有權限",
+            success: false,
+        }
+    }).catch(err => {
+        return {
+            msg: "權限驗證錯誤",
+            success: false,
+        }
+    })
 }

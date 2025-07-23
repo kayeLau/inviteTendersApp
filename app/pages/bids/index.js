@@ -1,5 +1,6 @@
 // index.js
 import { http } from '../../server/api'
+import { autoLogin } from '../../server/auth.js';
 const app = getApp()
 
 Page({
@@ -24,9 +25,12 @@ Page({
     }
   ],
   },
-
-  onLoad() {
-    this.getbidInfo()
+  async onLoad(){
+    await autoLogin()
+    await this.getbidInfo()
+  },
+  onShow() {
+    // this.getbidInfo()
   },
 //输入为空时刷新页面
   checkInput(event) {

@@ -1,4 +1,18 @@
 <!--logs.wxml-->
 <view class="container">
-  <role-change></role-change>
+    <view class="user-header">
+        <t-avatar class="avatar-example" image="{{image}}" size='120rpx' />
+        <view class="user-info" bind:tap="onVisibleChange">
+            <view>{{ name }}</view>
+            <view>132****4207</view>
+        </view>
+    </view>
+
+    <t-popup visible="{{visible}}" bind:visible-change="onVisibleChange" placement="bottom">
+        <view class="user-block flex">
+            <button open-type="getPhoneNumber"  
+            class="phone-login"
+            bindgetphonenumber="getPhoneNumber">手机快捷登录</button>
+        </view>
+    </t-popup>
 </view>

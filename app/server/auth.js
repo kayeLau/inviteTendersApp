@@ -23,13 +23,15 @@ function getUserInfo () {
   })
 }
 
-export async function checkSession() {
-  const session = await promisify(wx.checkSession)()
-  if(session.errMsg === "checkSession:ok"){
-      const userinfo = await getUserInfo()
-      if(!userinfo.success){
-        await login()
-      }
-  }
+export async function autoLogin() {
+  await login()
+  await getUserInfo()
+//   const session = await promisify(wx.checkSession)()
+//   if(session.errMsg === "checkSession:ok"){
+//       const userinfo = await getUserInfo()
+//       if(!userinfo.success){
+//         await login()
+//       }
+//   }
 
 }

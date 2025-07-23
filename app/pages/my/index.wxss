@@ -1,0 +1,22 @@
+.user-header{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 30rpx;
+    gap: 20rpx;
+}
+.user-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.user-block{
+    height: 10vh;
+    padding: 20rpx;
+}
+.phone-login{
+    width: 80%;
+    background-color: #00C250;
+    color: #ffffff;
+    font-weight: 800;
+}

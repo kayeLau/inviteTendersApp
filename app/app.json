@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/index/index",
+    "pages/bids/index",
     "pages/my/index",
     "pages/detail/index",
     "pages/tools/index",
@@ -30,7 +30,7 @@
   "tabBar": {
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/bids/index",
         "text": "招标"
       },
       {
