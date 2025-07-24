@@ -26,13 +26,13 @@ Page({
 
   sumbitGroup(){
     if(this.data.formMode === 'create'){
-      this.createGroup()
+      this.createMaterial()
     }else if(this.data.formMode === 'edit'){
-      this.updateGroup()
+      this.updateMaterial()
     }
   },
 
-  createGroup() {
+  createMaterial() {
     let data = this.selectComponent("#xl-form").getData()
     if(!data)return;
     let params = {
@@ -51,12 +51,15 @@ Page({
     })
   },
 
-  updateGroup(){
+  updateMaterial(){
     let data = this.selectComponent("#xl-form").getData()
     if(!data)return;
     let params = {
       id:data.id,
       name:data.name,
+      standard:data.standard,
+      unit:data.unit,
+      rentUnit:data.rentUnit
     }
     http.post('/material/updateMaterial', params).then(res => {
       if (res.data.success) {

@@ -28,6 +28,11 @@ Page({
         })
     },
 
+    setSelected(e) {
+        const selected = e.detail[0]
+        this.setData({ selected })
+    },
+
     sumbitProcurement() {
         if (this.data.formMode === 'create') {
             this.createProcurement()
