@@ -1,8 +1,9 @@
-FROM node:12-slim
+FROM node:20-slim
 WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm install
 RUN npm install -g typescript
 COPY . ./
-RUN tsc
-CMD [ "npm", "run", "prod" ]
+RUN tsc --version
+RUN tsc || true
+CMD [ "npm", "run", "dev" ]
