@@ -30,4 +30,5 @@
       <view class="round-btn btn-primary" bind:tap="sumbitProcurement" style="width: 70%;">确定</view>
     </view>
   </view>
+  <select-penal id='select-penal' flag='material' showAdd='{{false}}' mutiSelect='{{false}}' bind:onSumbit='setSelected'></select-penal>
 </view>

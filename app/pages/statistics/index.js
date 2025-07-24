@@ -67,7 +67,7 @@ Page({
 
   jumpToMember(){
     wx.navigateTo({
-      url: '/pages/staffPenal/index?showAdd=false&mutiSelect=false&callback=setMember'
+      url: '/pages/staffPenal/index?showAdd=false&callback=setMember'
     })
   },
 

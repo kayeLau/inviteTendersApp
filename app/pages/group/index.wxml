@@ -25,7 +25,7 @@
           <view>{{ item.label }}</view>
         </view>
         <view class="flex column">
-          <t-button theme="primary" icon="user-transmit" shape="square" size="large" aria-label="搜索" variant="outline" t-class="staff-add-btn"></t-button>
+          <t-button theme="primary" icon="user-transmit" shape="square" size="large" variant="outline" t-class="staff-add-btn" bind:tap="jumpto"></t-button>
           <view style="color: #ccc;">选择</view>
         </view>
       </view>
@@ -35,4 +35,5 @@
       <view class="round-btn btn-primary" bind:tap="sumbitGroup" style="width: 70%;">确定</view>
     </view>
   </view>
+  <select-penal id='select-penal' flag='group' bind:onSumbit='setSelected'></select-penal>
 </view>

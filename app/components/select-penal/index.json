@@ -10,6 +10,7 @@
     "t-icon": "tdesign-miniprogram/icon/icon",
     "t-sticky": "tdesign-miniprogram/sticky/sticky",
     "t-tabs": "tdesign-miniprogram/tabs/tabs",
-    "t-tab-panel": "tdesign-miniprogram/tab-panel/tab-panel"
+    "t-tab-panel": "tdesign-miniprogram/tab-panel/tab-panel",
+    "t-popup": "tdesign-miniprogram/popup/popup"
   }
 }

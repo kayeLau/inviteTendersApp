@@ -95,6 +95,11 @@ Page({
     this.setData({mode:roleId})
   },
 
+  setSelected(e) {
+    const selected = e.detail
+    this.setData({ selected })
+},
+
   onTabsChange(e) {
     this.setData({
       tab: Number(e.detail.value)
@@ -102,9 +107,7 @@ Page({
   },
 
   jumpto() {
-    wx.navigateTo({
-      url: '/pages/staffPenal/index?showGroup=true'
-    })
+    this.selectComponent('#select-penal').onVisibleChange()
   },
 
   onLoad() {

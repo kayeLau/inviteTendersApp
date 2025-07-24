@@ -1,5 +1,5 @@
-.staff-panel{
-  overflow: scroll;
+.select-panel{
+  width: 100vw;
 }
 .staff-add{
   margin-bottom: 30rpx;

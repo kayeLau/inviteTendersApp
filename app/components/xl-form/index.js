@@ -148,8 +148,7 @@ Component({
       let pass = true
       this.properties.column.forEach(item => {
         if (!item.nullable) {
-          if (params[item.key] === null || params[item.key] === undefined) {
-            console.log(params[item.key])
+          if (this.checkNull(params[item.key])) {
             const action = item.prop === 'input' ? '输入' : '选择'
             rule[item.key] = '请' + action + item.label
             pass = false
@@ -160,6 +159,10 @@ Component({
         rule
       })
       return pass
+    },
+
+    checkNull(value){
+        return value === null || value === undefined || value === ''
     }
   },
 
